@@ -16,18 +16,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView submitBtn;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+
+    CardView submitBtn;
+    EditText f_name , l_name , gend , ageTv ,weightTv , heightTv;
+
     String email;
     String password = "123456";
     String TAG = "LogTestLogin";
-    FirebaseUser currentUser;
-    String name , gender , age , weight , height;
-    EditText f_name , l_name , gend , ageTv ,weightTv , heightTv;
-    int random;
+    private String name , gender , age , weight , height, Cur_Uid;
+
+    int random ;
+    float bmi;
 
 
     @Override
@@ -45,27 +56,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         submitBtn = findViewById(R.id.submitBtn);
         submitBtn.setOnClickListener(this);
-//        mAuth = FirebaseAuth.getInstance();
-//        currentUser = mAuth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        Cur_Uid = currentUser.getUid();
 //        createAccount();
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
     }
-
-    private void updateUI(FirebaseUser user) {
-
-    }
-
+    
     private void getInfoUser(){
         name = f_name.getText().toString() + " " + l_name.getText().toString();
         gender = gend.getText().toString();
         age = ageTv.getText().toString();
         weight = weightTv.getText().toString();
         height = heightTv.getText().toString();
-        Toast.makeText(LoginActivity.this,name + gender + age + weight + height , Toast.LENGTH_LONG).show();
+        float tmp_h = Float.parseFloat(height);
+        float powHeight = (float) Math.pow((tmp_h / 100),2);
+
+        bmi = (Integer.parseInt(weight) / powHeight) ;
+        Log.d("bmi", bmi + " : " + powHeight);
+//        Toast.makeText(LoginActivity.this,name + gender + age + weight + height , Toast.LENGTH_LONG).show();
     }
     private void createAccount() {
         random = (int)(Math.random() * 100000 + 1);
@@ -96,10 +112,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if ( v == submitBtn ) {
-            createAccount();
+//            createAccount();
             getInfoUser();
-            Intent intent = new Intent(LoginActivity.this,DiseaseActivity.class);
-            startActivity(intent);
+//            addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
+//            Intent intent = new Intent(LoginActivity.this,DiseaseActivity.class);
+//            startActivity(intent);
         }
+    }
+
+    private void addUser(String uid, String name, String gender , String weight , String age , String height, String bmi) {
+        User user = new User(name, age, gender, weight, height, bmi,"","","","","","","","","","");
+        Map<String, Object> UserValues = user.toMap();
+
+        Map<String, Object> childUpdates= new HashMap<>();
+        childUpdates.put(uid, UserValues);
+        myRef.updateChildren(childUpdates);
+//        Toast.makeText(SecondActivity.this,
+//                "Write new user : " + id ,
+//                Toast.LENGTH_LONG).show();
     }
 }
