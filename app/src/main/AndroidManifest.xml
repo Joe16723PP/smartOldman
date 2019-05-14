@@ -11,6 +11,60 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+		<activity android:name=".Dep4Activity" />
+        <activity android:name=".Dep3Activity" />
+        <activity android:name=".Dep2Activity" />
+        <activity android:name=".Dep1Activity" >
+        </activity>
+        <activity
+            android:name=".Diab4Activity"
+             />
+        <activity
+            android:name=".Diab3Activity"
+             />
+        <activity
+            android:name=".Diab2Activity"
+             />
+        <activity
+            android:name=".Diab1Activity"
+            >
+        </activity>
+        <activity
+            android:name=".Lipid4Activity"
+             />
+        <activity
+            android:name=".Lipid3Activity"
+             />
+        <activity
+            android:name=".Lipid2Activity"
+             />
+        <activity
+            android:name=".Lipid1Activity"
+             />
+        <activity
+            android:name=".Oste4Activity"
+             />
+        <activity
+            android:name=".Oste3Activity"
+             />
+        <activity
+            android:name=".Oste2Activity"
+             />
+        <activity
+            android:name=".Oste1Activity"
+             />
+        <activity
+            android:name=".Hyper4Activity"
+             />
+        <activity
+            android:name=".Hyper3Activity"
+             />
+        <activity
+            android:name=".Hyper2Activity"
+             />
+        <activity
+            android:name=".Hyper1Activity"
+             />
         <activity android:name=".DiseaseActivity"></activity>
         <activity android:name=".BmiActivity" />
         <activity android:name=".LoginActivity" />

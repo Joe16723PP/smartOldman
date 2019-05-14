@@ -57,9 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         submitBtn = findViewById(R.id.submitBtn);
         submitBtn.setOnClickListener(this);
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        Cur_Uid = currentUser.getUid();
+
 //        createAccount();
 
         database = FirebaseDatabase.getInstance();
@@ -72,6 +70,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void getInfoUser(){
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        Cur_Uid = currentUser.getUid();
         name = f_name.getText().toString() + " " + l_name.getText().toString();
         gender = gend.getText().toString();
         age = ageTv.getText().toString();

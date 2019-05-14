@@ -8,4 +8,19 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorPurple">#7f4782</color>
+	
+	<!--Tung Sayomphoo-->
+    <color name="red">#ff0000</color>
+    <color name="green">#00ff00</color>
+    <color name="blue">#0000ff</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="blue01">#4BB3FD</color>
+    <color name="blue02">#027BCE</color>
+
+    <color name="pas_blue01">#defcfc</color>
+    <color name="pas_pink01">#ffcece</color>
+    <color name="pas_green01">#dbe9b7</color>
+    <color name="pas_green02">#fdfdf6</color>
 </resources>

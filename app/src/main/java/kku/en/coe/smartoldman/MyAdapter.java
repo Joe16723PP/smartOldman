@@ -52,9 +52,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"clicked : " + listItem.getHeader(),Toast.LENGTH_LONG).show();
-//                String pointer = listItem.getPointer();
-//                checkIntent(pointer,v);
+//                Toast.makeText(context,"clicked : " + listItem.getHeader(),Toast.LENGTH_LONG).show();
+                String pointer = listItem.getPointer();
+                checkIntent(pointer,v);
 
             }
         });
@@ -62,22 +62,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     private void checkIntent(String pointer, View v) {
-//        if (pointer.equals("Hyper1Activity")) {
-//            Intent intent = new Intent(context,Hyper1Activity.class);
-//            v.getContext().startActivity(intent);
-//        }else if (pointer.equals("Oste1Activity")) {
-//            Intent intent = new Intent(context,Oste1Activity.class);
-//            v.getContext().startActivity(intent);
-//        }else if (pointer.equals("Lipid1Activity")) {
-//            Intent intent = new Intent(context,Lipid1Activity.class);
-//            v.getContext().startActivity(intent);
-//        }else if (pointer.equals("Diab1Activity")) {
-//            Intent intent = new Intent(context,Diab1Activity.class);
-//            v.getContext().startActivity(intent);
-//        }else if (pointer.equals("Dep1Activity")) {
-//            Intent intent = new Intent(context,Dep1Activity.class);
-//            v.getContext().startActivity(intent);
-//        }
+        if (pointer.equals("Hyper1Activity")) {
+            Intent intent = new Intent(context,Hyper1Activity.class);
+            v.getContext().startActivity(intent);
+        }else if (pointer.equals("Oste1Activity")) {
+            Intent intent = new Intent(context,Oste1Activity.class);
+            v.getContext().startActivity(intent);
+        }else if (pointer.equals("Lipid1Activity")) {
+            Intent intent = new Intent(context,Lipid1Activity.class);
+            v.getContext().startActivity(intent);
+        }else if (pointer.equals("Diab1Activity")) {
+            Intent intent = new Intent(context,Diab1Activity.class);
+            v.getContext().startActivity(intent);
+        }else if (pointer.equals("Dep1Activity")) {
+            Intent intent = new Intent(context,Dep1Activity.class);
+            v.getContext().startActivity(intent);
+        }
     }
 
     @Override
