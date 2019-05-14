@@ -3,28 +3,33 @@
     "disease":[
         {
             "title":"โรคความดันโลหิตสูง",
-            "color":"",
-            "description" : ""
+            "color":"#bf0000",
+            "description" : "",
+            "pointer" : "Hyper1Activity"
         },
         {
             "title":"โรคข้อเข่าเสื่อม",
-            "color":"",
-            "description" : ""        
+            "color":"#f67280",
+            "description" : "",
+            "pointer" : "Oste1Activity"
         },
         {
-            "title":"โรคไขมันในเลือดสูง หรือ ภาวะไขมันในเลือดผิดปกติ",
-            "color":"",
-            "description" : ""        
+            "title":"โรคไขมันในเลือดสูง",
+            "color":"#9f609c",
+            "description" : "",
+            "pointer" : "Lipid1Activity"
         },
         {
             "title":"โรคเบาหวาน",
-            "color":"",
-            "description" : ""        
+            "color":"#c3bef0",
+            "description" : "",
+            "pointer" : "Diab1Activity"
         },
         {
             "title":"ภาวะซึมเศร้า",
-            "color":"",
-            "description" : ""       
+            "color":"#e8d2ae",
+            "description" : "",
+            "pointer" : "Dep1Activity"
          }
     ]
   }

@@ -66,10 +66,12 @@ public class DiseaseActivity extends AppCompatActivity {
                 JSONObject nameObj = (JSONObject) placesObj.get(i);
                 String name = (String) nameObj.get("title");
                 String desc = (String) nameObj.get("description");
+                String color = (String) nameObj.get("color");
+                String pointer = (String) nameObj.get("pointer");
                 places[i] = name;
 
                 ListItem listItem = new ListItem(
-                        name, desc, desc
+                        name, desc, desc , color , pointer
                 );
 
                 listItems.add(listItem);

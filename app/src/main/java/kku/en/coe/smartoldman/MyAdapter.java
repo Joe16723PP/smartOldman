@@ -2,8 +2,10 @@ package kku.en.coe.smartoldman;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -43,6 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         final ListItem listItem = listItems.get(position);
         viewHolder.tvHead.setText(listItem.getHeader());
         viewHolder.tvDesc.setText(listItem.getDesc());
+        viewHolder.color.setBackgroundColor(Color.parseColor(listItem.getColor()));
 
         String https_url = listItem.getImgUrl().replace("http","https");
 
@@ -50,9 +53,31 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,"clicked : " + listItem.getHeader(),Toast.LENGTH_LONG).show();
+//                String pointer = listItem.getPointer();
+//                checkIntent(pointer,v);
+
             }
         });
 
+    }
+
+    private void checkIntent(String pointer, View v) {
+//        if (pointer.equals("Hyper1Activity")) {
+//            Intent intent = new Intent(context,Hyper1Activity.class);
+//            v.getContext().startActivity(intent);
+//        }else if (pointer.equals("Oste1Activity")) {
+//            Intent intent = new Intent(context,Oste1Activity.class);
+//            v.getContext().startActivity(intent);
+//        }else if (pointer.equals("Lipid1Activity")) {
+//            Intent intent = new Intent(context,Lipid1Activity.class);
+//            v.getContext().startActivity(intent);
+//        }else if (pointer.equals("Diab1Activity")) {
+//            Intent intent = new Intent(context,Diab1Activity.class);
+//            v.getContext().startActivity(intent);
+//        }else if (pointer.equals("Dep1Activity")) {
+//            Intent intent = new Intent(context,Dep1Activity.class);
+//            v.getContext().startActivity(intent);
+//        }
     }
 
     @Override
@@ -61,8 +86,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvHead, tvDesc;
-        public ImageView img;
+        public TextView tvHead, tvDesc , color;
         public LinearLayout linearLayout;
 
         public ViewHolder(@NonNull View itemView) {
@@ -70,7 +94,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
             tvHead = itemView.findViewById(R.id.header);
             tvDesc = itemView.findViewById(R.id.desc);
-//            img = itemView.findViewById(R.id.imgView);
+            color = itemView.findViewById(R.id.front_color);
             linearLayout = itemView.findViewById(R.id.lnLayout);
         }
     }

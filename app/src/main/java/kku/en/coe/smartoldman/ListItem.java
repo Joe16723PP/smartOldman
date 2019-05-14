@@ -2,10 +2,14 @@ package kku.en.coe.smartoldman;
 
 
 public class ListItem {
-    private String header,desc,imgUrl;
+    private String header,desc,imgUrl, color, pointer;
 
     public String getHeader() {
         return header;
+    }
+
+    public String getColor() {
+        return color;
     }
 
     public String getDesc() {
@@ -16,9 +20,15 @@ public class ListItem {
         return imgUrl;
     }
 
-    public ListItem(String header, String desc, String imgUrl) {
+    public ListItem(String header, String desc, String imgUrl , String color, String pointer) {
         this.header = header;
         this.desc = desc;
         this.imgUrl = imgUrl;
+        this.color = color;
+        this.pointer = pointer;
+    }
+
+    public String getPointer() {
+        return pointer;
     }
 }
