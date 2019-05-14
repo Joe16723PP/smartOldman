@@ -36,9 +36,6 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
         getSupportActionBar().hide();
         getValueIntent();
 
-        recyclerView = findViewById(R.id.rcv);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         bmi_tv = findViewById(R.id.bmi);
         risk_tv = findViewById(R.id.risk);
 
@@ -94,6 +91,9 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
 //        check if bmi is risk
         bmi_tv.setText("BMI : " + String.valueOf(bmi));
         if (bmi >= 25 ){
+            recyclerView = findViewById(R.id.rcv);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
             risk_tv.setText("คุณมีความเสี่ยงเกี่ยวกับโรคต่อไปนี้ !");
             String urlFIle = "disease.json";
             readLocalJson(urlFIle);
