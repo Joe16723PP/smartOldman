@@ -113,9 +113,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if ( v == submitBtn ) {
-//            createAccount();
+            createAccount();
             getInfoUser();
-//            addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
+            addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
             Intent intent = new Intent(LoginActivity.this,BmiActivity.class);
             intent.putExtra("bmi",String.valueOf(bmi));
             startActivity(intent);
