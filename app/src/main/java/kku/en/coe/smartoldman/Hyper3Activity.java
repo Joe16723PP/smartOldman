@@ -29,7 +29,7 @@ public class Hyper3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hyper1);
+        setContentView(R.layout.activity_dep1);
 
         setTitle(R.string.hyper_string);
 

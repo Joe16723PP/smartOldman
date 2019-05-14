@@ -29,7 +29,7 @@ public class Oste2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oste1);
+        setContentView(R.layout.activity_dep1);
 
         setTitle(R.string.oste_string);
 

@@ -29,7 +29,7 @@ public class Diab4Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diab1);
+        setContentView(R.layout.activity_dep1);
 
         setTitle(R.string.diab_string);
 
