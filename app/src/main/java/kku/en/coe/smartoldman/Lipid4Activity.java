@@ -29,7 +29,7 @@ public class Lipid4Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lipid1);
+        setContentView(R.layout.activity_dep1);
 
         setTitle(R.string.lipid_string);
 

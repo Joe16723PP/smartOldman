@@ -14,7 +14,7 @@
 	<!--@Tung Sayomphoo-->
     <string name="hyper_string">โรคความดันโลหิตสูง</string>
     <string name="oste_string">โรคข้อเข่าเสื่อม</string>
-    <string name="lipid_string">โรคไขมันในเลือดสูง \nหรือ ภาวะไขมันในเลือดผิดปกติ</string>
+    <string name="lipid_string">โรคไขมันในเลือดสูง</string>
     <string name="diab_string">โรคเบาหวาน</string>
     <string name="dep_string">ภาวะซึมเศร้า</string>
     <string name="next_string">ถัดไป</string>

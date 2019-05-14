@@ -15,41 +15,67 @@
         android:gravity="center"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/img_main"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            android:layout_marginBottom="16dp"/>
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="16dp">
 
-        <TextView
-            android:id="@+id/txt_head"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="22dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="16dp">
 
-        <TextView
-            android:id="@+id/txt_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text=""
-            android:textSize="22dp"
-            android:textColor="@color/black"/>
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:elevation="16dp"
+                    android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/txt_link"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:clickable="true"
-            android:autoLink="all"
-            android:text=""
-            android:textSize="22dp" />
+                    <ImageView
+                        android:id="@+id/img_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitStart"/>
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/txt_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/txt_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/txt_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:autoLink="all"
+                    android:text=""
+                    android:textSize="22dp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
@@ -66,15 +92,21 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="16dp"
             android:text="@string/back_string"
-            android:textSize="18dp"/>
+            android:textSize="22dp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_sick1"/>
         <Button
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="16dp"
             android:text="@string/next_string"
-            android:textSize="18dp"/>
+            android:textSize="22dp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_sick2"/>
 
     </LinearLayout>
 
