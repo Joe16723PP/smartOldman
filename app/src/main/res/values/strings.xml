@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SmartOldman</string>
+    <string name="loginStr">Login</string>
+    <string name="f_nameStr">name</string>
+    <string name="l_nameStr">last name</string>
+    <string name="ageStr">age</string>
+    <string name="genderStr">gender</string>
+    <string name="weightStr">weight</string>
+    <string name="heightStr">height</string>
+    <string name="fillInfoStr">Fill Information</string>
+    <string name="submitStr">submit</string>
+    <string name="bmiStr">BMI : </string>
+</resources>

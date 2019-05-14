@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/fill_info"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textAllCaps="true"
+        android:text="@string/fillInfoStr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/info_grb"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/fill_info"
+        android:background="@color/colorMiddle"
+        android:padding="50dp"
+        android:orientation="vertical"
+        android:elevation="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/F_Name"
+                android:hint="@string/f_nameStr"
+                android:drawableLeft="@drawable/ic_action_acc"
+                android:layout_weight="1"
+                android:layout_width="300dp"
+                android:layout_height="50dp" />
+            <EditText
+                android:hint="@string/l_nameStr"
+                android:id="@+id/L_Name"
+                android:layout_weight="1"
+                android:layout_width="300dp"
+                android:layout_height="50dp" />
+        </LinearLayout>
+
+        <EditText
+            android:ems="10"
+            android:hint="@string/genderStr"
+            android:id="@+id/genre"
+            android:drawableLeft="@drawable/ic_action_wc"
+            android:layout_width="300dp"
+            android:layout_height="50dp" />
+        <EditText
+            android:hint="@string/ageStr"
+            android:id="@+id/age"
+            android:drawableLeft="@drawable/ic_action_bb"
+            android:layout_width="300dp"
+            android:layout_height="50dp" />
+        <EditText
+            android:hint="@string/weightStr"
+            android:id="@+id/weight"
+            android:drawableLeft="@drawable/ic_action_ve"
+            android:layout_width="300dp"
+            android:layout_height="50dp" />
+        <EditText
+            android:hint="@string/heightStr"
+            android:id="@+id/height"
+            android:drawableLeft="@drawable/ic_action_tr"
+            android:layout_width="300dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        app:cardBackgroundColor="@color/colorAccent"
+        android:layout_marginTop="50dp"
+        android:id="@+id/submitBtn"
+        android:layout_below="@+id/info_grb"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:clickable="true"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="15dp"
+        android:layout_height="50dp">
+
+        <TextView
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:text="@string/submitStr"
+            android:elevation="10dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

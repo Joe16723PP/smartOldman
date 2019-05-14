@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        app:srcCompat="@drawable/logo_3" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_centerInParent="true"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:elevation="20dp"
+        android:background="@drawable/selector_btn"
+        android:layout_below="@+id/logo"
+        android:text="@string/loginStr"/>
+
+
+
+</RelativeLayout>
+
+    <!--style="@style/CardViewStyle"-->
+    <!--app:cardBackgroundColor="@color/colorPurple"-->
+
+<!--<android.support.v7.widget.CardView-->
+
+<!--android:layout_marginTop="50dp"-->
+<!--android:id="@+id/loginBtn"-->
+<!--android:layout_below="@+id/logo"-->
+<!--android:layout_centerHorizontal="true"-->
+<!--android:layout_width="300dp"-->
+<!--app:cardCornerRadius="25dp"-->
+<!--app:cardElevation="15dp"-->
+<!--app:cardBackgroundColor="@drawable/selector_btn"-->
+<!--android:layout_height="50dp">-->
+
+<!--<TextView-->
+    <!--android:textAllCaps="true"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/loginStr"-->
+    <!--android:elevation="10dp"-->
+    <!--android:textColor="@color/colorWhite"-->
+    <!--android:textSize="20sp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
+<!--</android.support.v7.widget.CardView>-->
