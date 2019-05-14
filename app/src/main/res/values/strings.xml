@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">SmartOldman</string>
-    <string name="loginStr">Login</string>
-    <string name="f_nameStr">name</string>
-    <string name="l_nameStr">last name</string>
-    <string name="ageStr">age</string>
-    <string name="genderStr">gender</string>
-    <string name="weightStr">weight</string>
-    <string name="heightStr">height</string>
-    <string name="fillInfoStr">Fill Information</string>
-    <string name="submitStr">submit</string>
+    <string name="app_name">สูงวัยรู้ทันโรค</string>
+    <string name="loginStr">เข้าสู่ระบบเพื่อใช้งาน</string>
+    <string name="f_nameStr">ชื่อ</string>
+    <string name="l_nameStr">นามสกุล</string>
+    <string name="ageStr">อายุ</string>
+    <string name="genderStr">เพศ</string>
+    <string name="weightStr">น้ำหนัก</string>
+    <string name="heightStr">ส่วนสูง</string>
+    <string name="fillInfoStr">กรอกข้อมูลที่จำเป็น</string>
+    <string name="submitStr">ถัดไป</string>
     <string name="bmiStr">BMI : </string>
 </resources>

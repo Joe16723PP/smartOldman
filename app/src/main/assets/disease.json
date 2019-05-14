@@ -1,0 +1,30 @@
+
+{ 
+    "disease":[
+        {
+            "title":"โรคความดันโลหิตสูง",
+            "color":"",
+            "description" : ""
+        },
+        {
+            "title":"โรคข้อเข่าเสื่อม",
+            "color":"",
+            "description" : ""        
+        },
+        {
+            "title":"โรคไขมันในเลือดสูง หรือ ภาวะไขมันในเลือดผิดปกติ",
+            "color":"",
+            "description" : ""        
+        },
+        {
+            "title":"โรคเบาหวาน",
+            "color":"",
+            "description" : ""        
+        },
+        {
+            "title":"ภาวะซึมเศร้า",
+            "color":"",
+            "description" : ""       
+         }
+    ]
+  }

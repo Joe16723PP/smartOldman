@@ -8,23 +8,35 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:layout_marginTop="50dp"
+    <android.support.v7.widget.CardView
         android:id="@+id/fill_info"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:textAllCaps="true"
-        android:text="@string/fillInfoStr"
+        android:layout_margin="50dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="30dp"
+        android:padding="50dp"
+        app:cardBackgroundColor="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="80dp">
+        <TextView
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:text="@string/fillInfoStr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.CardView>
+
 
     <LinearLayout
         android:id="@+id/info_grb"
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/fill_info"
         android:background="@color/colorMiddle"
-        android:padding="50dp"
+        android:padding="40dp"
         android:orientation="vertical"
         android:elevation="20dp"
         android:layout_width="wrap_content"
@@ -38,39 +50,54 @@
                 android:id="@+id/F_Name"
                 android:hint="@string/f_nameStr"
                 android:drawableLeft="@drawable/ic_action_acc"
+                android:textSize="22dp"
+                android:textColor="@color/colorWhite"
                 android:layout_weight="1"
                 android:layout_width="300dp"
                 android:layout_height="50dp" />
             <EditText
+                android:textColor="@color/colorWhite"
                 android:hint="@string/l_nameStr"
                 android:id="@+id/L_Name"
+                android:textSize="22dp"
                 android:layout_weight="1"
                 android:layout_width="300dp"
                 android:layout_height="50dp" />
         </LinearLayout>
 
         <EditText
+            android:textColor="@color/colorWhite"
             android:ems="10"
             android:hint="@string/genderStr"
             android:id="@+id/genre"
+            android:textSize="22dp"
             android:drawableLeft="@drawable/ic_action_wc"
             android:layout_width="300dp"
             android:layout_height="50dp" />
         <EditText
+            android:textColor="@color/colorWhite"
+            android:inputType="number"
             android:hint="@string/ageStr"
             android:id="@+id/age"
+            android:textSize="22dp"
             android:drawableLeft="@drawable/ic_action_bb"
             android:layout_width="300dp"
             android:layout_height="50dp" />
         <EditText
+            android:inputType="number"
+            android:textColor="@color/colorWhite"
             android:hint="@string/weightStr"
             android:id="@+id/weight"
+            android:textSize="22dp"
             android:drawableLeft="@drawable/ic_action_ve"
             android:layout_width="300dp"
             android:layout_height="50dp" />
         <EditText
+            android:inputType="number"
+            android:textColor="@color/colorWhite"
             android:hint="@string/heightStr"
             android:id="@+id/height"
+            android:textSize="22dp"
             android:drawableLeft="@drawable/ic_action_tr"
             android:layout_width="300dp"
             android:layout_height="50dp" />

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "282401185829",
+    "firebase_url": "https://smartoldman-26e4d.firebaseio.com",
+    "project_id": "smartoldman-26e4d",
+    "storage_bucket": "smartoldman-26e4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282401185829:android:0fb9c72871397af0",
+        "android_client_info": {
+          "package_name": "kku.en.coe.smartoldman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "282401185829-8offi8mv3l31sllsfbk87pd60ooj9874.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kku.en.coe.smartoldman",
+            "certificate_hash": "87c6bd29cb3228a9fd6e279edd5862c1a48ed189"
+          }
+        },
+        {
+          "client_id": "282401185829-h3m9b09a3j5prc722l8f76rnavgovb6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIROZ1bFrPviNTCKVTS0o5LbSRjHf-bCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "282401185829-h3m9b09a3j5prc722l8f76rnavgovb6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
