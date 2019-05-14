@@ -103,27 +103,20 @@
             android:layout_height="50dp" />
     </LinearLayout>
 
-    <android.support.v7.widget.CardView
-        app:cardBackgroundColor="@color/colorAccent"
-        android:layout_marginTop="50dp"
+    <Button
+        android:layout_height="62dp"
         android:id="@+id/submitBtn"
-        android:layout_below="@+id/info_grb"
-        android:layout_centerHorizontal="true"
+        android:text="@string/submitStr"
         android:layout_width="300dp"
-        android:clickable="true"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="15dp"
-        android:layout_height="50dp">
+        android:elevation="20dp"
+        android:layout_marginTop="40dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/selector_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/info_grb"
+        android:padding="13dp" />
 
-        <TextView
-            android:textAllCaps="true"
-            android:gravity="center"
-            android:text="@string/submitStr"
-            android:elevation="10dp"
-            android:textColor="@color/colorWhite"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

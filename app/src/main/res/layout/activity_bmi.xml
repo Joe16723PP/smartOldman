@@ -8,12 +8,66 @@
     android:background="@drawable/gradient"
     tools:context=".BmiActivity">
 
-
-    <TextView
-        android:textSize="30sp"
-        android:gravity="center"
-        android:text="@string/bmiStr"
+    <android.support.v7.widget.CardView
+        app:cardElevation="3dp"
+        app:cardCornerRadius="10dp"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_margin="20dp"
+        android:layout_height="600dp">
+
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:textSize="33sp"
+                android:text="รายงานผล"
+                android:gravity="center"
+                android:id="@+id/header_bmi"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@id/header_bmi"
+                android:layout_marginTop="20dp"
+                android:id="@+id/bmi"
+                android:textSize="26sp"
+                android:gravity="center"
+                android:text="@string/bmiStr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="23sp"
+                android:layout_below="@id/bmi"
+                android:id="@+id/risk"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_below="@id/risk"
+                android:id="@+id/rcv"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/see_all"
+                android:text="ดูข้อมูลทั้งหมด"
+                android:layout_width="300dp"
+                android:layout_height="62dp"
+                android:elevation="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/selector_btn"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:padding="13dp" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
 </RelativeLayout>

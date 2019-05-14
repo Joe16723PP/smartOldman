@@ -1,10 +1,13 @@
 package kku.en.coe.smartoldman;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,7 +18,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiseaseActivity extends AppCompatActivity {
+public class DiseaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -25,10 +28,15 @@ public class DiseaseActivity extends AppCompatActivity {
     JSONArray placesObj;
     JSONObject jsonObject;
 
+    private Button edit_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disease);
+
+        edit_btn = findViewById(R.id.edit_btn);
+        edit_btn.setOnClickListener(this);
 
         recyclerView = findViewById(R.id.rcv);
         recyclerView.setHasFixedSize(true);
@@ -82,6 +90,14 @@ public class DiseaseActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if ( v == edit_btn ) {
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
         }
     }
 }

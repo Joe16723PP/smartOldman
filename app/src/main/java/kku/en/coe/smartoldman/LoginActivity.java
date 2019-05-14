@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
-    CardView submitBtn;
+    Button submitBtn;
     EditText f_name , l_name , gend , ageTv ,weightTv , heightTv;
 
     String email;
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onStart() {
         super.onStart();
     }
-    
+
     private void getInfoUser(){
         name = f_name.getText().toString() + " " + l_name.getText().toString();
         gender = gend.getText().toString();
@@ -115,8 +116,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            createAccount();
             getInfoUser();
 //            addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
-//            Intent intent = new Intent(LoginActivity.this,DiseaseActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(LoginActivity.this,BmiActivity.class);
+            intent.putExtra("bmi",String.valueOf(bmi));
+            startActivity(intent);
         }
     }
 
@@ -131,4 +133,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                "Write new user : " + id ,
 //                Toast.LENGTH_LONG).show();
     }
+
+//    private void updUser(String id, String email) {
+//        myRef.child("users").child(id).child("email").setValue(email);
+//        Toast.makeText(SecondActivity.this,
+//                "ID : " + id + ", Email : " + email,
+//                Toast.LENGTH_LONG).show();
+//    }
 }
