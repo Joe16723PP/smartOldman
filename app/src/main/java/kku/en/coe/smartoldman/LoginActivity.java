@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -31,15 +32,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FirebaseUser currentUser;
 
     Button submitBtn;
-    EditText f_name , l_name , gend , ageTv ,weightTv , heightTv;
+    EditText f_name , l_name , ageTv ,weightTv , heightTv;
 
     String email;
     String password = "123456";
     String TAG = "LogTestLogin";
     private String name , gender , age , weight , height, Cur_Uid;
 
+    RadioGroup rgb;
+
     int random ;
-    float bmi;
+    double bmi;
 
 
     @Override
@@ -48,9 +51,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
 
+        rgb = findViewById(R.id.genre);
+        rgb.setOnCheckedChangeListener(this);
+
         f_name = findViewById(R.id.F_Name);
         l_name = findViewById(R.id.L_Name);
-        gend = findViewById(R.id.genre);
+//        gend = findViewById(R.id.genre);
         ageTv = findViewById(R.id.age);
         weightTv = findViewById(R.id.weight);
         heightTv = findViewById(R.id.height);
@@ -74,16 +80,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         currentUser = mAuth.getCurrentUser();
         Cur_Uid = currentUser.getUid();
         name = f_name.getText().toString() + " " + l_name.getText().toString();
-        gender = gend.getText().toString();
         age = ageTv.getText().toString();
         weight = weightTv.getText().toString();
         height = heightTv.getText().toString();
         float tmp_h = Float.parseFloat(height);
-        float powHeight = (float) Math.pow((tmp_h / 100),2);
+        double powHeight = Math.pow((tmp_h / 100),2);
 
         bmi = (Integer.parseInt(weight) / powHeight) ;
         Log.d("bmi", bmi + " : " + powHeight);
-//        Toast.makeText(LoginActivity.this,name + gender + age + weight + height , Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this, String.valueOf(bmi), Toast.LENGTH_LONG).show();
     }
     private void createAccount() {
         random = (int)(Math.random() * 100000 + 1);
@@ -134,9 +139,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Map<String, Object> childUpdates= new HashMap<>();
         childUpdates.put(uid, UserValues);
         myRef.updateChildren(childUpdates);
-//        Toast.makeText(SecondActivity.this,
-//                "Write new user : " + id ,
-//                Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this,
+                "Write new user : " + uid,
+                Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        if ( checkedId == R.id.female ) {
+            gender = "ผู้หญิง";
+
+        } else if ( checkedId == R.id.male ) {
+            gender = "ผู้ชาย";
+        }
+        Log.e("gen",gender);
     }
 
 //    private void updUser(String id, String email) {
