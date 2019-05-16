@@ -1,5 +1,6 @@
 package kku.en.coe.smartoldman;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -23,14 +24,17 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-
+//    FirebaseUser currentUser;
+//    FirebaseUser user;
+    ProgressDialog pgd;
     Button submitBtn;
     EditText f_name , l_name , ageTv ,weightTv , heightTv;
 
@@ -66,8 +70,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 //        createAccount();
 
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("users");
+//        database = FirebaseDatabase.getInstance();
+//        myRef = database.getReference("users");
     }
 
     @Override
@@ -76,13 +80,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void getInfoUser(){
-//        FirebaseAuth mAuth_2 = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Cur_Uid = currentUser.getUid();
-        }else {
-            createAccount();
-        }
         name = f_name.getText().toString() + " " + l_name.getText().toString();
         age = ageTv.getText().toString();
         weight = weightTv.getText().toString();
@@ -95,9 +92,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         } catch (Exception e) {
             Toast.makeText(this,"การเข้ารหัสข้อมูลผิดพลาด กรุณาลองใหม่อีกครั้ง",Toast.LENGTH_LONG).show();
+            Log.d("bmi", String.valueOf(bmi));
         }
-
-        Toast.makeText(LoginActivity.this, String.valueOf(bmi), Toast.LENGTH_LONG).show();
+//        Toast.makeText(LoginActivity.this, String.valueOf(bmi), Toast.LENGTH_LONG).show();
     }
     private void createAccount() {
         random = (int)(Math.random() * 100000 + 1);
@@ -111,7 +108,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+//                            user = mAuth.getCurrentUser();
+//                            Cur_Uid = user.getUid();
+//                            Log.d(TAG, Cur_Uid);
 //                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -130,30 +129,52 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if ( v == submitBtn ) {
             try {
+                pgd = ProgressDialog.show(this, "กำลังเก็บข้อมูล กรุณารอสักครู่", "Loading...", true, false);
                 createAccount();
                 getInfoUser();
-                addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
+//                addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
+                // set delay time
+                new Timer().schedule(
+                        new TimerTask(){
+                            @Override
+                            public void run(){
+                                pgd.dismiss();
+                                doIntent();
+                            }
+                        }, 5000);
             } catch (Exception e) {
                 Log.d(TAG, "err : wtf" + e);
-                Toast.makeText(this,"การเชื่อมต่อกับฐานข้อมูลล้มเหลว กรุณาลองใหม่อีกครั้ง",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"การเชื่อมต่อกับฐานข้อมูลล้มเหลว \nกรุณาตรวจสอบอินเทอร์เน็ตของท่านแล้วลองใหม่อีกครั้ง",Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void addUser(String uid, String name, String gender , String weight , String age , String height, String bmi) {
-        User user = new User(name, age, gender, weight, height, bmi,"","","","","","","","","","");
-        Map<String, Object> UserValues = user.toMap();
-
-        Map<String, Object> childUpdates= new HashMap<>();
-        childUpdates.put(uid, UserValues);
-        myRef.updateChildren(childUpdates);
-        Toast.makeText(LoginActivity.this,
-                "Write new user : " + name,
-                Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(LoginActivity.this,BmiActivity.class);
+    private void doIntent() {
+        Intent intent = new Intent(this,SubLoginActivity.class);
         intent.putExtra("bmi",String.valueOf(bmi));
+        intent.putExtra("name", name);
+        intent.putExtra("age", age);
+        intent.putExtra("weight", weight);
+        intent.putExtra("height", height);
+        intent.putExtra("gender", gender);
         startActivity(intent);
     }
+
+//    private void addUser(String uid, String name, String gender , String weight , String age , String height, String bmi) {
+//        User user = new User(name, age, gender, weight, height, bmi,"","","","","","","","","","");
+//        Map<String, Object> UserValues = user.toMap();
+//
+//        Map<String, Object> childUpdates= new HashMap<>();
+//        childUpdates.put(uid, UserValues);
+//        myRef.updateChildren(childUpdates);
+//        Log.d(TAG,uid);
+//        Toast.makeText(LoginActivity.this,
+//                "Write new user : " + name,
+//                Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(LoginActivity.this,BmiActivity.class);
+//        intent.putExtra("bmi",String.valueOf(bmi));
+//        startActivity(intent);
+//    }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
