@@ -10,8 +10,8 @@
     <string name="fillInfoStr">กรอกข้อมูลที่จำเป็น</string>
     <string name="submitStr">ถัดไป</string>
     <string name="bmiStr">BMI : </string>
-	
-	<!--@Tung Sayomphoo-->
+
+    <!--@Tung Sayomphoo-->
     <string name="hyper_string">โรคความดันโลหิตสูง</string>
     <string name="oste_string">โรคข้อเข่าเสื่อม</string>
     <string name="lipid_string">โรคไขมันในเลือดสูง</string>

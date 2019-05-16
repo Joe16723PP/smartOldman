@@ -76,18 +76,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void getInfoUser(){
-        mAuth = FirebaseAuth.getInstance();
+//        FirebaseAuth mAuth_2 = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        Cur_Uid = currentUser.getUid();
+        if (currentUser != null) {
+            Cur_Uid = currentUser.getUid();
+        }else {
+            createAccount();
+        }
         name = f_name.getText().toString() + " " + l_name.getText().toString();
         age = ageTv.getText().toString();
         weight = weightTv.getText().toString();
         height = heightTv.getText().toString();
-        float tmp_h = Float.parseFloat(height);
-        double powHeight = Math.pow((tmp_h / 100),2);
+        try {
+            double tmp_h = Double.parseDouble(height);
+            double powHeight = Math.pow((tmp_h / 100),2);
+            bmi = (Double.parseDouble(weight) / powHeight) ;
+            Log.d("bmi", bmi + " : " + powHeight);
 
-        bmi = (Integer.parseInt(weight) / powHeight) ;
-        Log.d("bmi", bmi + " : " + powHeight);
+        } catch (Exception e) {
+            Toast.makeText(this,"การเข้ารหัสข้อมูลผิดพลาด กรุณาลองใหม่อีกครั้ง",Toast.LENGTH_LONG).show();
+        }
+
         Toast.makeText(LoginActivity.this, String.valueOf(bmi), Toast.LENGTH_LONG).show();
     }
     private void createAccount() {
@@ -110,6 +119,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                            Toast.makeText(LoginActivity.this, "Authentication failed.",
 //                                    Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
+//                            mAuth.signOut();
                             createAccount();
                         }
                     }
@@ -125,10 +135,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
             } catch (Exception e) {
                 Log.d(TAG, "err : wtf" + e);
+                Toast.makeText(this,"การเชื่อมต่อกับฐานข้อมูลล้มเหลว กรุณาลองใหม่อีกครั้ง",Toast.LENGTH_LONG).show();
             }
-            Intent intent = new Intent(LoginActivity.this,BmiActivity.class);
-            intent.putExtra("bmi",String.valueOf(bmi));
-            startActivity(intent);
         }
     }
 
@@ -140,8 +148,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         childUpdates.put(uid, UserValues);
         myRef.updateChildren(childUpdates);
         Toast.makeText(LoginActivity.this,
-                "Write new user : " + uid,
+                "Write new user : " + name,
                 Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(LoginActivity.this,BmiActivity.class);
+        intent.putExtra("bmi",String.valueOf(bmi));
+        startActivity(intent);
     }
 
     @Override

@@ -8,6 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,11 +33,17 @@ public class DiseaseActivity extends AppCompatActivity implements View.OnClickLi
     JSONObject jsonObject;
 
     private Button edit_btn;
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disease);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        Toast.makeText(this,currentUser.getUid(),Toast.LENGTH_LONG).show();
 
         edit_btn = findViewById(R.id.edit_btn);
         edit_btn.setOnClickListener(this);
