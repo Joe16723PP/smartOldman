@@ -10,21 +10,27 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 //    CardView cv;
-    Button cv;
+    Button cv, emer_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         cv = findViewById(R.id.loginBtn);
+        emer_btn = findViewById(R.id.emer_btn);
+        emer_btn.setOnClickListener(this);
         cv.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if ( v == cv ) {
-            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+            Intent intent = new Intent(this,DiseaseActivity.class);
             startActivity(intent);
+        }
+        else if ( v == emer_btn) {
+                Intent intent = new Intent(this,Emergency1Activity.class);
+                startActivity(intent);
         }
     }
 }

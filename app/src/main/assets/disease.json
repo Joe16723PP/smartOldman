@@ -5,31 +5,43 @@
             "title":"โรคความดันโลหิตสูง",
             "color":"#bf0000",
             "description" : "",
-            "pointer" : "Hyper1Activity"
+            "pointer" : "Hyper1Activity",
+            "icon" : "pressure"
         },
         {
             "title":"โรคข้อเข่าเสื่อม",
             "color":"#f67280",
             "description" : "",
-            "pointer" : "Oste1Activity"
+            "pointer" : "Oste1Activity",
+            "icon" : "knee"
         },
         {
             "title":"โรคไขมันในเลือดสูง",
             "color":"#9f609c",
             "description" : "",
-            "pointer" : "Lipid1Activity"
+            "pointer" : "Lipid1Activity",
+            "icon" : "pizza"
         },
         {
             "title":"โรคเบาหวาน",
             "color":"#c3bef0",
             "description" : "",
-            "pointer" : "Diab1Activity"
+            "pointer" : "Diab1Activity",
+            "icon" : "doughnut"
         },
         {
             "title":"ภาวะซึมเศร้า",
             "color":"#e8d2ae",
             "description" : "",
-            "pointer" : "Dep1Activity"
-         }
+            "pointer" : "Dep1Activity",
+            "icon" : "sad"
+        },
+        {
+            "title":"เบอร์ติดต่อฉุกเฉิน",
+            "color":"#FF0000",
+            "description" : "",
+            "pointer" : "Emergency1Activity",
+            "icon" : "warning_1"
+        }
     ]
   }

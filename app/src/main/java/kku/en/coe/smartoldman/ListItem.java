@@ -20,6 +20,10 @@ public class ListItem {
         return imgUrl;
     }
 
+    public String getPointer() {
+        return pointer;
+    }
+
     public ListItem(String header, String desc, String imgUrl , String color, String pointer) {
         this.header = header;
         this.desc = desc;
@@ -28,7 +32,5 @@ public class ListItem {
         this.pointer = pointer;
     }
 
-    public String getPointer() {
-        return pointer;
-    }
+
 }

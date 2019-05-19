@@ -30,6 +30,20 @@
         android:layout_below="@+id/logo"
         android:text="@string/loginStr"/>
 
+    <Button
+        android:id="@+id/emer_btn"
+        android:layout_centerInParent="true"
+        android:layout_width="300dp"
+        android:layout_height="62dp"
+        android:elevation="20dp"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/selector_btn"
+        android:layout_below="@+id/loginBtn"
+        android:text="@string/emerStr"/>
+
 
 
 </RelativeLayout>

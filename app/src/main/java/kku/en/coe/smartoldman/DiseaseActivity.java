@@ -86,10 +86,12 @@ public class DiseaseActivity extends AppCompatActivity implements View.OnClickLi
                 String desc = (String) nameObj.get("description");
                 String color = (String) nameObj.get("color");
                 String pointer = (String) nameObj.get("pointer");
+                String icon = (String) nameObj.get("icon");
                 places[i] = name;
 
+                int resID = getResources().getIdentifier(icon , "drawable", getPackageName());
                 ListItem listItem = new ListItem(
-                        name, desc, desc , color , pointer
+                        name, desc, String.valueOf(resID) , color , pointer
                 );
 
                 listItems.add(listItem);

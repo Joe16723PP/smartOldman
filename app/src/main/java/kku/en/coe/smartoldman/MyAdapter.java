@@ -3,6 +3,7 @@ package kku.en.coe.smartoldman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -27,7 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<ListItem> listItems;
     private Context context;
-
+    private Resources res;
     public MyAdapter(List<ListItem> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
@@ -47,7 +48,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         viewHolder.tvDesc.setText(listItem.getDesc());
         viewHolder.color.setBackgroundColor(Color.parseColor(listItem.getColor()));
 
-        String https_url = listItem.getImgUrl().replace("http","https");
+        String resIcon = listItem.getImgUrl();
+        viewHolder.icon.setImageResource(Integer.parseInt(resIcon));
+
+//        String https_url = listItem.getImgUrl().replace("http","https");
 
         viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +81,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }else if (pointer.equals("Dep1Activity")) {
             Intent intent = new Intent(context,Dep1Activity.class);
             v.getContext().startActivity(intent);
+        }else if (pointer.equals("Emergency1Activity")) {
+            Intent intent = new Intent(context,Emergency1Activity.class);
+            intent.putExtra("return_point","disease");
+            v.getContext().startActivity(intent);
         }
     }
 
@@ -88,10 +96,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvHead, tvDesc , color;
         public LinearLayout linearLayout;
+        public ImageView icon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            icon = itemView.findViewById(R.id.icon_sick);
             tvHead = itemView.findViewById(R.id.header);
             tvDesc = itemView.findViewById(R.id.desc);
             color = itemView.findViewById(R.id.front_color);

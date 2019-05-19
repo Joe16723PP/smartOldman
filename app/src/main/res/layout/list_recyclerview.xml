@@ -25,10 +25,13 @@
                 android:layout_height="match_parent" />
 
             <LinearLayout
-                android:padding="20dp"
+                android:paddingLeft="20dp"
+                android:weightSum="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
                     android:text="header"
                     android:id="@+id/header"
                     android:textSize="21sp"
@@ -39,6 +42,12 @@
                     android:id="@+id/desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/icon_sick"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
             </LinearLayout>
 
 
