@@ -124,7 +124,7 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
             Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
             ArrayAnswer global = ArrayAnswer.getInstance();
 
-            
+
             try {
                 int[] tmp_ans = global.getArray_answer();
                 ArrayList<String> tmp_list = new ArrayList<>();

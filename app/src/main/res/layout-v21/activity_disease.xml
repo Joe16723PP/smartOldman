@@ -32,12 +32,13 @@
                 android:id="@+id/edit_btn"
                 android:text="@string/editInfomation"
                 android:layout_width="300dp"
+                android:elevation="20dp"
                 android:textSize="20sp"
                 android:textColor="@color/colorWhite"
                 android:background="@drawable/selector_btn"
                 android:padding="13dp" />
-
+            
         </LinearLayout>
     </ScrollView>
-
+    
 </RelativeLayout>

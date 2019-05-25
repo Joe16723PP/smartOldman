@@ -22,4 +22,5 @@
     <string name="show_score">แสดงผลคะแนน</string>
     <string name="score">Score</string>
     <string name="reading">อ่านบทความ</string>
+    <string name="editInfomation">แก้ไขข้อมูลส่วนตัว</string>
 </resources>

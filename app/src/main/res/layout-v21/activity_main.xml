@@ -10,15 +10,14 @@
 
 
     <RelativeLayout
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:layout_centerHorizontal="true"
             android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_width="wrap_content"
+            android:layout_height="320dp"
             app:srcCompat="@drawable/logo_3" />
 
         <Button
@@ -26,6 +25,7 @@
             android:layout_centerInParent="true"
             android:layout_width="300dp"
             android:layout_height="62dp"
+            android:elevation="20dp"
             android:textStyle="bold"
             android:textSize="22sp"
             android:textColor="@color/colorWhite"
@@ -38,6 +38,7 @@
             android:layout_centerInParent="true"
             android:layout_width="300dp"
             android:layout_height="62dp"
+            android:elevation="20dp"
             android:textStyle="bold"
             android:textSize="22sp"
             android:layout_marginTop="15dp"
