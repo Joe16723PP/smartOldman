@@ -34,6 +34,7 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
     private String[] tmp_ans_1 = new String[10];
     private String[] tmp_ans_2 = new String[10];
 
+    String file_name , pointer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,17 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
         listItems = new ArrayList<>();
 
         doGetAnswer();
-        String urlFIle = "pre_sick1.json";
-        readLocalJson(urlFIle);
+
+//        String urlFIle = "pre_sick1.json";
+        readLocalJson(file_name);
     }
 
     private void doGetAnswer() {
         ArrayList<String> tmp_list = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         tmp_list = extras.getStringArrayList("answer_1");
+        file_name = extras.getString("file_name");
+        pointer = extras.getString("next_pointer");
 //        Log.e("loop" , String.valueOf(tmp_list));
         String tmp = "";
         for (int i = 0; i< tmp_list.size()-10 ;i++) {
@@ -92,7 +96,7 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
         }
         try {
             JSONObject object = (JSONObject) new JSONObject(json);
-            placesObj = (JSONArray) object.get("pre_sick1");
+            placesObj = (JSONArray) object.get("pre_sick");
             int ObjLng = placesObj.length();
             for (int i = 10 ; i < ObjLng; i++) {
                 JSONObject nameObj = (JSONObject) placesObj.get(i);
@@ -116,6 +120,7 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
+            Intent intent = new Intent(this,QuestionShowScore.class);
             Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
             ArrayAnswer global = ArrayAnswer.getInstance();
             try {
@@ -126,15 +131,9 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
                     tmp_list.add(String.valueOf(tmp_ans[i]));
                     tmp_ans_2[i-10] = String.valueOf(tmp_ans[i]);
                     answer_all.add(String.valueOf(tmp_ans[i]));
-//                    answer_all.add(tmp_list.get(i));
-//                    try {
-//                        answer_all.set(i,tmp_list.get(i));
-//                    }catch (Exception e){
-//                        e.printStackTrace();
-//                    }
                 }
 //                intent.putStringArrayListExtra("answer_1",tmp_list);
-//                startActivity(intent);
+                startActivity(intent);
                 Log.e("finalll" ,": " + answer_all );
 
             } catch (Exception e) {
@@ -144,6 +143,7 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
 
         else if ( v == back_btn ) {
             Intent intent = new Intent(this,QuestionActivity.class);
+            intent.putExtra("next_pointer", pointer);
             startActivity(intent);
         }
     }

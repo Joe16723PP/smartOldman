@@ -35,13 +35,15 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     JSONArray placesObj;
     JSONObject jsonObject;
 
+    String pointer = "";
+    String file_name, next_pointer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        setTitle("Question");
 
         next_btn = findViewById(R.id.next_question);
         next_btn.setOnClickListener(this);
@@ -52,10 +54,36 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listItems = new ArrayList<>();
-        String urlFIle = "pre_sick1.json";
-        readLocalJson(urlFIle);
+        getIntentData();
 
+        listItems = new ArrayList<>();
+//        String urlFIle = "pre_sick1.json";
+        readLocalJson(file_name);
+
+    }
+
+    private void getIntentData() {
+        Bundle extras = getIntent().getExtras();
+        pointer = extras.getString("next_pointer");
+        switch (pointer) {
+            case "Hyper1Activity" :
+                file_name = "pre_sick1";
+                break;
+            case "Oste1Activity" :
+                file_name = "pre_sick2";
+                break;
+            case "Lipid1Activity" :
+                file_name = "pre_sick3";
+                break;
+            case "Diab1Activity" :
+                file_name = "pre_sick4";
+                break;
+            case "Dep1Activity" :
+                file_name = "pre_sick5";
+                break;
+        }
+        setTitle(pointer);
+        file_name += ".json";
     }
 
     private void readLocalJson(String urlVal) {
@@ -73,7 +101,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }
         try {
             JSONObject object = new JSONObject(json);
-            placesObj = (JSONArray) object.get("pre_sick1");
+            placesObj = (JSONArray) object.get("pre_sick");
             int ObjLng = placesObj.length();
             for (int i = 0 ; i < ObjLng - 10 ; i++) {
                 JSONObject nameObj = (JSONObject) placesObj.get(i);
@@ -109,6 +137,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     tmp_list.add(String.valueOf(tmp_ans[i]));
                 }
                 intent.putStringArrayListExtra("answer_1",tmp_list);
+                intent.putExtra("file_name" , file_name);
+                intent.putExtra("next_pointer", pointer);
                 startActivity(intent);
                 Log.e("global" ,": " + tmp );
             } catch (Exception e) {
