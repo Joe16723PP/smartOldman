@@ -7,10 +7,15 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 //    CardView cv;
     Button cv, emer_btn;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +25,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         emer_btn = findViewById(R.id.emer_btn);
         emer_btn.setOnClickListener(this);
         cv.setOnClickListener(this);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onClick(View v) {
         if ( v == cv ) {
-            Intent intent = new Intent(this,DiseaseActivity.class);
-            startActivity(intent);
+            if ( mAuth != null) {
+                Intent intent = new Intent(this,DiseaseActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this,LoginActivity.class);
+                startActivity(intent);
+            }
         }
         else if ( v == emer_btn) {
                 Intent intent = new Intent(this,Emergency1Activity.class);

@@ -19,4 +19,7 @@
     <string name="depression_string">ภาวะซึมเศร้า</string>
     <string name="next_string">ถัดไป</string>
     <string name="back_string">ย้อนกลับ</string>
+    <string name="show_score">แสดงผลคะแนน</string>
+    <string name="score">Score</string>
+    <string name="reading">อ่านบทความ</string>
 </resources>

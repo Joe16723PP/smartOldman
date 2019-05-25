@@ -4,24 +4,15 @@ package kku.en.coe.smartoldman;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -29,6 +20,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<ListItem> listItems;
     private Context context;
     private Resources res;
+
     public MyAdapter(List<ListItem> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
@@ -67,27 +59,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private void checkIntent(String pointer, View v) {
         if (pointer.equals("Hyper1Activity")) {
-            Intent intent = new Intent(context,Hyper1Activity.class);
-            intent.putExtra("return_point","disease");
+            Intent intent = new Intent(context,QuestionActivity.class);
+            intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Oste1Activity")) {
-            Intent intent = new Intent(context,Oste1Activity.class);
-            intent.putExtra("return_point","disease");
+            Intent intent = new Intent(context,QuestionActivity.class);
+            intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Lipid1Activity")) {
-            Intent intent = new Intent(context,Lipid1Activity.class);
-            intent.putExtra("return_point","disease");
+            Intent intent = new Intent(context,QuestionActivity.class);
+            intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Diab1Activity")) {
-            Intent intent = new Intent(context,Diab1Activity.class);
-            intent.putExtra("return_point","disease");
+            Intent intent = new Intent(context,QuestionActivity.class);
+            intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Dep1Activity")) {
-            Intent intent = new Intent(context,Dep1Activity.class);
-            intent.putExtra("return_point","disease");
+            Intent intent = new Intent(context,QuestionActivity.class);
+            intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Emergency1Activity")) {
             Intent intent = new Intent(context,Emergency1Activity.class);
+//            intent.putExtra("next_pointer",pointer);
             intent.putExtra("return_point","disease");
             v.getContext().startActivity(intent);
         }
