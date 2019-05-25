@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +30,7 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
 
     private TextView bmi_tv , risk_tv;
     private Button see_all_btn;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

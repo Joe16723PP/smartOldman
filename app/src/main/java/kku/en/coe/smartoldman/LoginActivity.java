@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseAuth mAuth;
-//    FirebaseUser currentUser;
+    FirebaseUser currentUser;
 //    FirebaseUser user;
     ProgressDialog pgd;
     Button submitBtn;

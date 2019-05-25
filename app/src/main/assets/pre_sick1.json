@@ -1,0 +1,83 @@
+{
+    "pre_sick1" : [
+        {
+            "id" : "1",
+            "question" : "question"
+        },
+        {
+            "id" : "2",
+            "question" : "question"
+        },
+        {
+            "id" : "3",
+            "question" : "question"
+        },
+        {
+            "id" : "4",
+            "question" : "question"
+        },
+        {
+            "id" : "5",
+            "question" : "question"
+        },
+        {
+            "id" : "6",
+            "question" : "question"
+        },
+        {
+            "id" : "7",
+            "question" : "question"
+        },
+        {
+            "id" : "8",
+            "question" : "question"
+        },
+        {
+            "id" : "9",
+            "question" : "question"
+        },
+        {
+            "id" : "10",
+            "question" : "question"
+        },{
+            "id" : "11",
+            "question" : "question"
+        },
+        {
+            "id" : "12",
+            "question" : "question"
+        },
+        {
+            "id" : "13",
+            "question" : "question"
+        },
+        {
+            "id" : "14",
+            "question" : "question"
+        },
+        {
+            "id" : "15",
+            "question" : "question"
+        },
+        {
+            "id" : "16",
+            "question" : "question"
+        },
+        {
+            "id" : "17",
+            "question" : "question"
+        },
+        {
+            "id" : "18",
+            "question" : "question"
+        },
+        {
+            "id" : "19",
+            "question" : "question"
+        },
+        {
+            "id" : "20",
+            "question" : "question"
+        }
+    ]
+}
