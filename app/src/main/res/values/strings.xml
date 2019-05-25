@@ -12,11 +12,11 @@
     <string name="bmiStr">BMI : </string>
     <string name="emerStr">เบอร์ฉุกเฉิน</string>
     <!--@Tung Sayomphoo-->
-    <string name="hyper_string">โรคความดันโลหิตสูง</string>
+    <string name="hypertension_string">โรคความดันโลหิตสูง</string>
     <string name="oste_string">โรคข้อเข่าเสื่อม</string>
     <string name="lipid_string">โรคไขมันในเลือดสูง</string>
-    <string name="diab_string">โรคเบาหวาน</string>
-    <string name="dep_string">ภาวะซึมเศร้า</string>
+    <string name="diabetes_string">โรคเบาหวาน</string>
+    <string name="depression_string">ภาวะซึมเศร้า</string>
     <string name="next_string">ถัดไป</string>
     <string name="back_string">ย้อนกลับ</string>
 </resources>

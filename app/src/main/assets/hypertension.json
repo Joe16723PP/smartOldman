@@ -1,0 +1,161 @@
+{
+    "hypertension":[
+        {
+            "title": "ความหมาย",
+            "text": "ภาวะที่ความดันโลหิตมากกว่าหรือเท่ากับ 140/90 มิลลิเมตรปรอท",
+            "main_img":"hyper_page1",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "ความดันโลหิตสูง",
+            "text": "แบ่งเป็น 2 ชนิด ดังนี้\n\n 1.ความดันโลหิตสูงปฐมภูมิหรือความดันโลหิตสูงไม่ทราบสาเหตุ\n\n2. ความดันโลหิตสูงทุติยภูมิหรือความดันโลหิตสูงทราบสาเหตุ",
+            "main_img":"",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "อาการ",
+            "text": "- มักจะไม่มีอาการที่จำพาะชัดเจน\n\n- อาจมาด้วยอาการปวดศีรษะรุนแรงมักปวดบริเวณท้ายทอยจะเป็นช่วงเช้า คลื่นไส้ อาเจียน",
+            "main_img":"hyper_page3",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "ปัจจัยเสี่ยง",
+            "text": "1. การนอนกรน\n2. พันธุกรรม\n3. อายุที่มากขึ้น\n4. ผู้ที่มีรูปร่างอ้วน\n5. การขาดการออกกำลังกาย",
+            "main_img":"hyper_page4",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "ปัจจัยเสี่ยง",
+            "text": "6. ผู้ที่มีโรคเบาหวาน\n7. เวลา\n8. เพศ\n9. ความเครียด\n10. ผู้ที่ชอบรับประทานอาหารเค็ม\n11. การสูบบุหรี่",
+            "main_img":"hyper_page5",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "ภาวะแทรกซ้อน",
+            "text": "- หลอดเลือดตีบตันหรือหลอดเลือดแตกในสมอง\n\n- หัวใจโต\n\n- หลอดเลือดแดงตีบแคบหรือหลอดเลือดแดงใหญ่โป่งพอง",
+            "main_img":"hyper_page6",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "ภาวะแทรกซ้อน",
+            "text": "- ตามัวจนถึงตาบอดได้\n\n- ไตวายเรื้อรัง",
+            "main_img":"hyper_page7",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "พฤติกรรมเสี่ยง",
+            "text": "1.การไม่มาตรวจตามนัด\n2.รับประทานอาหาร เครื่องดื่มที่มีรสหวานจัด\n3.รับประทานอาหารที่มีไขมันสูง\n4.มีอารมณ์เครียด",
+            "main_img":"hyper_page8",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "พฤติกรรมเสี่ยง",
+            "text": "5.การสูบบุหรี่จัด\n6.การรับประทานยาไม่สม่ำเสมอ\n7.น้ำหนักตัวมากเกินไป\n8.ดื่มสุราเป็นประจำ\n9.ขาดการออกกำลังกาย\n10.รับประทานอาหารเค็มจัด",
+            "main_img":"hyper_page9",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "การปฏิบัติตัว",
+            "text": "การออกกำลังกาย\n\n ควรเป็นการออกกำลังกายสม่่ำเสมอครั้งละ 20-60 นาที สัปดาห์ละ 3-5 ครั้ง",
+            "main_img":"hyper_page10",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "การปฏิบัติตัว",
+            "text": "รูปแบบของการออกกำลังกาย ได้แก่ การเดิน ถีบจักรยาน ว่ายน้ำ การร่ายรำประเภทต่าง ๆ เช่น รำดาบ รำวงมาตรฐาน รำมวยจีน รำไม้พลอง ",
+            "main_img":"hyper_page11",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        {
+            "title": "การปฏิบัติตัว",
+            "text": "1. การปรับเปลี่ยนอาหาร\n2. ลดปริมาณโซเดียมในอาหาร\n3. ลดปริมาณแอลกอฮอล์\n4. ลดน้ำหนัก\n5. การออกกำลังกาย",
+            "main_img":"hyper_page12",
+            "link":"",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        },
+        
+        {
+            "title": "โรคความดันโลหิตสูง",
+            "text": "รู้ทันป้องกันได้!",
+            "main_img":"hyper_page1",
+            "link":"https://www.youtube.com/watch?v=smuPh4K6gGw",
+            "sub_img" : "",
+            "img_1" : "hyper_small_1",
+            "img_2" : "hyper_small_2",
+            "img_3" : "hyper_small_3",
+            "img_4" : "hyper_small_4",
+            "sound" : ""
+        }
+    ]
+}

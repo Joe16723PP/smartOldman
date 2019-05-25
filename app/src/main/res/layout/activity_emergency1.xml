@@ -66,47 +66,62 @@
                     <ImageView
                         android:id="@+id/main_img"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitStart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </android.support.v7.widget.CardView>
 
                 <TextView
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:padding="20dp"
                     android:layout_below="@id/main_img_card"
                     android:id="@+id/txt_emer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="20dp"
+                    android:layout_below="@id/txt_emer"
+                    android:id="@+id/txt_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:autoLink="all"/>
+
                 <LinearLayout
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/txt_emer"
+                    android:layout_below="@id/txt_link"
                     android:weightSum="4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
+                        android:id="@+id/img_small1"
                         android:layout_weight="1"
                         android:padding="10dp"
-                        android:src="@drawable/policeman"
+                        android:adjustViewBounds="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <ImageView
+                        android:id="@+id/img_small2"
                         android:layout_weight="1"
                         android:padding="10dp"
-                        android:src="@drawable/police_car"
+                        android:adjustViewBounds="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <ImageView
+                        android:id="@+id/img_small3"
                         android:layout_weight="1"
                         android:padding="10dp"
-                        android:src="@drawable/ambulance"
+                        android:adjustViewBounds="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <ImageView
+                        android:id="@+id/img_small4"
                         android:layout_weight="1"
                         android:padding="10dp"
-                        android:src="@drawable/doctor"
+                        android:adjustViewBounds="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>

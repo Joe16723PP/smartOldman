@@ -6,8 +6,11 @@
             "focus_num" : "",
             "main_img" : "emer_1",
             "sub_img" : "search",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -16,8 +19,11 @@
             "focus_num" : "",
             "main_img" : "emer_2",
             "sub_img" : "warning_1",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -26,8 +32,11 @@
             "focus_num" : "",
             "main_img" : "emer_3",
             "sub_img" : "warning_1",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -36,8 +45,11 @@
             "focus_num" : "",
             "main_img" : "emer_4",
             "sub_img" : "warning_1",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -46,8 +58,11 @@
             "focus_num" : "",
             "main_img" : "emer_5",
             "sub_img" : "warning_1",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -56,8 +71,11 @@
             "focus_num" : "",
             "main_img" : "emer_6",
             "sub_img" : "warning_2",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -66,8 +84,11 @@
             "focus_num" : "",
             "main_img" : "emer_7",
             "sub_img" : "warning_2",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -76,8 +97,11 @@
             "focus_num" : "",
             "main_img" : "emer_8",
             "sub_img" : "warning_2",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -86,8 +110,11 @@
             "focus_num" : "",
             "main_img" : "emer_9",
             "sub_img" : "warning_2",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         },
         {
@@ -96,8 +123,11 @@
             "focus_num" : "",
             "main_img" : "emer_10",
             "sub_img" : "search",
-            "img_1" : "",
-            "img_2" : "",
+            "link" : "",
+            "img_1" : "policeman",
+            "img_2" : "police_car",
+            "img_3" : "ambulance",
+            "img_4" : "doctor",
             "sound" : ""
         }
     ]

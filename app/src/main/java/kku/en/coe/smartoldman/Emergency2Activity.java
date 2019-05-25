@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +22,9 @@ import java.io.InputStream;
 public class Emergency2Activity extends AppCompatActivity implements View.OnClickListener {
     private JSONArray sick;
     private JSONObject page, obj;
-    private String json, head, text, img, link, file_name,sub_img,main_img , rt_point;
+    private String json, head, text, img, link, file_name,sub_img,main_img ,rt_point, img_1, img_2, img_3, img_4;
     private TextView text_title, text_desc, txt_link;
-    private ImageView img_main,img_sub;
+    private ImageView img_main,img_sub, img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next , sound_btn;
     private int index , send_index, max_length;
 
@@ -43,6 +44,11 @@ public class Emergency2Activity extends AppCompatActivity implements View.OnClic
         sound_btn.setOnClickListener(this);
         img_main = findViewById(R.id.main_img);
         img_sub = findViewById(R.id.sub_img_top);
+        txt_link = findViewById(R.id.txt_link);
+        img_small1 = findViewById(R.id.img_small1);
+        img_small2 = findViewById(R.id.img_small2);
+        img_small3 = findViewById(R.id.img_small3);
+        img_small4 = findViewById(R.id.img_small4);
         setIntentData();
         readJson();
         setData();
@@ -68,6 +74,11 @@ public class Emergency2Activity extends AppCompatActivity implements View.OnClic
             main_img = page.getString("main_img");
             text = page.getString("text");
             head = page.getString("title");
+            link = page.getString("link");
+            img_1 = page.getString("img_1");
+            img_2 = page.getString("img_2");
+            img_3 = page.getString("img_3");
+            img_4 = page.getString("img_4");
 
 //            if (img != "") {
 //                String mDrawableName = img;
@@ -95,6 +106,38 @@ public class Emergency2Activity extends AppCompatActivity implements View.OnClic
             Log.e("img", String.valueOf(resID));
             img_main.getLayoutParams().height = 350;
             img_main.setImageResource(resID);
+        }
+        if (!img_small1.equals("")) {
+            String mDrawableName = img_1;
+            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+            Log.e("img", String.valueOf(resID));
+            img_small1.setImageResource(resID);
+        }
+        if (!img_small2.equals("")) {
+            String mDrawableName = img_2;
+            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+            Log.e("img", String.valueOf(resID));
+            img_small2.setImageResource(resID);
+        }
+        if (!img_small3.equals("")) {
+            String mDrawableName = img_3;
+            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+            Log.e("img", String.valueOf(resID));
+            img_small3.setImageResource(resID);
+        }
+        if (!img_small4.equals("")) {
+            String mDrawableName = img_4;
+            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+            Log.e("img", String.valueOf(resID));
+            img_small4.setImageResource(resID);
+        }
+        if (!link.equals("")) {
+            txt_link.setText(link);
+        } else {
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) txt_link.getLayoutParams();
+            lp.setMargins(0,0,0,0);
+            txt_link.setLayoutParams(lp);
+            txt_link.setPadding(0,0,0,0);
         }
 //            txt_head.setText(head);
 //            txt_text.setText(text);

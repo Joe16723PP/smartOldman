@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if ( v == emer_btn) {
                 Intent intent = new Intent(this,Emergency1Activity.class);
-                startActivity(intent);
+            startActivity(intent);
         }
     }
 }
