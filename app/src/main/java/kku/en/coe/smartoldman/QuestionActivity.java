@@ -26,17 +26,13 @@ import java.util.List;
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-//    public int answer_pre_sick1[] = new int[10];
     private Button next_btn , back_btn;
 
-//    private List<ListItem> listItems;
     private List<QuestionListItem> listItems;
     JSONArray placesObj;
-    JSONObject jsonObject;
 
     String pointer = "";
-    String file_name, next_pointer;
+    String file_name;
 
 
     @Override
@@ -57,7 +53,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         getIntentData();
 
         listItems = new ArrayList<>();
-//        String urlFIle = "pre_sick1.json";
         readLocalJson(file_name);
 
     }
@@ -114,7 +109,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 listItems.add(listItem);
             }
 
-            adapter = new QuestionAdapter(listItems,this);
+            RecyclerView.Adapter adapter = new QuestionAdapter(listItems, this);
             recyclerView.setAdapter(adapter);
 
         } catch (Exception e) {

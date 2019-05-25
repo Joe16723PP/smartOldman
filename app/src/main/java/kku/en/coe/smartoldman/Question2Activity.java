@@ -22,17 +22,14 @@ import java.util.List;
 public class Question2Activity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView recyclerView;
-//    public ArrayList<String> answer_1 = new ArrayList<>(20);
     public ArrayList<String> answer_all = new ArrayList<>();
     private Button next_btn, back_btn;
 
-    //    private List<ListItem> listItems;
     private List<QuestionListItem> listItems;
     JSONArray placesObj;
 
     String tmp1 = "";
     private String[] tmp_ans_1 = new String[10];
-    private String[] tmp_ans_2 = new String[10];
 
     String file_name , pointer;
 
@@ -56,27 +53,19 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
 
         doGetAnswer();
 
-//        String urlFIle = "pre_sick1.json";
         readLocalJson(file_name);
     }
 
     private void doGetAnswer() {
-        ArrayList<String> tmp_list = new ArrayList<>();
+        ArrayList<String> tmp_list;
         Bundle extras = getIntent().getExtras();
         tmp_list = extras.getStringArrayList("answer_1");
         file_name = extras.getString("file_name");
         pointer = extras.getString("next_pointer");
-//        Log.e("loop" , String.valueOf(tmp_list));
-        String tmp = "";
         for (int i = 0; i< tmp_list.size()-10 ;i++) {
             tmp_ans_1[i] = tmp_list.get(i);
             tmp1 += tmp_ans_1[i];
             answer_all.add(tmp_list.get(i));
-//            try {
-//                answer_all.set(i,tmp_list.get(i));
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
         }
        Log.e("loop", String.valueOf(answer_all));
     }
@@ -124,17 +113,14 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
             Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
             ArrayAnswer global = ArrayAnswer.getInstance();
 
-
             try {
                 int[] tmp_ans = global.getArray_answer();
-                ArrayList<String> tmp_list = new ArrayList<>();
                 for (int i = 10; i < tmp_ans.length ;i ++) {
                     tmp1 += tmp_ans[i];
-                    tmp_list.add(String.valueOf(tmp_ans[i]));
-                    tmp_ans_2[i-10] = String.valueOf(tmp_ans[i]);
                     answer_all.add(String.valueOf(tmp_ans[i]));
                 }
-//                intent.putStringArrayListExtra("answer_1",tmp_list);
+                intent.putStringArrayListExtra("answer_all",answer_all);
+                intent.putExtra("return_point",pointer);
                 startActivity(intent);
                 Log.e("finalll" ,": " + answer_all );
 

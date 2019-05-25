@@ -7,13 +7,15 @@
     tools:context=".QuestionShowScore">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/score_card"
         app:cardElevation="10dp"
         app:cardCornerRadius="20dp"
         android:layout_centerInParent="true"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/score_layout"
             android:padding="20dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -47,13 +49,27 @@
     </android.support.v7.widget.CardView>
 
     <Button
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/score_card"
+        android:id="@+id/read_btn"
         android:textStyle="bold"
         android:textSize="22sp"
         android:textColor="@color/white"
         android:text="@string/reading"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_sick2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@id/read_btn"
+        android:id="@+id/back_btn"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:text="@string/backmain"
+        android:layout_marginBottom="15dp"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/selector_btn"
         android:layout_width="250dp"
         android:layout_height="wrap_content" />

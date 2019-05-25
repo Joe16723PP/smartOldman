@@ -36,6 +36,7 @@ public class Emergency4Activity extends AppCompatActivity implements View.OnClic
         file_name = "emergency.json";
         btn_back = findViewById(R.id.btn_back);
         btn_next = findViewById(R.id.btn_next);
+        btn_next.setText("กลับหน้าหลัก");
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);

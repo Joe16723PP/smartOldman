@@ -35,6 +35,7 @@ public class Diab1Activity extends AppCompatActivity implements View.OnClickList
         setTitle(R.string.diabetes_string);
         file_name = "diabetes.json";
         btn_back = findViewById(R.id.btn_back);
+        btn_back.setText("เนื้อหาทั้งหมด");
         btn_next = findViewById(R.id.btn_next);
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);

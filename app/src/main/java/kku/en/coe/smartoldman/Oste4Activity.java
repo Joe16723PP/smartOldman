@@ -36,6 +36,7 @@ public class Oste4Activity extends AppCompatActivity implements View.OnClickList
         file_name = "oste.json";
         btn_back = findViewById(R.id.btn_back);
         btn_next = findViewById(R.id.btn_next);
+        btn_next.setText("ทำแบบทดสอบ");
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
@@ -184,7 +185,8 @@ public class Oste4Activity extends AppCompatActivity implements View.OnClickList
         } else if ( v == btn_next ) {
             index += 1;
             if (rt_point.equals("disease")) {
-                Intent intent = new Intent(this,DiseaseActivity.class);
+                Intent intent = new Intent(this,QuestionActivity.class);
+                intent.putExtra("next_pointer","Oste1Activity");
                 intent.putExtra("index", String.valueOf(index));
                 intent.putExtra("return_point",rt_point);
                 startActivity(intent);

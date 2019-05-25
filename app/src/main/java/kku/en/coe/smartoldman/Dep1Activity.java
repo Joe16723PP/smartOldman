@@ -35,6 +35,7 @@ public class Dep1Activity extends AppCompatActivity implements View.OnClickListe
         setTitle(R.string.depression_string);
         file_name = "depression.json";
         btn_back = findViewById(R.id.btn_back);
+        btn_back.setText("เนื้อหาทั้งหมด");
         btn_next = findViewById(R.id.btn_next);
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);

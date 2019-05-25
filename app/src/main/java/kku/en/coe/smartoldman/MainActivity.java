@@ -26,12 +26,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         emer_btn.setOnClickListener(this);
         cv.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
     }
 
     @Override
     public void onClick(View v) {
         if ( v == cv ) {
-            if ( mAuth != null) {
+            if ( mUser != null) {
                 Intent intent = new Intent(this,DiseaseActivity.class);
                 startActivity(intent);
             } else {

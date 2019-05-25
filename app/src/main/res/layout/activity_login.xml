@@ -51,11 +51,13 @@
                 android:hint="@string/f_nameStr"
                 android:drawableLeft="@drawable/ic_action_acc"
                 android:textSize="22dp"
+                android:singleLine="true"
                 android:textColor="@color/colorWhite"
                 android:layout_weight="1"
                 android:layout_width="300dp"
                 android:layout_height="50dp" />
             <EditText
+                android:singleLine="true"
                 android:drawableLeft="@drawable/ic_action_acc"
                 android:drawablePadding="10dp"
                 android:textColor="@color/colorWhite"
@@ -74,6 +76,7 @@
             android:textColor="@color/colorWhite"
             android:inputType="number"
             android:hint="@string/ageStr"
+            android:singleLine="true"
             android:id="@+id/age"
             android:textSize="22dp"
             android:drawableLeft="@drawable/ic_action_bb"
@@ -90,6 +93,7 @@
                 android:inputType="number"
                 android:textColor="@color/colorWhite"
                 android:hint="@string/weightStr"
+                android:singleLine="true"
                 android:id="@+id/weight"
                 android:textSize="22dp"
                 android:drawableLeft="@drawable/ic_action_ve"
@@ -101,6 +105,7 @@
                 android:inputType="number"
                 android:textColor="@color/colorWhite"
                 android:hint="@string/heightStr"
+                android:singleLine="true"
                 android:id="@+id/height"
                 android:textSize="22dp"
                 android:drawableLeft="@drawable/ic_action_tr"
@@ -150,6 +155,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:padding="13dp" />
-
 
 </RelativeLayout>

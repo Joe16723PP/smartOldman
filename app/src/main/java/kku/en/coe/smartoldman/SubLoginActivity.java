@@ -1,6 +1,9 @@
 package kku.en.coe.smartoldman;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SubLoginActivity extends AppCompatActivity {
 
@@ -24,21 +29,42 @@ public class SubLoginActivity extends AppCompatActivity {
     String name , gender , age , weight , height, Cur_Uid;
 
     double bmi;
+    private ProgressDialog pgd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        Toast.makeText(this,"sub login ",Toast.LENGTH_LONG).show();
         setContentView(R.layout.activity_sub_login);
+//        checkConnection();
+        if(isOnline()){
+//            Toast.makeText(this, "You are connected to Internet", Toast.LENGTH_SHORT).show();
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("users");
+            mAuth = FirebaseAuth.getInstance();
+            try {
+                Cur_Uid = mAuth.getCurrentUser().getUid();
+            } catch (Exception e){
+                Log.e("uidErr" , ""+e);
+            }
 
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("users");
-        mAuth = FirebaseAuth.getInstance();
-        Cur_Uid = mAuth.getCurrentUser().getUid();
+            getValueIntent();
+            Toast.makeText(this,Cur_Uid,Toast.LENGTH_SHORT).show();
+            addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
 
-        getValueIntent();
-        Toast.makeText(this,Cur_Uid,Toast.LENGTH_SHORT).show();
-        addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
+        }else{
+            pgd = ProgressDialog.show(this, "ไม่ได้เชื่อมต่ออินเทอร์เน็ต", "กลับลังกลับสู่หน้าแรก...", true, false);
+            new Timer().schedule(
+                    new TimerTask(){
+                        @Override
+                        public void run(){
+                            pgd.dismiss();
+                            Intent intent = new Intent(SubLoginActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }, 3000);
+        }
+
     }
 
     private void addUser(String uid, String name, String gender , String weight , String age , String height, String bmi) {
@@ -66,5 +92,15 @@ public class SubLoginActivity extends AppCompatActivity {
         age = extras.getString("age");
         height = extras.getString("height");
         gender = extras.getString("gender");
+    }
+
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(this.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

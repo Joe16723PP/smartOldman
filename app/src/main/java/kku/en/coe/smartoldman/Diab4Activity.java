@@ -39,6 +39,7 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
+        btn_next.setText("ทำแบบทดสอบ");
         btn_next.setOnClickListener(this);
         btn_back.setOnClickListener(this);
         sound_btn.setOnClickListener(this);
@@ -184,7 +185,8 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
         } else if ( v == btn_next ) {
             index += 1;
             if (rt_point.equals("disease")) {
-                Intent intent = new Intent(this,DiseaseActivity.class);
+                Intent intent = new Intent(this,QuestionActivity.class);
+                intent.putExtra("next_pointer","Diab1Activity");
                 intent.putExtra("index", String.valueOf(index));
                 intent.putExtra("return_point",rt_point);
                 startActivity(intent);
