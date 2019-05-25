@@ -45,6 +45,7 @@ public class Dep1Activity extends AppCompatActivity implements View.OnClickListe
         img_main = findViewById(R.id.main_img);
         img_sub = findViewById(R.id.sub_img_top);
         txt_link = findViewById(R.id.txt_link);
+//kuy
         img_small1 = findViewById(R.id.img_small1);
         img_small2 = findViewById(R.id.img_small2);
         img_small3 = findViewById(R.id.img_small3);
