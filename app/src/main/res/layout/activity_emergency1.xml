@@ -18,72 +18,101 @@
         android:padding="5dp"
         app:cardElevation="20dp">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_title"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/colorOrange"
-                android:elevation="20dp"
-                app:cardCornerRadius="20dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_width="230dp"
-                android:layout_height="40dp">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_title"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/colorOrange"
+                    android:elevation="20dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="230dp"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:id="@+id/title"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:text="Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </android.support.v7.widget.CardView>
+                <ImageView
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/sub_img_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_margin="20dp"
+                    android:id="@+id/main_img_card"
+                    android:layout_below="@id/card_title"
+                    android:elevation="40dp"
+                    android:layout_centerHorizontal="true"
+                    app:cardCornerRadius="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/main_img"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </android.support.v7.widget.CardView>
+
                 <TextView
-                    android:id="@+id/title"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:gravity="center"
-                    android:text="Title"
+                    android:layout_margin="10dp"
+                    android:padding="20dp"
+                    android:layout_below="@id/main_img_card"
+                    android:id="@+id/txt_emer"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </android.support.v7.widget.CardView>
-            <ImageView
-                android:paddingRight="15dp"
-                android:paddingTop="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:id="@+id/sub_img_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:layout_centerHorizontal="true"
-                android:id="@+id/main_img"
-                android:layout_margin="10dp"
-                android:layout_below="@+id/card_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:layout_below="@id/main_img"
-                android:id="@+id/txt_emer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:gravity="center"
-                android:layout_below="@id/txt_emer"
-                android:weightSum="2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:padding="10dp"
-                    android:src="@drawable/search"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <ImageView
-                    android:padding="10dp"
-                    android:src="@drawable/search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/txt_emer"
+                    android:weightSum="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:src="@drawable/policeman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:src="@drawable/police_car"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:src="@drawable/ambulance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:src="@drawable/doctor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </ScrollView>
 
     </android.support.v7.widget.CardView>
 
