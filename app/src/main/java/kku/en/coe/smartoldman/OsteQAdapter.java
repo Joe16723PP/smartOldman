@@ -64,9 +64,6 @@ public class OsteQAdapter extends RecyclerView.Adapter<OsteQAdapter.ViewHolder> 
                     ans = 0;
                 }
                 answer_first[index - 1] = ans;
-                Log.e("answer", String.valueOf(answer_first[index]));
-                Toast.makeText(context,index + " : " + ans,Toast.LENGTH_SHORT).show();
-
                 OsteAAnswer answer = OsteAAnswer.getOsteInst();
                 answer.setOste_answer(answer_first);
             }

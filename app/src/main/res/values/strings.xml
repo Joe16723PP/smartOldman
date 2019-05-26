@@ -27,4 +27,5 @@
     <string name="title">Title</string>
     <string name="yes">ใช่</string>
     <string name="no">ไม่</string>
+    <string name="close">ตกลก</string>
 </resources>

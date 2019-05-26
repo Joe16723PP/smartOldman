@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,11 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OsteQActivity extends AppCompatActivity implements View.OnClickListener {
-
+// 1
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<OsteQListitem> listItems;
     private Button next_btn, back_btn;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private FirebaseAuth mAuth;
+    private FirebaseUser current_user;
 
     String places[], file_name = "oste_quest.json";
     JSONArray placesObj;
@@ -34,10 +43,17 @@ public class OsteQActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oste_q);
 
+        Toast.makeText(this,"เนื่องจากเป็นการเข้าสู่ระบบครั้งแรก กรุณาทำแบบคัดกรองให้ครบถ้วน",Toast.LENGTH_LONG).show();
+
         recyclerView = findViewById(R.id.rcv_question);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.getRecycledViewPool().setMaxRecycledViews(0, 0);
+
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
 
         next_btn = findViewById(R.id.next_question);
         next_btn.setOnClickListener(this);
@@ -93,7 +109,7 @@ public class OsteQActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if ( v == next_btn ) {
             Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent(this,Question2Activity.class);
+            Intent intent = new Intent(this,DepQActivity.class);
             OsteAAnswer global = OsteAAnswer.getOsteInst();
             try {
                 int oste_score = 0;
@@ -101,19 +117,19 @@ public class OsteQActivity extends AppCompatActivity implements View.OnClickList
                 for (int i = 0 ; i < tmp_ans.length ; i++) {
                     oste_score = oste_score + tmp_ans[i];
                 }
+                myRef.child(current_user.getUid()).child("oste_score").setValue(oste_score);
 //                intent.putStringArrayListExtra("answer_1",tmp_list);
 //                intent.putExtra("oste_score" , oste_score);
 //                intent.putExtra("next_pointer", pointer);
-//                startActivity(intent);
-                Log.e("global" ,": " + oste_score );
+                startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
         else if ( v == back_btn ) {
-//            Intent intent = new Intent(this,DiseaseActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
         }
     }
 }

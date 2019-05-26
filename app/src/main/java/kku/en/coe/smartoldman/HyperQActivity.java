@@ -1,5 +1,6 @@
 package kku.en.coe.smartoldman;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,10 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HyperQActivity extends AppCompatActivity implements View.OnClickListener {
-
+// 3
     private RecyclerView recyclerView;
     private Button next_btn , back_btn;
-
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private FirebaseAuth mAuth;
+    private FirebaseUser current_user;
     private List<QuestionListItem> listItems;
     JSONArray placesObj;
 
@@ -37,6 +46,11 @@ public class HyperQActivity extends AppCompatActivity implements View.OnClickLis
         recyclerView = findViewById(R.id.rcv_question);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
 
         next_btn = findViewById(R.id.next_question);
         next_btn.setOnClickListener(this);
@@ -70,7 +84,6 @@ public class HyperQActivity extends AppCompatActivity implements View.OnClickLis
                 JSONObject nameObj = (JSONObject) placesObj.get(i);
                 String id = (String) nameObj.get("id");
                 String question = (String) nameObj.get("question");
-
                 QuestionListItem listItem = new QuestionListItem(
                         question, id
                 );
@@ -96,10 +109,14 @@ public class HyperQActivity extends AppCompatActivity implements View.OnClickLis
                     score += 1;
                 }
             }
-            Toast.makeText(this,""+score,Toast.LENGTH_LONG).show();
+            myRef.child(current_user.getUid()).child("hyper_score").setValue(score);
+            Intent intent = new Intent(this,BmiActivity.class);
+            startActivity(intent);
+//            Toast.makeText(this,""+score,Toast.LENGTH_LONG).show();
 
         } else if ( v == back_btn ) {
-
+            Intent intent = new Intent(this,DepQ3Activity.class);
+            startActivity(intent);
         }
     }
 }

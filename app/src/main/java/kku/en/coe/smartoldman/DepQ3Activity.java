@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -23,6 +28,10 @@ public class DepQ3Activity extends AppCompatActivity implements View.OnClickList
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<DepQListitem> listItems;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private FirebaseAuth mAuth;
+    private FirebaseUser current_user;
     private Button next_btn , back_btn;
     public ArrayList<String> answer_all = new ArrayList<>();
 
@@ -40,6 +49,11 @@ public class DepQ3Activity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_question2);
 
         setTitle("Dep_Ouestion 3");
+
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
 
         recyclerView = findViewById(R.id.rcv_question);
         recyclerView.setHasFixedSize(true);
@@ -62,20 +76,12 @@ public class DepQ3Activity extends AppCompatActivity implements View.OnClickList
         file_name = extras.getString("file_name");
         pointer = extras.getString("next_pointer");
         Log.e("tmp_list", String.valueOf(tmp_list));
-//        Toast.makeText(this,"" + tmp_list + file_name,Toast.LENGTH_SHORT).show();
-//        Log.e("loop" , String.valueOf(tmp_list));
         String tmp = "";
         for (int i = 0; i< tmp_list.size() - 10 ;i++) {
             tmp_ans_1[i] = tmp_list.get(i);
             tmp1 += tmp_ans_1[i];
             answer_all.add(tmp_list.get(i));
-//            try {
-//                answer_all.set(i,tmp_list.get(i));
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
         }
-//        Log.e("loop", String.valueOf(answer_all));
     }
 
     private void readLocalJson(String urlVal) {
@@ -118,7 +124,7 @@ public class DepQ3Activity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if ( v == next_btn ) {
             Toast.makeText(this,"do next 2" , Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent(this,DepQ3Activity.class);
+            Intent intent = new Intent(this,HyperQActivity.class);
             ArrayAnswer global = ArrayAnswer.getInstance();
             try {
                 int[] tmp_ans = global.getArray_answer();
@@ -129,28 +135,33 @@ public class DepQ3Activity extends AppCompatActivity implements View.OnClickList
                     tmp_ans_2[i-20] = String.valueOf(tmp_ans[i]);
                     answer_all.add(String.valueOf(tmp_ans[i]));
                 }
+                Log.e("all" , String.valueOf(answer_all));
 
                 int dep_score = 0;
+                int status = 1;
                 for (int i = 0; i < 30 ;i ++) {
                     for (int ref : no_choice_array){
                         if ( i == (ref-1) ) {
-                            if (answer_all.get(i).equals("0")){
-                                dep_score += 1;
-//                                Log.e("total" , String.valueOf(dep_score) + " : "  +  i);
-                            }
-                        }
-                        else {
-                            if (answer_all.get(i).equals("1")){
+                            if (String.valueOf(answer_all.get(i)).equals("0")){
                                 dep_score += 1;
                             }
+                            status = 0;
                         }
                     }
+                    if (status == 1) {
+                        if (String.valueOf(answer_all.get(i)).equals("1")){
+                            dep_score += 1;
+                            Log.e("answer" , answer_all.get(i));
+                        }
+                    }
+                    status = 1;
 
                 }
+                myRef.child(current_user.getUid()).child("dep_score").setValue(dep_score);
 //                intent.putStringArrayListExtra("answer_1",tmp_list);
 //                intent.putExtra("file_name" , file_name);
 //                intent.putExtra("next_pointer", pointer);
-//                startActivity(intent);
+                startActivity(intent);
                 Log.e("total" , String.valueOf(dep_score));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -158,7 +169,7 @@ public class DepQ3Activity extends AppCompatActivity implements View.OnClickList
         }
 
         else if ( v == back_btn ) {
-            Intent intent = new Intent(this,QuestionActivity.class);
+            Intent intent = new Intent(this,DepQ2Activity.class);
             intent.putExtra("next_pointer", pointer);
             startActivity(intent);
         }

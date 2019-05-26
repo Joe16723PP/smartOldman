@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DepQActivity extends AppCompatActivity implements View.OnClickListener {
-
+// 2
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<DepQListitem> listItems;
@@ -108,8 +108,8 @@ public class DepQActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         else if ( v == back_btn ) {
-//            Intent intent = new Intent(this,DiseaseActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(this,OsteQActivity.class);
+            startActivity(intent);
         }
     }
 }
