@@ -33,13 +33,13 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency1);
+        setContentView(R.layout.activity_diab1);
         setTitle(R.string.diabetes_string);
         file_name = "diabetes.json";
         btn_back = findViewById(R.id.btn_back);
         btn_next = findViewById(R.id.btn_next);
         sound_btn = findViewById(R.id.sound_btn);
-        text_desc = findViewById(R.id.txt_emer);
+//        text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
         btn_next.setText("ทำแบบทดสอบ");
         btn_next.setOnClickListener(this);
@@ -147,7 +147,7 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
 //            txt_head.setText(head);
 //            txt_text.setText(text);
 //            txt_link.setText(link);
-        text_desc.setText(text);
+//        text_desc.setText(text);
         text_title.setText(head);
         Log.e("HACK",head + " " + text);
     }

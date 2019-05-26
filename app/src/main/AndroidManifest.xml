@@ -44,7 +44,8 @@
         <activity android:name=".Hyper4Activity" />
         <activity android:name=".Hyper3Activity" />
         <activity android:name=".Hyper2Activity" />
-        <activity android:name=".Hyper1Activity" />
+        <activity android:name=".Hyper1Activity" >
+        </activity>
         <activity android:name=".DiseaseActivity" />
         <activity android:name=".BmiActivity" />
         <activity android:name=".LoginActivity" />

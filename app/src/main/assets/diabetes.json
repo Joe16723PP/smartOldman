@@ -15,7 +15,7 @@
 		{
 			"title": "ประเภทของโรคเบาหวาน",
             "text": "1. โรคเบาหวานชนิดที่ 1 พบในคนอายุน้อยกว่า 30 ปี รูปร่างไม่อ้วน\n2. โรคเบาหวานชนิดที่ 2 พบในคนรูปร่างท้วมหรืออ้วน มักมีกรรมพันธุ์เป็นเบาหวาน",
-            "main_img":"",
+            "main_img":"diab_page2",
             "link":"",
             "sub_img" : "",
             "img_1" : "diab_small_1",
@@ -27,7 +27,7 @@
 		{
 			"title": "ประเภทของโรคเบาหวาน",
             "text": "3. โรคเบาหวานที่มีสาเหตุจำเพาะ เกิดจากความผิดปกติทางพันธุกรรม โรคของตับอ่อน ต่อมไร้ท่อ ยา ติดเชื้อ ภูมิคุ้มกัน\n4. โรคเบาหวานขณะตั้งครรภ์มักจะหายไปหลังคลอด",
-            "main_img":"",
+            "main_img":"diab_page3",
             "link":"",
             "sub_img" : "",
             "img_1" : "diab_small_1",
@@ -109,8 +109,8 @@
             "sound" : ""
 		},
 		{
-			"title": "อาหารสำหรับผู้ป่วยโรคเบาหวาน",
-            "text": "",
+			"title": "อาหารแนะนำ",
+            "text": "อาหารสำหรับผู้ป่วยโรคเบาหวาน",
             "main_img":"diab_page10",
             "link":"",
             "sub_img" : "",
@@ -183,7 +183,7 @@
         {
 			"title": "วิดีโอให้ความรู้",
             "text": "",
-            "main_img":"",
+            "main_img":"diab_page16",
             "link":"https://www.youtube.com/watch?v=GmvTwHtnhLA\n\nhttps://www.youtube.com/watch?v=upTxZEkpxMY\n\nhttps://www.youtube.com/watch?v=rm2YJPgmZOg",
              "sub_img" : "",
             "img_1" : "dep_small_1",

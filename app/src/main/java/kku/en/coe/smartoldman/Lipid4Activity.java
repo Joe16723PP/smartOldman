@@ -152,14 +152,6 @@ public class Lipid4Activity extends AppCompatActivity implements View.OnClickLis
 //            txt_head.setText(head);
 //            txt_text.setText(text);
 //            txt_link.setText(link);
-        if (!text.equals("")) {
-            txt_link.setText(text);
-        } else {
-            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) text_desc.getLayoutParams();
-            lp.setMargins(0,0,0,0);
-            text_desc.setLayoutParams(lp);
-            text_desc.setPadding(0,0,0,0);
-        }
         text_title.setText(head);
         Log.e("HACK",head + " " + text);
     }
