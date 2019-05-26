@@ -156,6 +156,7 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
                     myRef.child(current_user.getUid()).child("pre_Dep").setValue(sub_score);
                 }else {
                     myRef.child(current_user.getUid()).child("post_Dep").setValue(sub_score);
+//                    joe
                 }
                 break;
         }
