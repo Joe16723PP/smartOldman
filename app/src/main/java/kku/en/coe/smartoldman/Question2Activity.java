@@ -31,14 +31,12 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
     String tmp1 = "";
     private String[] tmp_ans_1 = new String[10];
 
-    String file_name , pointer;
+    String file_name , pointer, post_test, title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question2);
-
-        setTitle("Question 2");
 
         next_btn = findViewById(R.id.next_question);
         next_btn.setOnClickListener(this);
@@ -59,6 +57,13 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
     private void doGetAnswer() {
         ArrayList<String> tmp_list;
         Bundle extras = getIntent().getExtras();
+        try {
+            post_test = extras.getString("post_test");
+            title = extras.getString("title");
+            setTitle("แบบทดสอบ" + title);
+        } catch (Exception e) {
+            post_test = null;
+        }
         tmp_list = extras.getStringArrayList("answer_1");
         file_name = extras.getString("file_name");
         pointer = extras.getString("next_pointer");
@@ -121,6 +126,8 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
                 }
                 intent.putStringArrayListExtra("answer_all",answer_all);
                 intent.putExtra("return_point",pointer);
+                intent.putExtra("post_test",post_test);
+                intent.putExtra("title",title);
                 startActivity(intent);
                 Log.e("finalll" ,": " + answer_all );
 
@@ -132,6 +139,7 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
         else if ( v == back_btn ) {
             Intent intent = new Intent(this,QuestionActivity.class);
             intent.putExtra("next_pointer", pointer);
+            intent.putExtra("post_test",post_test);
             startActivity(intent);
         }
     }

@@ -32,7 +32,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     JSONArray placesObj;
 
     String pointer = "";
-    String file_name;
+    String file_name, post_test, title;
 
 
     @Override
@@ -59,25 +59,35 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private void getIntentData() {
         Bundle extras = getIntent().getExtras();
+        try {
+            post_test = extras.getString("post_test");
+        } catch (Exception e) {
+            post_test = null;
+        }
         pointer = extras.getString("next_pointer");
         switch (pointer) {
             case "Hyper1Activity" :
                 file_name = "pre_sick1";
+                title = getResources().getString(R.string.hypertension_string);
                 break;
             case "Oste1Activity" :
                 file_name = "pre_sick2";
+                title = getResources().getString(R.string.oste_string);
                 break;
             case "Lipid1Activity" :
                 file_name = "pre_sick3";
+                title = getResources().getString(R.string.lipid_string);
                 break;
             case "Diab1Activity" :
                 file_name = "pre_sick4";
+                title = getResources().getString(R.string.diabetes_string);
                 break;
             case "Dep1Activity" :
                 file_name = "pre_sick5";
+                title = getResources().getString(R.string.depression_string);
                 break;
         }
-        setTitle(pointer);
+        setTitle("แบบทดสอบ" + title);
         file_name += ".json";
     }
 
@@ -134,6 +144,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 intent.putStringArrayListExtra("answer_1",tmp_list);
                 intent.putExtra("file_name" , file_name);
                 intent.putExtra("next_pointer", pointer);
+                intent.putExtra("post_test",post_test);
+                intent.putExtra("title", title);
                 startActivity(intent);
                 Log.e("global" ,": " + tmp );
             } catch (Exception e) {

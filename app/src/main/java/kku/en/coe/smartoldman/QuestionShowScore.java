@@ -13,11 +13,11 @@ import java.util.ArrayList;
 public class QuestionShowScore extends AppCompatActivity implements View.OnClickListener {
 
     private Button read_btn , back_btn;
-    private String pointer;
+    private String pointer , post_test , title;
     public ArrayList<String> answer_all = new ArrayList<>();
     private int score = 0;
 
-    private TextView score_tv;
+    private TextView score_tv , header_score_tv;
     private ImageView score_img;
 
     private String[] Hyper = {"1","1","1","1","1","1","0","0","1","0","1","1","1","1","0","0","1","0","1","0"};
@@ -38,6 +38,7 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         back_btn.setOnClickListener(this);
         score_tv = findViewById(R.id.score);
         score_img = findViewById(R.id.img_score);
+        header_score_tv = findViewById(R.id.header_score);
 
         doGetIntentData();
         doCheckAnswer(pointer);
@@ -81,12 +82,24 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         int resID = getResources().getIdentifier(img_name , "drawable", getPackageName());
         score_img.setImageResource(resID);
         score_tv.setText(score + " / 20");
+
+        if (post_test == null) {
+            header_score_tv.setText("คะแนนก่อนเรียน\n" + title);
+        } else  {
+            header_score_tv.setText("คะแนนหลังเรียน\n" + title);
+        }
     }
 
     private void doGetIntentData() {
         Bundle extras = getIntent().getExtras();
         answer_all = extras.getStringArrayList("answer_all");
         pointer = extras.getString("return_point");
+        try {
+            post_test = extras.getString("post_test");
+            title = extras.getString("title");
+        } catch (Exception e) {
+            post_test = null;
+        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +25,8 @@ public class Diab1Activity extends AppCompatActivity implements View.OnClickList
     private JSONObject page, obj;
     private String json, head, text, main_img, sub_img, img, link, file_name,rt_point, img_1, img_2, img_3, img_4;
     private ImageView img_main , img_sub, img_small1, img_small2, img_small3, img_small4;
-    private Button btn_back, btn_next , sound_btn;
+    private Button btn_back, btn_next;
+    private ImageButton sound_btn;
     private TextView text_title,text_desc,txt_link;
     private int index = 0, send_index, max_length;
 
@@ -104,12 +106,13 @@ public class Diab1Activity extends AppCompatActivity implements View.OnClickList
         }
         if (!link.equals("")) {
             txt_link.setText(link);
-        } else {
-            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) txt_link.getLayoutParams();
-            lp.setMargins(0,0,0,0);
-            txt_link.setLayoutParams(lp);
-            txt_link.setPadding(0,0,0,0);
         }
+//        else {
+//            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) txt_link.getLayoutParams();
+//            lp.setMargins(0,0,0,0);
+//            txt_link.setLayoutParams(lp);
+//            txt_link.setPadding(0,0,0,0);
+//        }
 //            txt_head.setText(head);
 //            txt_text.setText(text);
 //            txt_link.setText(link);

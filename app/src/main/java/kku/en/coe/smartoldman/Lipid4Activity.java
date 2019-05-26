@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,7 +26,8 @@ public class Lipid4Activity extends AppCompatActivity implements View.OnClickLis
     private String json, head, text, img, link,rt_point, file_name,sub_img,main_img, img_1, img_2, img_3, img_4;
     private TextView text_title, text_desc, txt_link;
     private ImageView img_main,img_sub, img_small1, img_small2, img_small3, img_small4;
-    private Button btn_back, btn_next , sound_btn;
+    private Button btn_back, btn_next;
+    private ImageButton sound_btn;
     private int index , send_index, max_length;
 
     @Override
@@ -140,12 +142,13 @@ public class Lipid4Activity extends AppCompatActivity implements View.OnClickLis
         }
         if (!link.equals("")) {
             txt_link.setText(link);
-        } else {
-            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) txt_link.getLayoutParams();
-            lp.setMargins(0,0,0,0);
-            txt_link.setLayoutParams(lp);
-            txt_link.setPadding(0,0,0,0);
         }
+//        else {
+//            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) txt_link.getLayoutParams();
+//            lp.setMargins(0,0,0,0);
+//            txt_link.setLayoutParams(lp);
+//            txt_link.setPadding(0,0,0,0);
+//        }
 //            txt_head.setText(head);
 //            txt_text.setText(text);
 //            txt_link.setText(link);
@@ -199,6 +202,7 @@ public class Lipid4Activity extends AppCompatActivity implements View.OnClickLis
             if (rt_point.equals("disease")) {
                 Intent intent = new Intent(this,QuestionActivity.class);
                 intent.putExtra("index", String.valueOf(index));
+                intent.putExtra("post_test", "post_test");
                 intent.putExtra("next_pointer","Lipid1Activity");
                 intent.putExtra("return_point",rt_point);
                 startActivity(intent);
