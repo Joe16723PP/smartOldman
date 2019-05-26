@@ -14,6 +14,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".HyperQActivity"></activity>
         <activity android:name=".QuestionShowScore" />
+        <activity android:name=".DepQ3Activity">
+
+        </activity>
+        <activity android:name=".DepQ2Activity" />
+        </activity>
+        <activity android:name=".OsteQActivity" />
+        <activity android:name=".QuestionShowScore" />
+        <activity android:name=".DepQActivity">
         <activity android:name=".Question2Activity" />
         <activity android:name=".QuestionActivity" />
         <activity android:name=".Emergency4Activity" />
@@ -44,13 +52,7 @@
         <activity android:name=".DiseaseActivity" />
         <activity android:name=".BmiActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
