@@ -40,8 +40,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         viewHolder.tvDesc.setText(listItem.getDesc());
         viewHolder.color.setBackgroundColor(Color.parseColor(listItem.getColor()));
 
-        String resIcon = listItem.getImgUrl();
-        viewHolder.icon.setImageResource(Integer.parseInt(resIcon));
+        try {
+            String resIcon = listItem.getImgUrl();
+            viewHolder.icon.setImageResource(Integer.parseInt(resIcon));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
 //        String https_url = listItem.getImgUrl().replace("http","https");
 
