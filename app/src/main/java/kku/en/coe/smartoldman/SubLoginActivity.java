@@ -68,7 +68,7 @@ public class SubLoginActivity extends AppCompatActivity {
     }
 
     private void addUser(String uid, String name, String gender , String weight , String age , String height, String bmi) {
-        User user = new User(name, age, gender, weight, height, bmi,"","","","","","","","","","");
+        User user = new User(name, age, gender, weight, height, bmi,"","","","","","","","","","",0,0,0);
         Map<String, Object> UserValues = user.toMap();
 
         Map<String, Object> childUpdates= new HashMap<>();

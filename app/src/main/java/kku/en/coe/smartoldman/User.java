@@ -16,8 +16,85 @@ public class User {
     public String bmi;
     public String pre_Hyper, pre_Oste, pre_Lipid, pre_Diab, pre_Dep;
     public String post_Hyper, post_Oste, post_Lipid, post_Diab, post_Dep;
+    public int dep_score, oste_score, hyper_score;
 
-    public User(String name, String age, String gender, String weight, String height_str, String bmi, String pre_Hyper, String pre_Oste, String pre_Lipid, String pre_Diab, String pre_Dep, String post_Hyper, String post_Oste, String post_Lipid, String post_Diab, String post_Dep) {
+    public String getName() {
+        return name;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getHeight_str() {
+        return height_str;
+    }
+
+    public String getBmi() {
+        return bmi;
+    }
+
+    public String getPre_Hyper() {
+        return pre_Hyper;
+    }
+
+    public String getPre_Oste() {
+        return pre_Oste;
+    }
+
+    public String getPre_Lipid() {
+        return pre_Lipid;
+    }
+
+    public String getPre_Diab() {
+        return pre_Diab;
+    }
+
+    public String getPre_Dep() {
+        return pre_Dep;
+    }
+
+    public String getPost_Hyper() {
+        return post_Hyper;
+    }
+
+    public String getPost_Oste() {
+        return post_Oste;
+    }
+
+    public String getPost_Lipid() {
+        return post_Lipid;
+    }
+
+    public String getPost_Diab() {
+        return post_Diab;
+    }
+
+    public String getPost_Dep() {
+        return post_Dep;
+    }
+
+    public int getDep_score() {
+        return dep_score;
+    }
+
+    public int getOste_score() {
+        return oste_score;
+    }
+
+    public int getHyper_score() {
+        return hyper_score;
+    }
+
+    public User(String name, String age, String gender, String weight, String height_str, String bmi, String pre_Hyper, String pre_Oste, String pre_Lipid, String pre_Diab, String pre_Dep, String post_Hyper, String post_Oste, String post_Lipid, String post_Diab, String post_Dep , int dep_score, int oste_score, int hyper_score) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -36,6 +113,9 @@ public class User {
         this.post_Lipid = post_Lipid;
         this.post_Diab = post_Diab;
         this.post_Dep = post_Dep;
+        this.dep_score = dep_score;
+        this.oste_score = oste_score;
+        this.hyper_score = hyper_score;
     }
 
     public User() {
@@ -62,6 +142,10 @@ public class User {
         result.put("post_Lipid", post_Lipid);
         result.put("post_Diab", post_Diab);
         result.put("post_Dep", post_Dep);
+
+        result.put("dep_score", dep_score);
+        result.put("oste_score", oste_score);
+        result.put("hyper_score", hyper_score);
 
         return result;
 

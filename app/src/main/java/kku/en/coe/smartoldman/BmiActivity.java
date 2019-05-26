@@ -1,6 +1,8 @@
 package kku.en.coe.smartoldman;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,28 +31,72 @@ import java.util.List;
 
 public class BmiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    float bmi;
+    double bmi;
+    int dep_score, oste_score, hyper_score;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
+    ProgressDialog pgd;
 
     private TextView bmi_tv , risk_tv;
     private Button see_all_btn;
-    FirebaseUser user;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser current_user;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi);
         getSupportActionBar().hide();
-        getValueIntent();
 
-        bmi_tv = findViewById(R.id.bmi);
         risk_tv = findViewById(R.id.risk);
+
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
 
         see_all_btn = findViewById(R.id.see_all);
         see_all_btn.setOnClickListener(this);
 
+        recyclerView = findViewById(R.id.rcv);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        pgd = ProgressDialog.show(this, "กำลังโหลดข้อมูล กรุณารอสักครู่", "Loading...", true, false);
+        doReadFirebase();
+        
+
+    }
+
+    private void doReadFirebase() {
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot keyNode : dataSnapshot.getChildren()){
+                    String str_user = String.valueOf(keyNode.getKey());
+                    String uid = current_user.getUid();
+                    if (str_user.equals(uid)){
+                        User user = keyNode.getValue(User.class);
+                        dep_score = user.getDep_score();
+                        oste_score = user.getOste_score();
+                        hyper_score = user.getHyper_score();
+                        bmi = Double.parseDouble(user.getBmi());
+                        String urlFIle = "disease.json";
+                        readLocalJson(urlFIle);
+                    }
+                }
+                Log.e("firebase" , dep_score + ":" + oste_score + ":" + hyper_score + ":" + bmi) ;
+                pgd.dismiss();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void readLocalJson(String urlFIle) {
@@ -68,18 +120,67 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
             JSONObject object = (JSONObject) new JSONObject(json);
             JSONArray placesObj = (JSONArray) object.get("disease");
 
-            JSONObject nameObj = (JSONObject) placesObj.get(3);
-            String name = (String) nameObj.get("title");
-            String desc = (String) nameObj.get("description");
-            String color = (String) nameObj.get("color");
-            String pointer = (String) nameObj.get("pointer");
+            int status = 0;
+            if (oste_score <= 19) {
+                JSONObject nameObj = (JSONObject) placesObj.get(1);
+                String name = (String) nameObj.get("title");
+                String desc = (String) nameObj.get("description");
+                String color = (String) nameObj.get("color");
+                String pointer = (String) nameObj.get("pointer");
 
-            ListItem listItem = new ListItem(
-                    name, desc, desc , color , pointer
-            );
+                ListItem listItem = new ListItem(
+                        name, desc, desc , color , pointer
+                );
+                listItems.add(listItem);
+                status = 1;
+            }
+            if (dep_score > 18 ) {
+                JSONObject nameObj = (JSONObject) placesObj.get(4);
+                String name = (String) nameObj.get("title");
+                String desc = (String) nameObj.get("description");
+                String color = (String) nameObj.get("color");
+                String pointer = (String) nameObj.get("pointer");
 
-            listItems.add(listItem);
+                ListItem listItem = new ListItem(
+                        name, desc, desc , color , pointer
+                );
+                listItems.add(listItem);
+                status = 1;
 
+            }
+            if (hyper_score > 4) {
+                JSONObject nameObj = (JSONObject) placesObj.get(0);
+                String name = (String) nameObj.get("title");
+                String desc = (String) nameObj.get("description");
+                String color = (String) nameObj.get("color");
+                String pointer = (String) nameObj.get("pointer");
+
+                ListItem listItem = new ListItem(
+                        name, desc, desc , color , pointer
+                );
+                listItems.add(listItem);
+                status = 1;
+
+            }
+            if (bmi >= 25 ) {
+                JSONObject nameObj = (JSONObject) placesObj.get(3);
+                String name = (String) nameObj.get("title");
+                String desc = (String) nameObj.get("description");
+                String color = (String) nameObj.get("color");
+                String pointer = (String) nameObj.get("pointer");
+
+                ListItem listItem = new ListItem(
+                        name, desc, desc , color , pointer
+                );
+                listItems.add(listItem);
+                status = 1;
+
+            }
+            if (status == 1){
+                risk_tv.setText("คุณมีความเสี่ยงโรคดังต่อไปนี้");
+            } else {
+                risk_tv.setText("ไมมีความเสี่ยงเลย ! สุขภาพของคุณดีมาก");
+            }
             adapter = new MyAdapter(listItems,this);
             recyclerView.setAdapter(adapter);
 
@@ -91,26 +192,6 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onStart() {
         super.onStart();
-//        check if bmi is risk
-        bmi_tv.setText("BMI : " + String.valueOf(bmi));
-        if (bmi >= 25 ){
-            recyclerView = findViewById(R.id.rcv);
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            risk_tv.setText("คุณมีความเสี่ยงเกี่ยวกับโรคต่อไปนี้ !");
-            String urlFIle = "disease.json";
-            readLocalJson(urlFIle);
-        } else {
-            risk_tv.setText("สุขภาพดีมาก !");
-        }
-    }
-
-    private void getValueIntent() {
-        Bundle extras = getIntent().getExtras();
-        String str_bmi = extras.getString("bmi");
-        bmi = Float.parseFloat(str_bmi);
-//        TextView view = (TextView) findViewById(R.id.textView);
-//        view.setText(inputString);
     }
 
     @Override

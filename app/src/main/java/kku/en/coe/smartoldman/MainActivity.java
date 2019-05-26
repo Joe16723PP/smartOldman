@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if ( v == cv ) {
             if ( mUser != null) {
-                Intent intent = new Intent(this,DiseaseActivity.class);
+                Intent intent = new Intent(this,BmiActivity.class);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(this,LoginActivity.class);
