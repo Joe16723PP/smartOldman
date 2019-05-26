@@ -42,14 +42,14 @@
                     android:buttonTint="@color/green"
                     android:textSize="12sp"
                     android:id="@+id/yes_rb"
-                    android:text="Yes"
+                    android:text="@string/yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <RadioButton
                     android:buttonTint="@color/red"
                     android:textSize="12sp"
                     android:id="@+id/no_rb"
-                    android:text="No"
+                    android:text="@string/no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RadioGroup>

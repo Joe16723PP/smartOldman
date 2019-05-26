@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         else if ( v == emer_btn) {
-                Intent intent = new Intent(this,Emergency1Activity.class);
+//            Intent intent = new Intent(this,Emergency1Activity.class);
+            Intent intent = new Intent(this,HyperQActivity.class);
             startActivity(intent);
         }
     }

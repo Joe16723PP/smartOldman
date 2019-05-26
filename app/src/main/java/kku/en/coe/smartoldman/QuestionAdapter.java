@@ -45,7 +45,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         viewHolder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                Toast.makeText(context,checkedId + " : " + listItem.getQuestion_number(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(context,checkedId + " : " + listItem.getQuestion_number(),Toast.LENGTH_LONG).show();
                 int ans;
                 int index = Integer.parseInt(listItem.getQuestion_number()) - 1;
                 if (checkedId == R.id.yes_rb) {
