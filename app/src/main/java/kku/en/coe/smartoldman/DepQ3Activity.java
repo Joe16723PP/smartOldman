@@ -48,7 +48,7 @@ public class DepQ3Activity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question2);
 
-        setTitle("Dep_Ouestion 3");
+        setTitle("แบบคัดกรองโรคซึมเศร้า(ต่อ)");
 
         mAuth = FirebaseAuth.getInstance();
         current_user = mAuth.getCurrentUser();

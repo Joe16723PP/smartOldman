@@ -42,6 +42,8 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_show_score);
 
+        getSupportActionBar().hide();
+
         read_btn = findViewById(R.id.read_btn);
         read_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_btn);

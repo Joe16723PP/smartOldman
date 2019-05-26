@@ -34,6 +34,7 @@ public class DepQActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question2);
 
+        setTitle("แบบคัดกรองโรคซึมเศร้า");
         recyclerView = findViewById(R.id.rcv_question);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
