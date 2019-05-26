@@ -8,6 +8,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class QuestionShowScore extends AppCompatActivity implements View.OnClickListener {
@@ -16,6 +21,11 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
     private String pointer , post_test , title;
     public ArrayList<String> answer_all = new ArrayList<>();
     private int score = 0;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser current_user;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     private TextView score_tv , header_score_tv;
     private ImageView score_img;
@@ -32,6 +42,8 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_show_score);
 
+        getSupportActionBar().hide();
+
         read_btn = findViewById(R.id.read_btn);
         read_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_btn);
@@ -40,8 +52,16 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         score_img = findViewById(R.id.img_score);
         header_score_tv = findViewById(R.id.header_score);
 
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
+
+
         doGetIntentData();
         doCheckAnswer(pointer);
+
+        doCheckPerPost(post_test);
     }
 
     private void doCheckAnswer(String pointer) {
@@ -99,6 +119,48 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
             title = extras.getString("title");
         } catch (Exception e) {
             post_test = null;
+        }
+    }
+
+    private void doCheckPerPost(String post_test) {
+        String sub_score = String.valueOf(score);
+        switch (pointer) {
+            case "Hyper1Activity" :
+                if (post_test == null){
+                    myRef.child(current_user.getUid()).child("pre_Hyper").setValue(sub_score);
+                }else {
+                    myRef.child(current_user.getUid()).child("post_Hyper").setValue(sub_score);
+                }
+                break;
+            case "Oste1Activity" :
+                if (post_test == null){
+                    myRef.child(current_user.getUid()).child("pre_Oste").setValue(sub_score);
+                }else {
+                    myRef.child(current_user.getUid()).child("post_Oste").setValue(sub_score);
+                }
+                break;
+            case "Lipid1Activity" :
+                if (post_test == null){
+                    myRef.child(current_user.getUid()).child("pre_Lipid").setValue(sub_score);
+                }else {
+                    myRef.child(current_user.getUid()).child("post_Lipid").setValue(sub_score);
+                }
+                break;
+            case "Diab1Activity" :
+                if (post_test == null){
+                    myRef.child(current_user.getUid()).child("pre_Diab").setValue(sub_score);
+                }else {
+                    myRef.child(current_user.getUid()).child("post_Diab").setValue(sub_score);
+                }
+                break;
+            case "Dep1Activity" :
+                if (post_test == null){
+                    myRef.child(current_user.getUid()).child("pre_Dep").setValue(sub_score);
+                }else {
+                    myRef.child(current_user.getUid()).child("post_Dep").setValue(sub_score);
+//                    joe
+                }
+                break;
         }
     }
 

@@ -42,7 +42,7 @@ public class OsteQActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oste_q);
-
+        setTitle("แบบคัดกรองโรคเข่าเสื่อม");
         Toast.makeText(this,"เนื่องจากเป็นการเข้าสู่ระบบครั้งแรก กรุณาทำแบบคัดกรองให้ครบถ้วน",Toast.LENGTH_LONG).show();
 
         recyclerView = findViewById(R.id.rcv_question);

@@ -179,7 +179,7 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
             if (status == 1){
                 risk_tv.setText("คุณมีความเสี่ยงโรคดังต่อไปนี้");
             } else {
-                risk_tv.setText("ไมมีความเสี่ยงเลย ! สุขภาพของคุณดีมาก");
+                risk_tv.setText("ไมมีความเสี่ยงเลย ! \nสุขภาพของคุณดีมาก");
             }
             adapter = new MyAdapter(listItems,this);
             recyclerView.setAdapter(adapter);
