@@ -46,8 +46,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        noRb = findViewById(R.id.no_rb);
-        yesRb = findViewById(R.id.yes_rb);
         next_btn = findViewById(R.id.next_question);
         next_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_question);
@@ -64,9 +62,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 if (checkedId == R.id.yes_rb) {
                     ans = "1";
                 }else if (checkedId == R.id.no_rb){
-                    ans = "0";
-                }
-                else {
                     ans = "0";
                 }
             }
@@ -199,8 +194,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             readLocalJson(file_name);
             global.setArray_answer(answer_first);
 //            String[] tmp_ans = global.getArray_answer();
-            noRb.setChecked(false);
-            yesRb.setChecked(false);
 //            intent.putExtra("file_name" , file_name);
 //            intent.putExtra("next_pointer", pointer);
 //            intent.putExtra("post_test",post_test);
@@ -251,8 +244,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             }else {
                 index = index-1;
                 readLocalJson(file_name);
-                noRb.setChecked(false);
-                yesRb.setChecked(false);
 //                intent = new Intent(this,QuestionActivity.class);
             }
 
