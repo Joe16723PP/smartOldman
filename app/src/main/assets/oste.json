@@ -102,10 +102,10 @@
             "main_img":"oste_page9",
             "link":"https://www.youtube.com/watch?v=qf3gpQfrdeo",
             "sub_img" : "",
-            "img_1" : "oste_small_1",
-            "img_2" : "oste_small_2",
-            "img_3" : "oste_small_3",
-            "img_4" : "oste_small_4",
+            "img_1" : "click",
+            "img_2" : "",
+            "img_3" : "",
+            "img_4" : "",
             "sound" : ""
 		}
     ]

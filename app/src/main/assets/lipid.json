@@ -14,7 +14,7 @@
 		},
 		{
 			"title": "สาเหตุ",
-            "text": "1. พันธุกรรม  ร่างกายไม่สามารถกำจัดไขมัน\n2. พฤติกรรมการดำรงชีพ ไม่ได้ควบคุมอาหาร ไม่ได้ออกกำลังกาย รับประทานอาหารที่คาร์โบไฮเดรตสูง อาหารที่มีไขมันอิ่มตัวสูง ดื่มแอลกอฮอล์ เป็นต้น",
+            "text": "พันธุกรรม  ร่างกายไม่สามารถกำจัดไขมัน\nพฤติกรรมการดำรงชีพ ไม่ได้ควบคุมอาหาร ไม่ได้ออกกำลังกาย รับประทานอาหารที่คาร์โบไฮเดรตสูง อาหารที่มีไขมันอิ่มตัวสูง ดื่มแอลกอฮอล์ เป็นต้น",
             "main_img":"lipid_page2",
             "link":"",
             "sub_img" : "",
@@ -30,10 +30,10 @@
             "main_img":"lipid_page3",
             "link":"",
             "sub_img" : "",
-            "img_1" : "lipid_small_1",
-            "img_2" : "lipid_small_2",
-            "img_3" : "lipid_small_3",
-            "img_4" : "lipid_small_4",
+            "img_1" : "lipid_page3_small1",
+            "img_2" : "lipid_page3_small2",
+            "img_3" : "lipid_page3_small3",
+            "img_4" : "lipid_page3_small4",
             "sound" : ""
 		},
 		{
@@ -42,16 +42,16 @@
             "main_img":"lipid_page4",
             "link":"",
             "sub_img" : "",
-            "img_1" : "lipid_small_1",
-            "img_2" : "lipid_small_2",
-            "img_3" : "lipid_small_3",
-            "img_4" : "lipid_small_4",
+            "img_1" : "lipid_page4_small1",
+            "img_2" : "lipid_page4_small2",
+            "img_3" : "lipid_page4_small3",
+            "img_4" : "lipid_page4_small4",
             "sound" : ""
 		},
 		{
 			"title": "อาการ",
             "text": "ไขมันในเลือดสูงจะไม่มีอาการ\nการที่จะทราบว่าไขมันในเลือดสูงรู้ได้จากนำเลือดไปตรวจ",
-            "main_img":"lipid_page6",
+            "main_img":"lipid_page5",
             "link":"",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -63,7 +63,7 @@
 		{
 			"title": "การรักษา",
             "text": "ใช้ยาลดระดับไขมันในเลือด และการปรับเปลี่ยนพฤติกรรม ได้แก่ การออกกำลังกาย การลดน้ำหนัก การงดบุหรี่ การงดดื่มสุรา และการควบคุมอาหาร",
-            "main_img":"lipid_page7",
+            "main_img":"lipid_page6",
             "link":"",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -75,7 +75,7 @@
 		{
 			"title": "การป้องกัน",
             "text": "1. หลีกเลี่ยงการรับประทานอาหารที่มีโคเลสเตอรอลสูง เช่น เครื่องในสัตว์ ไข่แดง หนังไก่ หอย ปู กุ้ง ปลาหมึก มันหมู มะพร้าว อาหารประเภทแป้ง นํ้าตาล เครื่องดื่มที่มีรสหวาน และผลไม้รสหวานจัด",
-            "main_img":"lipid_page8",
+            "main_img":"lipid_page7",
             "link":"",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -87,7 +87,7 @@
 		{
 			"title": "การป้องกัน (ต่อ)",
             "text": "2. รับประทานอาหารที่มีประโยชน์ เช่น เนื้อปลา เนื้อสัตว์ที่ไมติดมัน และนมพร่องมันเนย\n\n 3. รับประทานอาหารที่เส้นใยมากๆ เช่น ผัก ผลไม้ ข้าวซ้อมมือ ถั่วเมล็ดแห้งต่างๆ เป็นต้น",
-            "main_img":"lipid_page9",
+            "main_img":"lipid_page8",
             "link":"",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -99,7 +99,7 @@
 		{
 			"title": "การป้องกัน (ต่อ)",
             "text": "4.เลือกใช้นํ้ามันพืชในการประกอบอาหาร ยกเว้นนํ้ามันมะพร้าว เช่น นํ้ามันถั่วเหลือง นํ้ามันงา\n\n 5.ออกกําลังกายอย่างสมํ่าเสมอ เช่น วิ่งเหยาะๆ 20 นาที, เดินเร็ว 25 นาที, ว่ายนํ้า 25 นาที, ปั่นจักรยาน 25 นาที, เต้นแอโรบิคพอประมาณ",
-            "main_img":"lipid_page10",
+            "main_img":"lipid_page9",
             "link":"",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -111,31 +111,31 @@
 		{
 			"title": "อาหารที่ควรเลือกรับประทาน",
             "text": "หมวดเนื้อ นม ไข่ และถั่วเมล็ด\n\n - เนื้อแดงไม่ติดมัน\n - เป็ด ไก่เอาหนังออก\n - นมพร่องมันเนย ทั้งที่เป็นนมสดและนมผง\n - เนยแข็งไขมันตํ่า\n - ไข่ขาว\n - ถั่วเมล็ดแห้งทุกชนิด",
-            "main_img":"lipid_page11",
+            "main_img":"lipid_page10",
             "link":"",
             "sub_img" : "",
-            "img_1" : "lipid_small_1",
-            "img_2" : "lipid_small_2",
-            "img_3" : "lipid_small_3",
-            "img_4" : "lipid_small_4",
+            "img_1" : "lipid_page10_small1",
+            "img_2" : "lipid_page10_small2",
+            "img_3" : "lipid_page10_small3",
+            "img_4" : "lipid_page10_small4",
             "sound" : ""
 		},
         {
 			"title": "อาหารที่ควรลดปริมาณ",
             "text": "หมวดเนื้อ นม ไข่ และถั่วเมล็ด\n\n - เนื้อติดมัน\n - เนื้อหมักเกลือ\n - เครื่องในสัตว์\n - นมธรรมดา นมข้นจืด\n - ผลิตภัณฑ์จากนม\n - ไข่แดง\n - ถั่วเมล็ดทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว",
-            "main_img":"lipid_page12",
+            "main_img":"lipid_page11",
             "link":"",
             "sub_img" : "",
-            "img_1" : "lipid_small_1",
-            "img_2" : "lipid_small_2",
-            "img_3" : "lipid_small_3",
-            "img_4" : "lipid_small_4",
+            "img_1" : "lipid_page11_small1",
+            "img_2" : "lipid_page11_small2",
+            "img_3" : "lipid_page11_small3",
+            "img_4" : "lipid_page11_small4",
             "sound" : ""
         },
         {
             "title": "อาหารที่ควรเลือกรับประทาน",
             "text": "หมวดข้าว แป้ง นํ้าตาล\n\n - ข้าวทุกชนิด โดยเฉพาะที่ไม่ขัดสี\n - แป้งทําอาหารเส้นทุกชนิด",
-            "main_img": "lipid_page13",
+            "main_img": "lipid_page12",
             "link": "",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -147,7 +147,7 @@
         {
             "title": "อาหารที่ควรลดปริมาณ",
             "text": "หมวดข้าว แป้ง นํ้าตาล\n\n - ข้าวแป้ง ทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว\n - ใส่ครีม เนย หรือไข่",
-            "main_img": "lipid_page14",
+            "main_img": "lipid_page13",
             "link": "",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -159,7 +159,7 @@
         {
             "title": "อาหารที่ควรเลือกรับประทาน",
             "text": "หมวดผักและผลไม้\n\n - ผักและผลไม้สด แห้ง แช่แข็งทุกชนิด",
-            "main_img": "lipid_page15",
+            "main_img": "lipid_page14",
             "link": "",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -171,7 +171,7 @@
         {
             "title": "อาหารที่ควรลดปริมาณ",
             "text": "หมวดผักและผลไม้\n\n - ผักและผลไม้ที่ปรุงด้วยเนย ครีม\n - ผลไม้ที่ชุบแป้งและแช่ในนํ้าเชื่อม",
-            "main_img": "lipid_page16",
+            "main_img": "lipid_page15",
             "link": "",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -183,7 +183,7 @@
 		{
 			"title": "อาหารที่ควรเลือกรับประทาน",
             "text": "หมวดไขมันและนํ้ามัน\n\n - ใช้ไขมันไม่อิ่มตัว นํ้ามันพืชทุกชนิด ยกเว้นนํ้ามันมะพร้าว",
-            "main_img":"lipid_page17",
+            "main_img":"lipid_page16",
             "link":"",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -195,7 +195,7 @@
 		{
 			"title": "อาหารที่ควรลดปริมาณ",
             "text": "หมวดไขมันและนํ้ามัน\n\n - อาหารทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว\n - นํ้ามันสลัดที่ทําจากไข่แดง",
-            "main_img":"lipid_page18",
+            "main_img":"lipid_page17",
             "link":"",
             "sub_img" : "",
             "img_1" : "lipid_small_1",
@@ -207,13 +207,13 @@
 		{
 			"title": "วิดีโอให้ความรู้",
             "text": "",
-            "main_img":"lipid_page19",
+            "main_img":"lipid_page18",
             "link":"https://youtu.be/RWXGM9sqLsc\n\nhttps://youtu.be/qsg3o5HOh8Y\n\nhttps://youtu.be/f1Vi8f6xzvg",
             "sub_img" : "",
-            "img_1" : "lipid_small_1",
-            "img_2" : "lipid_small_2",
-            "img_3" : "lipid_small_3",
-            "img_4" : "lipid_small_4",
+            "img_1" : "click",
+            "img_2" : "",
+            "img_3" : "",
+            "img_4" : "",
             "sound" : ""
 		}
     ]
