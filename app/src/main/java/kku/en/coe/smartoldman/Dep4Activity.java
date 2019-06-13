@@ -191,7 +191,7 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this,QuestionActivity.class);
                 intent.putExtra("next_pointer","Dep1Activity");
                 intent.putExtra("post_test", "post_test");
-                intent.putExtra("index", String.valueOf(index));
+                intent.putExtra("index", "0");
                 intent.putExtra("return_point",rt_point);
                 startActivity(intent);
                 Log.e("HACK", String.valueOf(index));

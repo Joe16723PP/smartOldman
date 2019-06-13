@@ -190,7 +190,7 @@ public class Hyper4Activity extends AppCompatActivity implements View.OnClickLis
             if (rt_point.equals("disease")) {
                 Intent intent = new Intent(this,QuestionActivity.class);
                 intent.putExtra("next_pointer","Hyper1Activity");
-                intent.putExtra("index", String.valueOf(index));
+                intent.putExtra("index", "0");
                 intent.putExtra("post_test", "post_test");
                 intent.putExtra("return_point",rt_point);
                 startActivity(intent);

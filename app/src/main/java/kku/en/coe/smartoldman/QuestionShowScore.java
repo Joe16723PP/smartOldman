@@ -19,7 +19,7 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
 
     private Button read_btn , back_btn;
     private String pointer , post_test , title;
-    public ArrayList<String> answer_all = new ArrayList<>();
+    public String[] answer_all;
     private int score = 0;
 
     private FirebaseAuth mAuth;
@@ -30,11 +30,11 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
     private TextView score_tv , header_score_tv;
     private ImageView score_img;
 
-    private String[] Hyper = {"1","1","1","1","1","1","0","0","1","0","1","1","1","1","0","0","1","0","1","0"};
-    private String[] Oste = {"0","1","1","1","0","1","1","0","1","1","1","0","0","0","1","1","1","1","0","0"};
-    private String[] Lipid = {"1","1","0","1","0","1","1","0","1","1","0","1","1","1","1","1","0","0","1","1"};
-    private String[] Diab = {"0","1","1","0","1","1","1","0","0","1","1","0","0","0","1","0","1","1","1","1"};
-    private String[] Dep = {"0","1","1","1","1","0","1","0","1","1","0","1","1","0","1","1","1","0","1","1"};
+    private String[] Hyper = {"1","1","1","1","1","1","0","0","1","0"};
+    private String[] Oste  = {"0","1","0","1","1","0","1","0","1","0"};
+    private String[] Lipid = {"1","1","0","1","1","1","1","1","0","1"};
+    private String[] Diab  = {"1","0","1","1","0","1","0","0","0","1"};
+    private String[] Dep   = {"1","1","1","1","1","0","1","0","1","1"};
 
 
     @Override
@@ -65,7 +65,7 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
     }
 
     private void doCheckAnswer(String pointer) {
-        String[] tmp_ans = new String[20];
+        String[] tmp_ans = new String[10];
         String img_name = "";
 
         switch (pointer) {
@@ -86,14 +86,14 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
                 break;
         }
         for(int i = 0; i < tmp_ans.length; i++){
-            if (answer_all.get(i).equals(tmp_ans[i])){
+            if (answer_all[i].equals(tmp_ans[i])){
                 score += 1;
             }
         }
 
-        if (score < 10 ) {
+        if (score < 5 ) {
             img_name = "unhappy";
-        } else if ( score > 15){
+        } else if ( score > 7){
             img_name = "in_love";
         } else {
             img_name = "thinking";
@@ -101,7 +101,7 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
 
         int resID = getResources().getIdentifier(img_name , "drawable", getPackageName());
         score_img.setImageResource(resID);
-        score_tv.setText(score + " / 20");
+        score_tv.setText(score + " / 10");
 
         if (post_test == null) {
             header_score_tv.setText("คะแนนก่อนเรียน\n" + title);
@@ -112,7 +112,8 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
 
     private void doGetIntentData() {
         Bundle extras = getIntent().getExtras();
-        answer_all = extras.getStringArrayList("answer_all");
+        GlobalAnswerQuestion globalAnswerQuestion = GlobalAnswerQuestion.getInstance();
+        answer_all = globalAnswerQuestion.getArray_answer();
         pointer = extras.getString("return_point");
         try {
             post_test = extras.getString("post_test");
@@ -158,7 +159,6 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
                     myRef.child(current_user.getUid()).child("pre_Dep").setValue(sub_score);
                 }else {
                     myRef.child(current_user.getUid()).child("post_Dep").setValue(sub_score);
-//                    joe
                 }
                 break;
         }
