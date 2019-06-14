@@ -33,7 +33,7 @@ public class Oste4Activity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency1);
+        setContentView(R.layout.activity_main_sick);
         setTitle(R.string.oste_string);
         file_name = "oste.json";
         btn_back = findViewById(R.id.btn_back);

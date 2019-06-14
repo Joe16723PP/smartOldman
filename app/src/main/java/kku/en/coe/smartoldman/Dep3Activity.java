@@ -33,7 +33,7 @@ public class Dep3Activity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency1);
+        setContentView(R.layout.activity_main_sick);
         setTitle(R.string.depression_string);
         file_name = "depression.json";
         btn_back = findViewById(R.id.btn_back);

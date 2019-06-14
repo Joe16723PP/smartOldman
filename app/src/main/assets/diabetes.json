@@ -186,10 +186,10 @@
             "main_img":"diab_page16",
             "link":"ความรู้เกี่ยวกับโรคเบาหวาน\nhttps://www.youtube.com/watch?v=GmvTwHtnhLA\n\nInfographic โรคเบาหวาน\nhttps://www.youtube.com/watch?v=JFjPZkkSztA\n\nอาหารสําหรับผู้ป่วยโรคเบาหวาน\nhttps://www.youtube.com/watch?v=JxHRnOMwaMo",
              "sub_img" : "",
-            "img_1" : "click",
-            "img_2" : "",
-            "img_3" : "",
-            "img_4" : "",
+             "img_1" : "",
+             "img_2" : "click",
+             "img_3" : "click",
+             "img_4" : "",
             "sound" : ""
 		}
     ]

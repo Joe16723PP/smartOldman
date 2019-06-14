@@ -258,9 +258,9 @@
             "main_img":"hyper_page1",
             "link":"https://www.youtube.com/watch?v=smuPh4K6gGwd",
             "sub_img" : "",
-            "img_1" : "click",
-            "img_2" : "",
-            "img_3" : "",
+            "img_1" : "",
+            "img_2" : "click",
+            "img_3" : "click",
             "img_4" : "",
             "sound" : ""
         }

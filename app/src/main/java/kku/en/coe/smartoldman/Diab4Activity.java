@@ -33,7 +33,7 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diab1);
+        setContentView(R.layout.activity_main_sick);
         setTitle(R.string.diabetes_string);
         file_name = "diabetes.json";
         btn_back = findViewById(R.id.btn_back);

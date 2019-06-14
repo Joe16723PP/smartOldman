@@ -33,7 +33,7 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency1);
+        setContentView(R.layout.activity_main_sick);
         setTitle(R.string.hypertension_string);
         file_name = "hypertension.json";
         btn_back = findViewById(R.id.btn_back);
