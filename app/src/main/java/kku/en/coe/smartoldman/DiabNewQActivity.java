@@ -193,6 +193,7 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
                     total_score = total_score + score[i];
                 }
                 Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
+                myRef.child(current_user.getUid()).child("diab_score").setValue(total_score);
                 intent.putExtra("daib2_score" , total_score);
 //                startActivity(intent);
             }

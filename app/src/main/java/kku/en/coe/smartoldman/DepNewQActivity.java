@@ -38,7 +38,7 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
     private RadioGroup rdg_choice;
     private RadioButton rd_choice_1, rd_choice_2, rd_choice_3, rd_choice_4, rd_choice_5, rd_hidden;
     public int[] score = new int[12];
-    public int index = 0, dep_score = 0, dead_score = 0, ans = 0;
+    public int index = 0, total_score = 0, ans = 0;
 
     String places[], file_name = "dep_new_quest.json";
     JSONArray placesObj;
@@ -143,19 +143,14 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
                 readLocalJson(file_name, index);
                 resetRadioButton();
             } else {
-                dep_score = 0;
-                dead_score = 0;
+                total_score = 0;
                 Intent intent = new Intent(this,DepQActivity.class);
                 for (int i = 0 ; i < 8 ; i++) {
-                    if (i < 6) {
-                        dep_score = dep_score + score[i];
-                    } else {
-                        dead_score = dead_score + score[i];
-                    }
+                    total_score = total_score + score[i];
                 }
-                Toast.makeText(this,"total_score = " + dep_score + "/" + dead_score,Toast.LENGTH_LONG).show();
-                intent.putExtra("dep(1-6)_score" , dep_score);
-                intent.putExtra("dep(7-8)_score" , dead_score);
+                Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
+                myRef.child(current_user.getUid()).child("dep_score").setValue(total_score);
+                intent.putExtra("dep_score" , total_score);
 //                startActivity(intent);
             }
         }
