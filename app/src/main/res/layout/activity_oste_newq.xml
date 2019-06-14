@@ -80,6 +80,13 @@
                             android:layout_height="wrap_content"
                             android:padding="10dp"
                             android:text="rd_choice_1"/>
+
+                        <RadioButton
+                            android:id="@+id/rd_hidden"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:visibility="invisible"
+                            android:text="rd_hidden"/>
                     </RadioGroup>
                 </LinearLayout>
             </android.support.v7.widget.CardView>

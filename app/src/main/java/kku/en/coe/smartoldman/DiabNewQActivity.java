@@ -3,7 +3,6 @@ package kku.en.coe.smartoldman;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +25,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OsteNewQActivity extends AppCompatActivity implements View.OnClickListener {
+public class DiabNewQActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<OsteQListitem> listItems;
@@ -41,7 +40,7 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
     public int[] score = new int[12];
     public int index = 0, total_score = 0, ans = 0;
 
-    String places[], file_name = "oste_quest.json";
+    String places[], file_name = "diab_new_quest.json";
     JSONArray placesObj;
     JSONObject jsonObject;
 
@@ -49,7 +48,7 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oste_newq);
-        setTitle("แบบคัดกรองโรคเข่าเสื่อม");
+        setTitle("แบบคัดกรองโรคเเบาหวานชนิดที่ 2");
 
         mAuth = FirebaseAuth.getInstance();
         current_user = mAuth.getCurrentUser();
@@ -63,6 +62,8 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
         rd_choice_3 = findViewById(R.id.rd_choice_3);
         rd_choice_4 = findViewById(R.id.rd_choice_4);
         rd_choice_5 = findViewById(R.id.rd_choice_5);
+        rd_choice_5.setVisibility(View.INVISIBLE);
+        rd_choice_5.setPadding(1,1,1,1);
         rd_hidden = findViewById(R.id.rd_hidden);
         rd_hidden.setChecked(true);
 
@@ -81,13 +82,41 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.rd_choice_1) {
-                    ans = 4;
+                    switch (index) {
+                        case 0 : ans = 0; break;
+                        case 1 : ans = 0; break;
+                        case 2 : ans = 0; break;
+                        case 3 : ans = 0; break;
+                        case 4 : ans = 0; break;
+                        case 5 : ans = 0; break;
+                        default: ans = 0;
+                    }
+                    Log.e("global" ,index + " : ans = " + ans);
                 } else if (checkedId == R.id.rd_choice_2) {
-                    ans = 3;
+                    switch (index) {
+                        case 0 : ans = 0; break;
+                        case 1 : ans = 2; break;
+                        case 2 : ans = 3; break;
+                        case 3 : ans = 2; break;
+                        case 4 : ans = 2; break;
+                        case 5 : ans = 4; break;
+                        default: ans = 0;
+                    }
+                    Log.e("global" ,index + " : ans = " + ans);
                 } else if (checkedId == R.id.rd_choice_3) {
-                    ans = 2;
+                    switch (index) {
+                        case 0 : ans = 1; break;
+                        case 1 : ans = 0; break;
+                        case 2 : ans = 5; break;
+                        default: ans = 0;
+                    }
+                    Log.e("global" ,index + " : ans = " + ans);
                 } else if (checkedId == R.id.rd_choice_4) {
-                    ans = 1;
+                    switch (index) {
+                        case 0 : ans = 2; break;
+                        default: ans = 0;
+                    }
+                    Log.e("global" ,index + " : ans = " + ans);
                 } else if (checkedId == R.id.rd_choice_5) {
                     ans = 0;
                 } else {
@@ -100,6 +129,17 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
 
     private void resetRadioButton() {
         rd_hidden.setChecked(true);
+    }
+
+    private void checkChoiceVisible(RadioButton radio, String text) {
+        if (text.equals("")) {
+            radio.setVisibility(View.INVISIBLE);
+            rd_choice_5.setPadding(1,1,1,1);
+        } else {
+            radio.setVisibility(View.VISIBLE);
+            rd_choice_5.setPadding(10,10,10,10);
+            radio.setText(text);
+        }
     }
 
     private void readLocalJson(String urlVal, int indexR) {
@@ -117,7 +157,7 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
         }
         try {
             JSONObject object = new JSONObject(json);
-            placesObj = (JSONArray) object.get("oste_quest");
+            placesObj = (JSONArray) object.get("diab_quest");
             int ObjLng = placesObj.length();
             JSONObject nameObj = (JSONObject) placesObj.get(indexR);
             String id = (String) nameObj.get("id");
@@ -126,14 +166,12 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
             String choice_2 = (String) nameObj.get("choice2");
             String choice_3 = (String) nameObj.get("choice3");
             String choice_4 = (String) nameObj.get("choice4");
-            String choice_5 = (String) nameObj.get("choice5");
 
             tv_questtion.setText(question);
-            rd_choice_1.setText(choice_1);
-            rd_choice_2.setText(choice_2);
-            rd_choice_3.setText(choice_3);
-            rd_choice_4.setText(choice_4);
-            rd_choice_5.setText(choice_5);
+            checkChoiceVisible(rd_choice_1,choice_1);
+            checkChoiceVisible(rd_choice_2,choice_2);
+            checkChoiceVisible(rd_choice_3,choice_3);
+            checkChoiceVisible(rd_choice_4,choice_4);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -143,7 +181,7 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
-            if (index < 11) {
+            if (index < 5) {
                 Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
                 index = index + 1;
                 readLocalJson(file_name, index);
@@ -151,11 +189,11 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
             } else {
                 total_score = 0;
                 Intent intent = new Intent(this,DepQActivity.class);
-                for (int i = 0 ; i < 12 ; i++) {
+                for (int i = 0 ; i < 5 ; i++) {
                     total_score = total_score + score[i];
                 }
                 Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
-                intent.putExtra("oste_score" , total_score);
+                intent.putExtra("daib2_score" , total_score);
 //                startActivity(intent);
             }
         }
