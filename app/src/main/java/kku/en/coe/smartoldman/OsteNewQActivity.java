@@ -155,6 +155,7 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
                     total_score = total_score + score[i];
                 }
                 Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
+                myRef.child(current_user.getUid()).child("oste_score").setValue(total_score);
                 intent.putExtra("oste_score" , total_score);
 //                startActivity(intent);
             }
