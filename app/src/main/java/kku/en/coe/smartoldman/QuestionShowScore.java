@@ -103,7 +103,7 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         score_img.setImageResource(resID);
         score_tv.setText(score + " / 10");
 
-        if (post_test == null) {
+        if (post_test.equals("")) {
             header_score_tv.setText("คะแนนก่อนเรียน\n" + title);
         } else  {
             header_score_tv.setText("คะแนนหลังเรียน\n" + title);
@@ -119,7 +119,7 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
             post_test = extras.getString("post_test");
             title = extras.getString("title");
         } catch (Exception e) {
-            post_test = null;
+            post_test = "";
         }
     }
 
