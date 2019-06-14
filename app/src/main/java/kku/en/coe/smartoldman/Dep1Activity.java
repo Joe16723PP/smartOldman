@@ -24,9 +24,9 @@ public class Dep1Activity extends AppCompatActivity implements View.OnClickListe
     private JSONArray sick;
     private JSONObject page, obj;
     private String json, head, text, main_img, sub_img, img, link, file_name,rt_point, img_1, img_2, img_3, img_4;
-    private ImageView img_main , img_sub, img_small1, img_small2, img_small3, img_small4;
+    private ImageView img_main , img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next;
-    private ImageButton sound_btn;
+    private ImageButton sound_btn, img_sub;
     private TextView text_title,text_desc,txt_link;
     private int index = 0, send_index, max_length;
 

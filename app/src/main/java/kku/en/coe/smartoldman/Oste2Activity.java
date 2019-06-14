@@ -25,9 +25,9 @@ public class Oste2Activity extends AppCompatActivity implements View.OnClickList
     private JSONObject page, obj;
     private String json, head, text, img, link, file_name,sub_img,main_img , rt_point, img_1, img_2, img_3, img_4;
     private TextView text_title, text_desc, txt_link;
-    private ImageView img_main,img_sub, img_small1, img_small2, img_small3, img_small4;
+    private ImageView img_main, img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next;
-    private ImageButton sound_btn;
+    private ImageButton sound_btn,img_sub;
     private int index , send_index, max_length;
 
     @Override

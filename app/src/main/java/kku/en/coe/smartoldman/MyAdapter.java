@@ -70,22 +70,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Oste1Activity")) {
             Intent intent = new Intent(context,QuestionActivity.class);
-            intent.putExtra("index","0");
+            intent.putExtra("index",0);
             intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Lipid1Activity")) {
             Intent intent = new Intent(context,QuestionActivity.class);
-            intent.putExtra("index","0");
+            intent.putExtra("index",0);
             intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Diab1Activity")) {
             Intent intent = new Intent(context,QuestionActivity.class);
-            intent.putExtra("index","0");
+            intent.putExtra("index",0);
             intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Dep1Activity")) {
             Intent intent = new Intent(context,QuestionActivity.class);
-            intent.putExtra("index","0");
+            intent.putExtra("index",0);
             intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Emergency1Activity")) {
