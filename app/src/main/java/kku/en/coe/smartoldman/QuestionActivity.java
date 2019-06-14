@@ -205,7 +205,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         else if ( v == back_btn ) {
             Intent intent = null;
-            if ( post_test.equals("")){
+//            if ( post_test.equals("")){
                 if (index == 0) {
                     intent = new Intent(this,DiseaseActivity.class);
                     intent.putExtra("file_name" , file_name);
@@ -220,40 +220,40 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     readLocalJson(file_name);
 //                intent = new Intent(this,QuestionActivity.class);
                 }
-            }else {
-                if (index == 0) {
-//                    intent = new Intent(this,pointer.class);
-                    switch (pointer) {
-                        case "Hyper1Activity" :
-                            intent = new Intent(this,Hyper1Activity.class);
-                            break;
-                        case "Oste1Activity" :
-                            intent = new Intent(this,Oste1Activity.class);
-                            break;
-                        case "Lipid1Activity" :
-                            intent = new Intent(this,Lipid1Activity.class);
-                            break;
-                        case "Diab1Activity" :
-                            intent = new Intent(this,Diab1Activity.class);
-                            break;
-                        case "Dep1Activity" :
-                            intent = new Intent(this,Dep1Activity.class);
-                            break;
-                    }
-                    intent.putExtra("file_name" , file_name);
-                    intent.putExtra("next_pointer", pointer);
-                    intent.putExtra("post_test",post_test);
-                    intent.putExtra("title", title);
-                    intent.putExtra("index", index);
-                    startActivity(intent);
-                }else {
-                    index = index-1;
-                    tmpRb.setChecked(true);
-                    readLocalJson(file_name);
-//                intent = new Intent(this,QuestionActivity.class);
-                }
-
-            }
+//            }else {
+//                if (index == 0) {
+////                    intent = new Intent(this,pointer.class);
+//                    switch (pointer) {
+//                        case "Hyper1Activity" :
+//                            intent = new Intent(this,Hyper1Activity.class);
+//                            break;
+//                        case "Oste1Activity" :
+//                            intent = new Intent(this,Oste1Activity.class);
+//                            break;
+//                        case "Lipid1Activity" :
+//                            intent = new Intent(this,Lipid1Activity.class);
+//                            break;
+//                        case "Diab1Activity" :
+//                            intent = new Intent(this,Diab1Activity.class);
+//                            break;
+//                        case "Dep1Activity" :
+//                            intent = new Intent(this,Dep1Activity.class);
+//                            break;
+//                    }
+//                    intent.putExtra("file_name" , file_name);
+//                    intent.putExtra("next_pointer", pointer);
+//                    intent.putExtra("post_test",post_test);
+//                    intent.putExtra("title", title);
+//                    intent.putExtra("index", index);
+//                    startActivity(intent);
+//                }else {
+//                    index = index-1;
+//                    tmpRb.setChecked(true);
+//                    readLocalJson(file_name);
+////                intent = new Intent(this,QuestionActivity.class);
+//                }
+//
+//            }
 
 
         }
