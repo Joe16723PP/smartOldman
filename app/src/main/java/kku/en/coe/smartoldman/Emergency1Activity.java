@@ -1,7 +1,11 @@
 package kku.en.coe.smartoldman;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,10 +28,10 @@ import java.io.InputStream;
 public class Emergency1Activity extends AppCompatActivity implements View.OnClickListener {
     private JSONArray sick;
     private JSONObject page, obj;
-    private String json, head, text, main_img, sub_img, link, file_name, rt_point, img_1, img_2, img_3, img_4;
-    private ImageView img_main , img_sub, img_small1, img_small2, img_small3, img_small4;
+    private String json, head, text, main_img, sub_img, link, file_name, rt_point, img_1, img_2, img_3, img_4 , phone_call = "tel:";
+    private ImageView img_main , img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next;
-    private ImageButton sound_btn;
+    private ImageButton sound_btn, img_sub;
     private TextView text_title,text_desc,txt_link;
     private int index = 0, send_index, max_length;
 
@@ -48,6 +52,28 @@ public class Emergency1Activity extends AppCompatActivity implements View.OnClic
         sound_btn.setOnClickListener(this);
         img_main = findViewById(R.id.main_img);
         img_sub = findViewById(R.id.sub_img_top);
+        img_sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse(phone_call));
+                    if (ActivityCompat.checkSelfPermission(Emergency1Activity.this,android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(Emergency1Activity.this,
+                                android.Manifest.permission.CALL_PHONE)) {
+                        } else {
+                            ActivityCompat.requestPermissions(Emergency1Activity.this,
+                                    new String[]{android.Manifest.permission.CALL_PHONE},
+                                    101);
+                        }
+                    }
+                    startActivity(callIntent);
+                } catch (Exception e){
+                    Log.e("call" , String.valueOf(e));
+                }
+
+            }
+        });
         txt_link = findViewById(R.id.txt_link);
         img_small1 = findViewById(R.id.img_small1);
         img_small2 = findViewById(R.id.img_small2);
@@ -142,18 +168,12 @@ public class Emergency1Activity extends AppCompatActivity implements View.OnClic
             img_2 = page.getString("img_2");
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
-//            img = page.getString("img");
-//            link = page.getString("link");
-
+            phone_call += page.getString("phone_call");
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-    public float convertPxToDp(Context context, float px) {
-        return px / context.getResources().getDisplayMetrics().density;
-    }
-
     public String loadJSONFromAsset(Context context,String file_name) {
         json = null;
         try {

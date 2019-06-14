@@ -30,7 +30,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private Button next_btn , back_btn;
     private RadioGroup rgb;
-    private RadioButton noRb , yesRb;
+    private RadioButton noRb , yesRb ,tmpRb;
     JSONArray placesObj;
     int index = 0;
     public String[] answer_first = new String[10];
@@ -51,7 +51,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         back_btn = findViewById(R.id.back_question);
         back_btn.setOnClickListener(this);
         titleText = findViewById(R.id.txt_head);
-
+        tmpRb = findViewById(R.id.tmp_rb);
+        tmpRb.setVisibility(View.INVISIBLE);
         question_num = findViewById(R.id.question_num_tv);
         question_text = findViewById(R.id.question_text_tv);
 
@@ -86,9 +87,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             }catch (Exception e){
                 e.printStackTrace();
             }
-
         } catch (Exception e) {
-            post_test = null;
+            post_test = "";
             Log.e("joe", e.getMessage());
             e.printStackTrace();
         }
@@ -118,7 +118,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 title = getResources().getString(R.string.depression_string);
                 break;
         }
-        setTitle("แบบทดสอบ" + title);
+        if (post_test.equals("")){
+            setTitle("แบบทดสอบก่อนใช้ : " + title);
+        }else {
+            setTitle("แบบทดสอบหลังใช้ : " + title);
+        }
         file_name += ".json";
     }
 
@@ -182,6 +186,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                if ( index > 11 ) {
+                    index = index -1;
+                }
             }
             else if (index == 0) {
                 Toast.makeText(this,"" + index , Toast.LENGTH_LONG).show();
@@ -191,44 +198,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 answer_first[index -1] = ans;
             }
             index = index+1;
+            tmpRb.setChecked(true);
             readLocalJson(file_name);
             global.setArray_answer(answer_first);
-//            String[] tmp_ans = global.getArray_answer();
-//            intent.putExtra("file_name" , file_name);
-//            intent.putExtra("next_pointer", pointer);
-//            intent.putExtra("post_test",post_test);
-//            intent.putExtra("title", title);
-//            intent.putExtra("index", index);
-//            startActivity(intent);
-
-//            Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent(this,Question2Activity.class);
-//            ArrayAnswer global = ArrayAnswer.getInstance();
-//            try {
-//                int[] tmp_ans = global.getArray_answer();
-//                ArrayList<String> tmp_list = new ArrayList<>();
-//                String tmp = "";
-//                for (int i = 0; i < tmp_ans.length ;i ++) {
-//                    tmp += tmp_ans[i];
-//                    tmp_list.add(String.valueOf(tmp_ans[i]));
-//                }
-//                intent.putStringArrayListExtra("answer_1",tmp_list);
-//                intent.putExtra("file_name" , file_name);
-//                intent.putExtra("next_pointer", pointer);
-//                intent.putExtra("post_test",post_test);
-//                intent.putExtra("title", title);
-//
-//                answer_first[index] = ans;
-//                Log.e("answer", String.valueOf(answer_first[index]));
-//
-//                ArrayAnswer answer = ArrayAnswer.getInstance();
-//                answer.setArray_answer(answer_first);
-//
-//                startActivity(intent);
-//                Log.e("global" ,": " + tmp );
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
         }
 
         else if ( v == back_btn ) {
@@ -243,6 +215,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
             }else {
                 index = index-1;
+                tmpRb.setChecked(true);
                 readLocalJson(file_name);
 //                intent = new Intent(this,QuestionActivity.class);
             }

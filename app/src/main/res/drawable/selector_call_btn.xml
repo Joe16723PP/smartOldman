@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enterFadeDuration="10"
+    android:exitFadeDuration="10">
+
+    <item android:state_pressed="true" android:drawable="@color/red" ></item> <!-- pressed -->
+    <item android:state_focused="true" android:drawable="@color/red" ></item> <!-- focused -->
+    <item android:state_hovered="true" android:drawable="@color/red" ></item> <!-- hovered -->
+    <item android:drawable="@color/colorSoftOrange"></item> <!-- default -->
+
+</selector>
