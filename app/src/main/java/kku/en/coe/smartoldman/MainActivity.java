@@ -1,6 +1,7 @@
 package kku.en.coe.smartoldman;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -16,11 +17,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button cv, emer_btn;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    MediaPlayer mp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+//        add audio file
+        String audio_name = "title";
+        int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+        mp = MediaPlayer.create(this,raw_audio);
+        mp.start();
+//        end add audio file
+
         cv = findViewById(R.id.loginBtn);
         emer_btn = findViewById(R.id.emer_btn);
         emer_btn.setOnClickListener(this);
