@@ -221,7 +221,7 @@ public class Oste4Activity extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(this,QuestionActivity.class);
                 intent.putExtra("next_pointer","Oste1Activity");
                 intent.putExtra("post_test", "post_test");
-                intent.putExtra("index", "0");
+                intent.putExtra("index", 0);
                 intent.putExtra("return_point",rt_point);
                 startActivity(intent);
                 Log.e("HACK", String.valueOf(index));

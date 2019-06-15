@@ -48,7 +48,7 @@ public class HyperNewQActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-        setTitle("แบบคัดกรองภาวะซึมเศร้า");
+        setTitle("แบบคัดกรองโรคความดันโลหิตสูง");
 
         mAuth = FirebaseAuth.getInstance();
         current_user = mAuth.getCurrentUser();

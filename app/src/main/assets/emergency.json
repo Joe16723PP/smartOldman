@@ -12,7 +12,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_pre"
         },
         {
             "title" : "191 แจ้งเหตุด่วนเหตุร้าย",
@@ -26,7 +26,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_191"
         },
         {
             "title" : "1669 การเจ็บป่วยฉุกเฉิน",
@@ -40,7 +40,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_1669"
         },
         {
             "title" : "199 เบอร์ดับเพลิง",
@@ -54,7 +54,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_199"
         },
         {
             "title" : "1543 สายตรงทางด่วน",
@@ -68,7 +68,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_1543"
         },
         {
             "title" : "1146 กรมทางหลวงชนบท",
@@ -82,7 +82,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_1146"
         },
         {
             "title" : "1193 ตำรวจทางหลวง",
@@ -96,7 +96,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_1193"
         },
         {
             "title" : "1155 ตำรวจท่องเที่ยว",
@@ -110,7 +110,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_1155"
         },
         {
             "title" : "สายด่วนค้นหาเบอร์โทรศัพท์",
@@ -124,7 +124,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_1133"
         },
         {
             "title" : "เบอร์ฉุกเฉิน",
@@ -138,7 +138,7 @@
             "img_2" : "police_car",
             "img_3" : "ambulance",
             "img_4" : "doctor",
-            "sound" : ""
+            "audio" : "emer_post"
         }
     ]
 }

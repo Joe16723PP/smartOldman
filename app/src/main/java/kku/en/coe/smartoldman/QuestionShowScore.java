@@ -92,12 +92,12 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
             }
         }
 
-        if (score < 5 ) {
-            img_name = "unhappy";
+        if (score < 4 ) {
+            img_name = "low";
         } else if ( score > 7){
-            img_name = "in_love";
+            img_name = "high";
         } else {
-            img_name = "thinking";
+            img_name = "medium";
         }
 
         int resID = getResources().getIdentifier(img_name , "drawable", getPackageName());

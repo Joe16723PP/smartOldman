@@ -38,7 +38,7 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
     private List<ListItem> listItems;
     ProgressDialog pgd;
 
-    private TextView bmi_tv , risk_tv;
+    private TextView bmi_tv , risk_tv , detail_risk_tv;
     private Button see_all_btn;
 
     private FirebaseAuth mAuth;
@@ -53,6 +53,7 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
         getSupportActionBar().hide();
 
         risk_tv = findViewById(R.id.risk);
+        detail_risk_tv = findViewById(R.id.detail_risk);
 
         mAuth = FirebaseAuth.getInstance();
         current_user = mAuth.getCurrentUser();
@@ -91,6 +92,15 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 }
                 Log.e("firebase" , dep_score + ":" + oste_score + ":" + hyper_score + ":" + bmi) ;
                 pgd.dismiss();
+                String res_bmi = "";
+                if (bmi < 23){
+                    res_bmi = "ผอม";
+                } else if (bmi > 27.5) {
+                    res_bmi = "อ้วน";
+                } else {
+                    res_bmi = "สมส่วน";
+                }
+                detail_risk_tv.setText("ดัชนีมวลกายของคุณคือ : " + (float)bmi + "\nคุณมีรูปร่าง" + res_bmi);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -134,7 +144,7 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 listItems.add(listItem);
                 status = 1;
             }
-            if (dep_score > 18 ) {
+            if (dep_score > 3 ) {
                 JSONObject nameObj = (JSONObject) placesObj.get(4);
                 String name = (String) nameObj.get("title");
                 String desc = (String) nameObj.get("description");

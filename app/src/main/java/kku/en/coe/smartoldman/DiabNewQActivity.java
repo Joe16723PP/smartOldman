@@ -53,7 +53,7 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oste_newq);
-        setTitle("แบบคัดกรองโรคเเบาหวานชนิดที่ 2");
+        setTitle("แบบคัดกรองโรคเบาหวานชนิดที่ 2");
 
         mAuth = FirebaseAuth.getInstance();
         current_user = mAuth.getCurrentUser();
@@ -210,7 +210,7 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         if ( v == next_btn ) {
             setPlayMp3();
-            if (index < 5) {
+            if (index < 2) {
                 Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
                 index = index + 1;
                 readLocalJson(file_name, index);
@@ -218,7 +218,7 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
             } else {
                 total_score = 0;
                 Intent intent = new Intent(this,BmiActivity.class);
-                for (int i = 0 ; i < 5 ; i++) {
+                for (int i = 0 ; i < 2 ; i++) {
                     total_score = total_score + score[i];
                 }
                 Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();

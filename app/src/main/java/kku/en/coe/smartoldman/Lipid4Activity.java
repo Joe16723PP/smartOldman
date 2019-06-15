@@ -223,7 +223,7 @@ public class Lipid4Activity extends AppCompatActivity implements View.OnClickLis
             index += 1;
             if (rt_point.equals("disease")) {
                 Intent intent = new Intent(this,QuestionActivity.class);
-                intent.putExtra("index", "0");
+                intent.putExtra("index", 0);
                 intent.putExtra("post_test", "post_test");
                 intent.putExtra("next_pointer","Lipid1Activity");
                 intent.putExtra("return_point",rt_point);

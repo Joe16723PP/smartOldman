@@ -96,7 +96,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 e.printStackTrace();
             }
         } catch (Exception e) {
-            post_test = "";
+            if (post_test == null){
+                post_test = "";
+            }
             Log.e("joe", e.getMessage());
             e.printStackTrace();
         }

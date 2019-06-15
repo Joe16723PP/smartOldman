@@ -79,6 +79,25 @@ public class SubLoginActivity extends AppCompatActivity {
                 "Write new user : " + Cur_Uid,
                 Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this,OsteNewQActivity.class);
+        int diap_score = 0;
+//check diap age
+        if (Integer.parseInt(age) >= 50 ){
+            diap_score += 2;
+        }else if ( (Integer.parseInt(age) >= 45) && (Integer.parseInt(age) <= 49)){
+            diap_score += 1;
+        }
+//check diap bmi
+        if (Double.parseDouble(bmi) >= 27.5 ){
+            diap_score += 5;
+        }else if ( (Double.parseDouble(bmi) >= 23.0) && (Double.parseDouble(bmi) <= 27.4)){
+            diap_score += 3;
+        }
+//check diap gender
+        if  (gender.equals("ผู้หญิง")) {
+            diap_score += 2;
+        }
+
+        myRef.child(Cur_Uid).child("diab_score").setValue(diap_score);
         intent.putExtra("bmi",bmi);
         startActivity(intent);
     }

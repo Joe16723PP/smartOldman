@@ -3,6 +3,7 @@ package kku.en.coe.smartoldman;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,9 @@ public class Emergency4Activity extends AppCompatActivity implements View.OnClic
     private Button btn_back, btn_next;
     private ImageButton sound_btn, img_sub;
     private int index , send_index, max_length;
+    private MediaPlayer mp;
+    String audio_name = "title";
+    private boolean audio_state = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class Emergency4Activity extends AppCompatActivity implements View.OnClic
         btn_next = findViewById(R.id.btn_next);
         btn_next.setText("กลับหน้าหลัก");
         sound_btn = findViewById(R.id.sound_btn);
+        sound_btn.setImageResource(R.drawable.play);
         text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
         btn_next.setOnClickListener(this);
@@ -109,6 +114,10 @@ public class Emergency4Activity extends AppCompatActivity implements View.OnClic
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
             phone_call += page.getString("phone_call");
+            audio_name = page.getString("audio");
+            //                set audio file
+            int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+            mp = MediaPlayer.create(this,raw_audio);
 
 //            if (img != "") {
 //                String mDrawableName = img;
@@ -198,6 +207,7 @@ public class Emergency4Activity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         if ( v == btn_back) {
+            mp.stop();
             index -= 1;
             if ( index <= 0 ) {
                 Intent intent = new Intent(this,Emergency1Activity.class);
@@ -212,6 +222,7 @@ public class Emergency4Activity extends AppCompatActivity implements View.OnClic
             }
 
         } else if ( v == btn_next ) {
+            mp.stop();
             index += 1;
             if (rt_point.equals("disease")) {
                 Intent intent = new Intent(this,DiseaseActivity.class);
@@ -226,9 +237,28 @@ public class Emergency4Activity extends AppCompatActivity implements View.OnClic
                 startActivity(intent);
             }
         } else if ( v == sound_btn ) {
-//            Intent intent = new Intent(this,Emergency2Activity.class);
-//            startActivity(intent);
-            Toast.makeText(this,"play sound" ,Toast.LENGTH_LONG).show();
+            if (!audio_state)
+                audio_state = true;
+            else
+                audio_state = false;
+            try {
+                if (audio_state) {
+                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.start();
+                }
+                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.pause();
+                }
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
