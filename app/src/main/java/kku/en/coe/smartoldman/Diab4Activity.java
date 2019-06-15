@@ -84,15 +84,6 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
 
-//            if (img != "") {
-//                String mDrawableName = img;
-//                int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
-//                img_main.setImageResource(resID);
-//            }
-//            txt_head.setText(head);
-//            txt_text.setText(text);
-//            txt_link.setText(link);
-//            Log.e("HACK",head + " " + text);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -138,16 +129,6 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
         if (!link.equals("")) {
             txt_link.setText(link);
         }
-//        else {
-//            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) txt_link.getLayoutParams();
-//            lp.setMargins(0,0,0,0);
-//            txt_link.setLayoutParams(lp);
-//            txt_link.setPadding(0,0,0,0);
-//        }
-//            txt_head.setText(head);
-//            txt_text.setText(text);
-//            txt_link.setText(link);
-//        text_desc.setText(text);
         text_title.setText(head);
         Log.e("HACK",head + " " + text);
     }
