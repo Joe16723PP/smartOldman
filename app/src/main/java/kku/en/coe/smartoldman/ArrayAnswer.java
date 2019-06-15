@@ -13,6 +13,7 @@ public class ArrayAnswer {
     }
 
     public ArrayAnswer() {
+        
     }
 
     public static synchronized ArrayAnswer getInstance(){
