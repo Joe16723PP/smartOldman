@@ -2,6 +2,7 @@ package kku.en.coe.smartoldman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,10 @@ public class Dep1Activity extends AppCompatActivity implements View.OnClickListe
     private ImageButton sound_btn, img_sub;
     private TextView text_title,text_desc,txt_link;
     private int index = 0, send_index, max_length;
+    private MediaPlayer mp;
+    String audio_name = "title";
+    private boolean audio_state = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,6 @@ public class Dep1Activity extends AppCompatActivity implements View.OnClickListe
         img_main = findViewById(R.id.main_img);
         img_sub = findViewById(R.id.sub_img_top);
         txt_link = findViewById(R.id.txt_link);
-//kuy
         img_small1 = findViewById(R.id.img_small1);
         img_small2 = findViewById(R.id.img_small2);
         img_small3 = findViewById(R.id.img_small3);
@@ -138,6 +142,10 @@ public class Dep1Activity extends AppCompatActivity implements View.OnClickListe
             img_2 = page.getString("img_2");
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
+            audio_name = page.getString("audio");
+            //                set audio file
+            int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+            mp = MediaPlayer.create(this,raw_audio);
 //            img = page.getString("img");
 //            link = page.getString("link");
 
@@ -170,6 +178,7 @@ public class Dep1Activity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if ( v == btn_back) {
+            mp.stop();
             if ( rt_point.equals("disease") ) {
                 Intent intent = new Intent(this,DiseaseActivity.class);
                 startActivity(intent);
@@ -178,15 +187,35 @@ public class Dep1Activity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         } else if ( v == btn_next ) {
+            mp.stop();
             index += 1;
             Intent intent = new Intent(this,Dep2Activity.class);
             intent.putExtra("index",String.valueOf(index));
             intent.putExtra("return_point",rt_point);
             startActivity(intent);
         } else if ( v == sound_btn ) {
-//            Intent intent = new Intent(this,Emergency2Activity.class);
-//            startActivity(intent);
-            Toast.makeText(this,"play sound" ,Toast.LENGTH_LONG).show();
+            if (!audio_state)
+                audio_state = true;
+            else
+                audio_state = false;
+            try {
+                if (audio_state) {
+                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.start();
+                }
+                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.pause();
+                }
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }

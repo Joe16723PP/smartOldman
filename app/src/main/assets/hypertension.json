@@ -10,7 +10,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_1"
         },
         {
             "title": "ความหมาย (ต่อ)",
@@ -22,7 +22,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_2"
         },
         {
             "title": "ปัจจัยเสี่ยงที่เปลี่ยนแปลงไม่ได้",
@@ -34,7 +34,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_3"
         },
         {
             "title": "ปัจจัยเสี่ยงที่เปลี่ยนแปลงไม่ได้ (ต่อ)",
@@ -46,7 +46,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_4"
         },
         {
             "title": "ปัจจัยเสี่ยงที่เปลี่ยนแปลงได้",
@@ -58,7 +58,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_5"
         },
         {
             "title": "ปัจจัยเสี่ยงที่เปลี่ยนแปลงได้ (ต่อ)",
@@ -70,7 +70,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_6"
         },
         {
             "title": "อาการ",
@@ -82,7 +82,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_7"
         },
         {
             "title": "ภาวะแทรกซ้อน",
@@ -94,7 +94,7 @@
             "img_2" : "hyper_page8_small2",
             "img_3" : "hyper_page8_small3",
             "img_4" : "hyper_page8_small4",
-            "sound" : ""
+            "audio" : "hyper_text_8"
         },
         {
             "title": "ภาวะแทรกซ้อน (ต่อ)",
@@ -106,7 +106,7 @@
             "img_2" : "hyper_page8_small2",
             "img_3" : "hyper_page8_small3",
             "img_4" : "hyper_page8_small4",
-            "sound" : ""
+            "audio" : "hyper_text_9"
         },
         {
             "title": "พฤติกรรมเสี่ยง",
@@ -118,7 +118,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_10"
         },
         {
             "title": "พฤติกรรมเสี่ยง (ต่อ)",
@@ -130,7 +130,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_11"
         },
         {
             "title": "พฤติกรรมเสี่ยง (ต่อ)",
@@ -142,7 +142,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_12"
         },
         {
             "title": "พฤติกรรมเสี่ยง (ต่อ)",
@@ -154,7 +154,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_13"
         },
         {
             "title": "การปฏิบัติตัว",
@@ -166,7 +166,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_14"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -178,7 +178,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_15"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -190,7 +190,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_16"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -202,7 +202,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_17"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -214,7 +214,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_18"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -226,7 +226,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_19"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -238,7 +238,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_20"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -250,7 +250,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_21"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -262,7 +262,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_22"
         },
         {
             "title": "การปฏิบัติตัว (ต่อ)",
@@ -274,7 +274,7 @@
             "img_2" : "hyper_small_2",
             "img_3" : "hyper_small_3",
             "img_4" : "hyper_small_4",
-            "sound" : ""
+            "audio" : "hyper_text_23"
         },
         {
             "title": "โรคความดันโลหิตสูง",
@@ -286,7 +286,7 @@
             "img_2" : "click",
             "img_3" : "click",
             "img_4" : "",
-            "sound" : ""
+            "audio" : "hyper_text_24"
         }
     ]
 }
