@@ -21,11 +21,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     String mp3_disease = "sound/1. ß¦¦ñ-¦í+-ºG+ñ.mp3";
+    MediaPlayer mp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+//        add audio file
+        String audio_name = "title";
+        int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+        mp = MediaPlayer.create(this,raw_audio);
+        mp.start();
+//        end add audio file
+
         cv = findViewById(R.id.loginBtn);
         emer_btn = findViewById(R.id.emer_btn);
         emer_btn.setOnClickListener(this);
