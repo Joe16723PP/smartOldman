@@ -25,7 +25,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepNewQActivity extends AppCompatActivity implements View.OnClickListener {
+public class HyperNewQActivity extends AppCompatActivity implements View.OnClickListener {
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<OsteQListitem> listItems;
@@ -34,20 +35,19 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private FirebaseUser current_user;
-    private TextView tv_questtion;
-    private RadioGroup rdg_choice;
-    private RadioButton rd_choice_1, rd_choice_2, rd_choice_3, rd_choice_4, rd_choice_5, rd_hidden;
+    private TextView txt_head, question_num_tv, question_text_tv;
+    private RadioGroup rgb_question;
+    private RadioButton no_rb, yes_rb, tmp_rb;
     public int[] score = new int[12];
     public int index = 0, total_score = 0, ans = 0;
 
-    String places[], file_name = "dep_new_quest.json";
+    String places[], file_name = "hyper_question.json";
     JSONArray placesObj;
     JSONObject jsonObject;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oste_newq);
+        setContentView(R.layout.activity_question);
         setTitle("แบบคัดกรองภาวะซึมเศร้า");
 
         mAuth = FirebaseAuth.getInstance();
@@ -55,22 +55,14 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("users");
 
-        tv_questtion = findViewById(R.id.tv_questtion);
-        rdg_choice = findViewById(R.id.rdg_choice);
-        rd_choice_1 = findViewById(R.id.rd_choice_1);
-        rd_choice_2 = findViewById(R.id.rd_choice_2);
-        rd_choice_3 = findViewById(R.id.rd_choice_3);
-        rd_choice_4 = findViewById(R.id.rd_choice_4);
-        rd_choice_5 = findViewById(R.id.rd_choice_5);
-        rd_hidden = findViewById(R.id.rd_hidden);
-
-        rd_choice_3.setVisibility(View.INVISIBLE);
-        rd_choice_3.setPadding(1,1,1,1);
-        rd_choice_4.setVisibility(View.INVISIBLE);
-        rd_choice_4.setPadding(1,1,1,1);
-        rd_choice_5.setVisibility(View.INVISIBLE);
-        rd_choice_5.setPadding(1,1,1,1);
-        rd_hidden.setChecked(true);
+        txt_head = findViewById(R.id.txt_head);
+        question_num_tv = findViewById(R.id.question_num_tv);
+        question_text_tv = findViewById(R.id.question_text_tv);
+        rgb_question = findViewById(R.id.rgb_question);
+        no_rb = findViewById(R.id.no_rb);
+        yes_rb = findViewById(R.id.yes_rb);
+        tmp_rb = findViewById(R.id.tmp_rb);
+        tmp_rb.setVisibility(View.INVISIBLE);
 
         next_btn = findViewById(R.id.next_question);
         next_btn.setOnClickListener(this);
@@ -83,12 +75,12 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void radioHandle() {
-        rdg_choice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        rgb_question.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.rd_choice_1) {
+                if (checkedId == R.id.yes_rb) {
                     ans = 1;
-                } else if (checkedId == R.id.rd_choice_2) {
+                } else if (checkedId == R.id.no_rb) {
                     ans = 0;
                 }  else {
                     ans = 0;
@@ -99,7 +91,7 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void resetRadioButton() {
-        rd_hidden.setChecked(true);
+        tmp_rb.setChecked(true);
     }
 
     private void readLocalJson(String urlVal, int indexR) {
@@ -117,17 +109,15 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
         }
         try {
             JSONObject object = new JSONObject(json);
-            placesObj = (JSONArray) object.get("dep_quest");
+            placesObj = (JSONArray) object.get("hyper_queue");
             int ObjLng = placesObj.length();
             JSONObject nameObj = (JSONObject) placesObj.get(indexR);
             String id = (String) nameObj.get("id");
             String question = (String) nameObj.get("question");
-            String choice_1 = (String) nameObj.get("choice1");
-            String choice_2 = (String) nameObj.get("choice2");
 
-            tv_questtion.setText(question);
-            rd_choice_1.setText(choice_1);
-            rd_choice_2.setText(choice_2);
+            txt_head.setText(id);
+            question_text_tv.setText(question);
+            question_num_tv.setText("");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,21 +127,20 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
-            if (index < 7) {
+            if (index < 6) {
                 Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
                 index = index + 1;
-                file_name = "dep_new_quest.json";
                 readLocalJson(file_name, index);
                 resetRadioButton();
             } else {
                 total_score = 0;
-                Intent intent = new Intent(this,HyperNewQActivity.class);
+                Intent intent = new Intent(this,DiabNewQActivity.class);
                 try {
-                    for (int i = 0 ; i < 8 ; i++) {
+                    for (int i = 0 ; i < 6 ; i++) {
                         total_score = total_score + score[i];
                     }
                     Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
-                    myRef.child(current_user.getUid()).child("dep_score").setValue(total_score);
+                    myRef.child(current_user.getUid()).child("hyper_score").setValue(total_score);
                     startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -167,7 +156,7 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
                 readLocalJson(file_name, index);
                 resetRadioButton();
             } else {
-                Intent intent = new Intent(this,OsteNewQActivity.class);
+                Intent intent = new Intent(this,DepNewQActivity.class);
                 startActivity(intent);
             }
         }

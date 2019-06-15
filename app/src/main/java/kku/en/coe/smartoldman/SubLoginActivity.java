@@ -78,7 +78,7 @@ public class SubLoginActivity extends AppCompatActivity {
         Toast.makeText(this,
                 "Write new user : " + Cur_Uid,
                 Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this,OsteQActivity.class);
+        Intent intent = new Intent(this,OsteNewQActivity.class);
         intent.putExtra("bmi",bmi);
         startActivity(intent);
     }

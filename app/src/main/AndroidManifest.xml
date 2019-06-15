@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -13,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DepNewQActivity"/>
-        <activity android:name=".DiabNewQActivity"/>
+        <activity android:name=".HyperNewQActivity"/>
+        <activity android:name=".DepNewQActivity" />
+        <activity android:name=".DiabNewQActivity" />
         <activity android:name=".OsteNewQActivity" />
-        <activity android:name=".HyperQActivity" />
+        <activity android:name=".HyperQActivity"/>
         <activity android:name=".QuestionShowScore" />
         <activity android:name=".DepQ3Activity" />
         <activity android:name=".DepQ2Activity" />
@@ -49,16 +50,16 @@
         <activity android:name=".Hyper3Activity" />
         <activity android:name=".Hyper2Activity" />
         <activity android:name=".Hyper1Activity" />
-        <activity android:name=".DiseaseActivity" >
+        <activity android:name=".DiseaseActivity"/>
+        <activity android:name=".BmiActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BmiActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

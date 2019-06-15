@@ -188,14 +188,14 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
                 resetRadioButton();
             } else {
                 total_score = 0;
-                Intent intent = new Intent(this,DepQActivity.class);
+                Intent intent = new Intent(this,BmiActivity.class);
                 for (int i = 0 ; i < 5 ; i++) {
                     total_score = total_score + score[i];
                 }
                 Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
                 myRef.child(current_user.getUid()).child("diab_score").setValue(total_score);
                 intent.putExtra("daib2_score" , total_score);
-//                startActivity(intent);
+                startActivity(intent);
             }
         }
 
@@ -205,7 +205,7 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
                 readLocalJson(file_name, index);
                 resetRadioButton();
             } else {
-                Intent intent = new Intent(this,MainActivity.class);
+                Intent intent = new Intent(this,HyperNewQActivity.class);
                 startActivity(intent);
             }
         }

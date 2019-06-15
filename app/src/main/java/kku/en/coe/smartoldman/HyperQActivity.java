@@ -110,7 +110,7 @@ public class HyperQActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
             myRef.child(current_user.getUid()).child("hyper_score").setValue(score);
-            Intent intent = new Intent(this,BmiActivity.class);
+            Intent intent = new Intent(this,DiabNewQActivity.class);
             startActivity(intent);
 //            Toast.makeText(this,""+score,Toast.LENGTH_LONG).show();
 
