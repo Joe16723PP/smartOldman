@@ -1,6 +1,7 @@
 package kku.en.coe.smartoldman;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -105,8 +106,14 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
 
         if (post_test.equals("")) {
             header_score_tv.setText("คะแนนก่อนเรียน\n" + title);
+            int raw_audio = getResources().getIdentifier("pre_audio" , "raw", getPackageName());
+            MediaPlayer mediaPlayer = MediaPlayer.create(this,raw_audio);
+            mediaPlayer.start();
         } else  {
             header_score_tv.setText("คะแนนหลังเรียน\n" + title);
+            int raw_audio = getResources().getIdentifier("post_audio" , "raw", getPackageName());
+            MediaPlayer mediaPlayer = MediaPlayer.create(this,raw_audio);
+            mediaPlayer.start();
         }
     }
 

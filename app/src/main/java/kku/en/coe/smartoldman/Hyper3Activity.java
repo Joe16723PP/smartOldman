@@ -2,6 +2,7 @@ package kku.en.coe.smartoldman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,9 @@ public class Hyper3Activity extends AppCompatActivity implements View.OnClickLis
     private Button btn_back, btn_next;
     private ImageButton sound_btn,img_sub;
     private int index , send_index, max_length;
+    private MediaPlayer mp;
+    String audio_name = "title";
+    private boolean audio_state = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +135,11 @@ public class Hyper3Activity extends AppCompatActivity implements View.OnClickLis
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
 
+            audio_name = (String) page.get("audio");
+            //                set audio file
+            int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+            mp = MediaPlayer.create(this,raw_audio);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -183,9 +192,28 @@ public class Hyper3Activity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
             }
         } else if ( v == sound_btn ) {
-//            Intent intent = new Intent(this,Emergency2Activity.class);
-//            startActivity(intent);
-            Toast.makeText(this,"play sound" ,Toast.LENGTH_LONG).show();
+            if (!audio_state)
+                audio_state = true;
+            else
+                audio_state = false;
+            try {
+                if (audio_state) {
+                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.start();
+                }
+                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.pause();
+                }
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }
