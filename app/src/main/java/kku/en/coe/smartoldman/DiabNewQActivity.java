@@ -1,6 +1,8 @@
 package kku.en.coe.smartoldman;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -40,7 +42,7 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
     public int[] score = new int[12];
     public int index = 0, total_score = 0, ans = 0;
 
-    String places[], file_name = "diab_new_quest.json";
+    String places[], file_name = "diab_new_quest.json", mp3_diab = "sound/1. ß¦¦ñ-¦í+-ºG+ñ.mp3";
     JSONArray placesObj;
     JSONObject jsonObject;
 
@@ -75,6 +77,19 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
         listItems = new ArrayList<>();
         readLocalJson(file_name, index);
         radioHandle();
+        try {
+            playMp3(mp3_disease);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void playMp3(String filepath) throws IOException {
+        AssetFileDescriptor afd = getAssets().openFd(filepath);
+        MediaPlayer player = new MediaPlayer();
+        player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+        player.prepare();
+        player.start();
     }
 
     private void radioHandle() {

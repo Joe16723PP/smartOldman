@@ -1,6 +1,8 @@
 package kku.en.coe.smartoldman;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,8 +74,21 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
         back_btn.setOnClickListener(this);
 
         listItems = new ArrayList<>();
+        try {
+            playMp3();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         readLocalJson(file_name, index);
         radioHandle();
+    }
+
+    private void playMp3() throws IOException {
+        AssetFileDescriptor afd = getAssets().openFd("1. ß¦¦ñ-¦í+-ºG+ñ.mp3");
+        MediaPlayer player = new MediaPlayer();
+        player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+        player.prepare();
+        player.start();
     }
 
     private void radioHandle() {
