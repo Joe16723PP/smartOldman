@@ -10,10 +10,10 @@
             "img_2" : "oste_small_2",
             "img_3" : "oste_small_3",
             "img_4" : "oste_small_4",
-            "sound" : ""
+            "audio" : "oste_1"
 		},
 		{
-			"title": "ความหมาย (ต่อ)",
+			"title": "สาเหตุ",
             "text": "\t1. ความเสื่อมแบบปฐมภูมิ หรือไม่ทราบสาเหตุ เป็นภาวะที่เกิดจากการเสื่อมสภาพของผิวกระดูกอ่อนตามวัย เช่น อายุ เพศ ภาวะอ้วน\n\t 2. ความเสื่อมแบบทุติยภูมิ หรือทราบสาเหตุ โดยมีการสึกหรอของกระดูกอ่อนผิวข้อ เช่น เคยประสบอุบัติเหตุ มีการบาดเจ็บที่ข้อ เส้นเอ็น การบาดเจ็บเรื้อรังบริเวณข้อเข่า",
             "main_img":"oste_page2",
             "link":"",
@@ -22,7 +22,7 @@
             "img_2" : "oste_small_2",
             "img_3" : "oste_small_3",
             "img_4" : "oste_small_4",
-            "sound" : ""
+            "audio" : "oste_2"
 		},
 		{
 			"title": "อาการ",
@@ -34,7 +34,7 @@
             "img_2" : "oste_small_2",
             "img_3" : "oste_small_3",
             "img_4" : "oste_small_4",
-            "sound" : ""
+            "audio" : "oste_3"
 		},
 		{
 			"title": "ปัจจัยเสี่ยง",
@@ -46,7 +46,7 @@
             "img_2" : "oste_small_2",
             "img_3" : "oste_small_3",
             "img_4" : "oste_small_4",
-            "sound" : ""
+            "audio" : "oste_4"
 		},
 		{
 			"title": "ปัจจัยเสี่ยง",
@@ -58,7 +58,7 @@
             "img_2" : "oste_small_2",
             "img_3" : "oste_small_3",
             "img_4" : "oste_small_4",
-            "sound" : ""
+            "audio" : "oste_5"
 		},
 		{
 			"title": "การปฏิบัติตัว",
@@ -70,7 +70,7 @@
             "img_2" : "oste_small_2",
             "img_3" : "oste_small_3",
             "img_4" : "oste_small_4",
-            "sound" : ""
+            "audio" : "oste_6"
 		},
 		{
 			"title": "การปฏิบัติตัว (ต่อ)",
@@ -82,7 +82,7 @@
             "img_2" : "oste_small_2",
             "img_3" : "oste_small_3",
             "img_4" : "oste_small_4",
-            "sound" : ""
+            "audio" : "oste_7"
 		},
 		{
 			"title": "การปฏิบัติตัว (ต่อ)",
@@ -94,7 +94,7 @@
             "img_2" : "oste_small_2",
             "img_3" : "oste_small_3",
             "img_4" : "oste_small_4",
-            "sound" : ""
+            "audio" : "oste_8"
 		},
 		{
 			"title": "โรคข้อเข่าเสื่อม",
@@ -106,7 +106,7 @@
             "img_2" : "click",
             "img_3" : "click",
             "img_4" : "",
-            "sound" : ""
+            "audio" : "oste_9"
 		}
     ]
 }

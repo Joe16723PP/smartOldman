@@ -10,7 +10,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_1"
 		},
 		{
 			"title": "ประเภทของโรคเบาหวาน",
@@ -22,7 +22,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_2"
 		},
 		{
 			"title": "ประเภทของโรคเบาหวาน",
@@ -34,7 +34,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_3"
 		},
 		{
 			"title": "ภาวะแทรกซ้อน",
@@ -46,7 +46,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_4"
 		},
 		{
 			"title": "ภาวะแทรกซ้อน (ต่อ)",
@@ -58,7 +58,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_5"
 		},
 		{
 			"title": "ภาวะแทรกซ้อน (ต่อ)",
@@ -70,7 +70,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_6"
 		},
 		{
 			"title": "เท้าเบาหวาน",
@@ -82,7 +82,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_7"
 		},
 		{
 			"title": "วิธีป้องกันโรคเบาหวาน",
@@ -94,7 +94,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_8"
 		},
 		{
 			"title": "วิธีป้องกันโรคเบาหวาน",
@@ -106,7 +106,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_9"
 		},
 		{
 			"title": "อาหารแนะนำ",
@@ -118,7 +118,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_10"
 		},
 		{
 			"title": "อาหารประเภทไข่",
@@ -130,7 +130,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_11"
 		},
 		{
 			"title": "อาหารประเภทซุป",
@@ -142,7 +142,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_12"
 		},
 		{
 			"title": "อาหารประเภทต้ม นึ่ง",
@@ -154,7 +154,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_13"
 		},
 		{
 			"title": "อาหารประเภทผัด",
@@ -166,7 +166,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_14"
 		},
 		{
 			"title": "ของหวานและเครื่องดื่ม",
@@ -178,7 +178,7 @@
             "img_2" : "diab_small_2",
             "img_3" : "diab_small_3",
             "img_4" : "diab_small_4",
-            "sound" : ""
+            "audio" : "diab_15"
         },
         {
 			"title": "วิดีโอให้ความรู้",
@@ -190,7 +190,7 @@
              "img_2" : "click",
              "img_3" : "click",
              "img_4" : "",
-            "sound" : ""
+             "audio" : "diab_16"
 		}
     ]
 }

@@ -10,7 +10,7 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_1"
 		},
 		{
 			"title": "สาเหตุ",
@@ -22,7 +22,7 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_2"
 		},
 		{
 			"title": "ปัจจัยเสี่ยง",
@@ -34,7 +34,7 @@
             "img_2" : "lipid_page3_small2",
             "img_3" : "lipid_page3_small3",
             "img_4" : "lipid_page3_small4",
-            "sound" : ""
+            "audio" : "lipid_3"
 		},
 		{
 			"title": "ปัจจัยเสี่ยง (ต่อ)",
@@ -46,7 +46,7 @@
             "img_2" : "lipid_page4_small2",
             "img_3" : "lipid_page4_small3",
             "img_4" : "lipid_page4_small4",
-            "sound" : ""
+            "audio" : "lipid_4"
 		},
 		{
 			"title": "อาการ",
@@ -58,7 +58,7 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_5"
 		},
 		{
 			"title": "การรักษา",
@@ -70,7 +70,7 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_6"
 		},
 		{
 			"title": "การป้องกัน",
@@ -82,7 +82,7 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_7"
 		},
 		{
 			"title": "การป้องกัน (ต่อ)",
@@ -94,7 +94,7 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_8"
 		},
 		{
 			"title": "การป้องกัน (ต่อ)",
@@ -106,11 +106,11 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_9"
 		},
 		{
-			"title": "อาหารที่ควรเลือกรับประทาน",
-            "text": "หมวดเนื้อ นม ไข่ และถั่วเมล็ด\n\n - เนื้อแดงไม่ติดมัน\n - เป็ด ไก่เอาหนังออก\n - นมพร่องมันเนย ทั้งที่เป็นนมสดและนมผง\n - เนยแข็งไขมันตํ่า\n - ไข่ขาว\n - ถั่วเมล็ดแห้งทุกชนิด",
+			"title": "หมวดเนื้อ นม ไข่ และถั่วเมล็ด",
+            "text": "อาหารที่ควรเลือกรับประทาน\n\n - เนื้อแดงไม่ติดมัน\n - เป็ด ไก่เอาหนังออก\n - นมพร่องมันเนย ทั้งที่เป็นนมสดและนมผง\n - เนยแข็งไขมันตํ่า\n - ไข่ขาว\n - ถั่วเมล็ดแห้งทุกชนิด",
             "main_img":"lipid_page10",
             "link":"",
             "sub_img" : "",
@@ -118,11 +118,11 @@
             "img_2" : "lipid_page10_small2",
             "img_3" : "lipid_page10_small3",
             "img_4" : "lipid_page10_small4",
-            "sound" : ""
+            "audio" : "lipid_10"
 		},
         {
-			"title": "อาหารที่ควรลดปริมาณ",
-            "text": "หมวดเนื้อ นม ไข่ และถั่วเมล็ด\n\n - เนื้อติดมัน\n - เนื้อหมักเกลือ\n - เครื่องในสัตว์\n - นมธรรมดา นมข้นจืด\n - ผลิตภัณฑ์จากนม\n - ไข่แดง\n - ถั่วเมล็ดทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว",
+			"title": "หมวดเนื้อ นม ไข่ และถั่วเมล็ด",
+            "text": "อาหารที่ควรลดปริมาณ\n\n - เนื้อติดมัน\n - เนื้อหมักเกลือ\n - เครื่องในสัตว์\n - นมธรรมดา นมข้นจืด\n - ผลิตภัณฑ์จากนม\n - ไข่แดง\n - ถั่วเมล็ดทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว",
             "main_img":"lipid_page11",
             "link":"",
             "sub_img" : "",
@@ -130,11 +130,11 @@
             "img_2" : "lipid_page11_small2",
             "img_3" : "lipid_page11_small3",
             "img_4" : "lipid_page11_small4",
-            "sound" : ""
+            "audio" : "lipid_11"
         },
         {
-            "title": "อาหารที่ควรเลือกรับประทาน",
-            "text": "หมวดข้าว แป้ง นํ้าตาล\n\n - ข้าวทุกชนิด โดยเฉพาะที่ไม่ขัดสี\n - แป้งทําอาหารเส้นทุกชนิด",
+            "title": "หมวดข้าว แป้ง นํ้าตาล",
+            "text": "อาหารที่ควรเลือกรับประทาน\n\n - ข้าวทุกชนิด โดยเฉพาะที่ไม่ขัดสี\n - แป้งทําอาหารเส้นทุกชนิด\n\nอาหารที่ควรลดปริมาณ\n\n - ข้าวแป้ง ทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว\n - ใส่ครีม เนย หรือไข่",
             "main_img": "lipid_page12",
             "link": "",
             "sub_img" : "",
@@ -142,23 +142,11 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_12"
         },
         {
-            "title": "อาหารที่ควรลดปริมาณ",
-            "text": "หมวดข้าว แป้ง นํ้าตาล\n\n - ข้าวแป้ง ทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว\n - ใส่ครีม เนย หรือไข่",
-            "main_img": "lipid_page13",
-            "link": "",
-            "sub_img" : "",
-            "img_1" : "lipid_small_1",
-            "img_2" : "lipid_small_2",
-            "img_3" : "lipid_small_3",
-            "img_4" : "lipid_small_4",
-            "sound" : ""
-        },
-        {
-            "title": "อาหารที่ควรเลือกรับประทาน",
-            "text": "หมวดผักและผลไม้\n\n - ผักและผลไม้สด แห้ง แช่แข็งทุกชนิด",
+            "title": "หมวดผักและผลไม้",
+            "text": "อาหารที่ควรเลือกรับประทาน\n\n - ผักและผลไม้สด แห้ง แช่แข็งทุกชนิด\n\nอาหารที่ควรลดปริมาณ\n\n - ผักและผลไม้ที่ปรุงด้วยเนย ครีม\n - ผลไม้ที่ชุบแป้งและแช่ในนํ้าเชื่อม",
             "main_img": "lipid_page14",
             "link": "",
             "sub_img" : "",
@@ -166,23 +154,11 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
-        },
-        {
-            "title": "อาหารที่ควรลดปริมาณ",
-            "text": "หมวดผักและผลไม้\n\n - ผักและผลไม้ที่ปรุงด้วยเนย ครีม\n - ผลไม้ที่ชุบแป้งและแช่ในนํ้าเชื่อม",
-            "main_img": "lipid_page15",
-            "link": "",
-            "sub_img" : "",
-            "img_1" : "lipid_small_1",
-            "img_2" : "lipid_small_2",
-            "img_3" : "lipid_small_3",
-            "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_13"
         },
 		{
-			"title": "อาหารที่ควรเลือกรับประทาน",
-            "text": "หมวดไขมันและนํ้ามัน\n\n - ใช้ไขมันไม่อิ่มตัว นํ้ามันพืชทุกชนิด ยกเว้นนํ้ามันมะพร้าว",
+			"title": "หมวดไขมันและนํ้ามัน",
+            "text": "อาหารที่ควรเลือกรับประทาน\n\n - ใช้ไขมันไม่อิ่มตัว นํ้ามันพืชทุกชนิด ยกเว้นนํ้ามันมะพร้าว\n\nอาหารที่ควรลดปริมาณ\n\n - อาหารทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว\n - นํ้ามันสลัดที่ทําจากไข่แดง",
             "main_img":"lipid_page16",
             "link":"",
             "sub_img" : "",
@@ -190,19 +166,7 @@
             "img_2" : "lipid_small_2",
             "img_3" : "lipid_small_3",
             "img_4" : "lipid_small_4",
-            "sound" : ""
-		},
-		{
-			"title": "อาหารที่ควรลดปริมาณ",
-            "text": "หมวดไขมันและนํ้ามัน\n\n - อาหารทุกชนิดที่ปรุงด้วยไขมันอิ่มตัว\n - นํ้ามันสลัดที่ทําจากไข่แดง",
-            "main_img":"lipid_page17",
-            "link":"",
-            "sub_img" : "",
-            "img_1" : "lipid_small_1",
-            "img_2" : "lipid_small_2",
-            "img_3" : "lipid_small_3",
-            "img_4" : "lipid_small_4",
-            "sound" : ""
+            "audio" : "lipid_14"
 		},
 		{
 			"title": "วิดีโอให้ความรู้",
@@ -210,11 +174,11 @@
             "main_img":"lipid_page18",
             "link":"https://youtu.be/RWXGM9sqLsc\n\nhttps://youtu.be/qsg3o5HOh8Y\n\nhttps://youtu.be/f1Vi8f6xzvg",
             "sub_img" : "",
-            "img_1" : "click",
-            "img_2" : "",
-            "img_3" : "",
+            "img_1" : "",
+            "img_2" : "click",
+            "img_3" : "click",
             "img_4" : "",
-            "sound" : ""
+            "audio" : "lipid_15"
 		}
     ]
 }

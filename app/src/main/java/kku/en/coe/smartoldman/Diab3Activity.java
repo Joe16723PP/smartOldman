@@ -2,6 +2,7 @@ package kku.en.coe.smartoldman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,9 @@ public class Diab3Activity extends AppCompatActivity implements View.OnClickList
     private ImageView img_main, img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next;
     private ImageButton sound_btn,img_sub;
-    private int index , send_index, max_length;
+    private int index , send_index, max_length, img_btn_state = 0;
+    String audio = "";
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,27 @@ public class Diab3Activity extends AppCompatActivity implements View.OnClickList
         readJson();
         setData();
     }
+
+    private void playMp3(String audio_name) {
+        int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+        mp = MediaPlayer.create(this,raw_audio);
+        mp.start();
+    }
+
+    private void setPlayMp3() {
+        if (img_btn_state == 1) {
+            mp.pause();
+        }
+        img_btn_state = 0;
+        sound_btn.setImageResource(R.drawable.play);
+    }
+
+    private void setPauseMp3() {
+        playMp3(audio);
+        img_btn_state = 1;
+        sound_btn.setImageResource(R.drawable.pause);
+    }
+
     private void setData() {
         if (!sub_img.equals("")) {
             String mDrawableName = sub_img;
@@ -130,6 +154,7 @@ public class Diab3Activity extends AppCompatActivity implements View.OnClickList
             img_2 = page.getString("img_2");
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
+            audio = page.getString("audio");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -156,6 +181,7 @@ public class Diab3Activity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if ( v == btn_back) {
+            setPlayMp3();
             index -= 1;
             if ( index <= 0 ) {
                 Intent intent = new Intent(this,Diab1Activity.class);
@@ -169,6 +195,7 @@ public class Diab3Activity extends AppCompatActivity implements View.OnClickList
             }
 
         } else if ( v == btn_next ) {
+            setPlayMp3();
             index += 1;
             if (index >= (max_length - 1)) {
                 Intent intent = new Intent(this,Diab4Activity.class);
@@ -185,7 +212,11 @@ public class Diab3Activity extends AppCompatActivity implements View.OnClickList
         } else if ( v == sound_btn ) {
 //            Intent intent = new Intent(this,Emergency2Activity.class);
 //            startActivity(intent);
-            Toast.makeText(this,"play sound" ,Toast.LENGTH_LONG).show();
+            if (img_btn_state == 0) {
+                setPauseMp3();
+            } else {
+                setPlayMp3();
+            }
         }
     }
 }

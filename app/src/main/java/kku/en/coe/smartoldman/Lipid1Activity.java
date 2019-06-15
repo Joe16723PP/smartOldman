@@ -2,6 +2,7 @@ package kku.en.coe.smartoldman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,9 @@ public class Lipid1Activity extends AppCompatActivity implements View.OnClickLis
     private Button btn_back, btn_next;
     private ImageButton sound_btn, img_sub;
     private TextView text_title,text_desc,txt_link;
-    private int index = 0, send_index, max_length;
+    private int index = 0, send_index, max_length, img_btn_state = 0;
+    String audio = "";
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,26 @@ public class Lipid1Activity extends AppCompatActivity implements View.OnClickLis
             e.printStackTrace();
             Log.d("L1", String.valueOf(e));
         }
+    }
+
+    private void playMp3(String audio_name) {
+        int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+        mp = MediaPlayer.create(this,raw_audio);
+        mp.start();
+    }
+
+    private void setPlayMp3() {
+        if (img_btn_state == 1) {
+            mp.pause();
+        }
+        img_btn_state = 0;
+        sound_btn.setImageResource(R.drawable.play);
+    }
+
+    private void setPauseMp3() {
+        playMp3(audio);
+        img_btn_state = 1;
+        sound_btn.setImageResource(R.drawable.pause);
     }
 
     private void getIntentData() {
@@ -142,6 +165,8 @@ public class Lipid1Activity extends AppCompatActivity implements View.OnClickLis
             img_2 = page.getString("img_2");
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
+            audio = page.getString("audio");
+            Log.d("audio", audio);
 //            img = page.getString("img");
 //            link = page.getString("link");
 
@@ -174,6 +199,7 @@ public class Lipid1Activity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if ( v == btn_back) {
+            setPlayMp3();
             if ( rt_point.equals("disease") ) {
                 Intent intent = new Intent(this,DiseaseActivity.class);
                 startActivity(intent);
@@ -182,6 +208,7 @@ public class Lipid1Activity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
             }
         } else if ( v == btn_next ) {
+            setPlayMp3();
             index += 1;
             Intent intent = new Intent(this,Lipid2Activity.class);
             intent.putExtra("index",String.valueOf(index));
@@ -190,7 +217,11 @@ public class Lipid1Activity extends AppCompatActivity implements View.OnClickLis
         } else if ( v == sound_btn ) {
 //            Intent intent = new Intent(this,Emergency2Activity.class);
 //            startActivity(intent);
-            Toast.makeText(this,"play sound" ,Toast.LENGTH_LONG).show();
+            if (img_btn_state == 0) {
+                setPauseMp3();
+            } else {
+                setPlayMp3();
+            }
         }
     }
 }

@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button cv, emer_btn;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    String mp3_disease = "sound/1. ß¦¦ñ-¦í+-ºG+ñ.mp3";
     MediaPlayer mp;
 
     @Override
@@ -42,19 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cv.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        try {
-            playMp3(mp3_disease);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void playMp3(String filepath) throws IOException {
-        AssetFileDescriptor afd = getAssets().openFd(filepath);
-        MediaPlayer player = new MediaPlayer();
-        player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
-        player.prepare();
-        player.start();
     }
 
     @Override

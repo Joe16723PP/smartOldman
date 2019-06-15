@@ -1,12 +1,14 @@
 package kku.en.coe.smartoldman;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -37,12 +39,14 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
     private TextView tv_questtion;
     private RadioGroup rdg_choice;
     private RadioButton rd_choice_1, rd_choice_2, rd_choice_3, rd_choice_4, rd_choice_5, rd_hidden;
+    private ImageButton sound_btn;
     public int[] score = new int[12];
-    public int index = 0, total_score = 0, ans = 0;
+    public int index = 0, total_score = 0, ans = 0, img_btn_state = 0;
 
-    String places[], file_name = "dep_new_quest.json";
+    String places[], file_name = "dep_new_quest.json", audio = "";
     JSONArray placesObj;
     JSONObject jsonObject;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +80,32 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
         next_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_question);
         back_btn.setOnClickListener(this);
+        sound_btn = findViewById(R.id.sound_btn);
+        sound_btn.setOnClickListener(this);
 
         listItems = new ArrayList<>();
         readLocalJson(file_name, index);
         radioHandle();
+    }
+
+    private void playMp3(String audio_name) {
+        int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+        mp = MediaPlayer.create(this,raw_audio);
+        mp.start();
+    }
+
+    private void setPlayMp3() {
+        if (img_btn_state == 1) {
+            mp.pause();
+        }
+        img_btn_state = 0;
+        sound_btn.setImageResource(R.drawable.play);
+    }
+
+    private void setPauseMp3() {
+        playMp3(audio);
+        img_btn_state = 1;
+        sound_btn.setImageResource(R.drawable.pause);
     }
 
     private void radioHandle() {
@@ -124,6 +150,7 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
             String question = (String) nameObj.get("question");
             String choice_1 = (String) nameObj.get("choice1");
             String choice_2 = (String) nameObj.get("choice2");
+            audio = (String) nameObj.get("audio");
 
             tv_questtion.setText(question);
             rd_choice_1.setText(choice_1);
@@ -138,12 +165,14 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if ( v == next_btn ) {
             if (index < 7) {
+                setPlayMp3();
                 Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
                 index = index + 1;
                 file_name = "dep_new_quest.json";
                 readLocalJson(file_name, index);
                 resetRadioButton();
             } else {
+                setPlayMp3();
                 total_score = 0;
                 Intent intent = new Intent(this,HyperNewQActivity.class);
                 try {
@@ -169,6 +198,14 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
             } else {
                 Intent intent = new Intent(this,OsteNewQActivity.class);
                 startActivity(intent);
+            }
+        }
+
+        else if ( v == sound_btn ) {
+            if (img_btn_state == 0) {
+                setPauseMp3();
+            } else {
+                setPlayMp3();
             }
         }
     }

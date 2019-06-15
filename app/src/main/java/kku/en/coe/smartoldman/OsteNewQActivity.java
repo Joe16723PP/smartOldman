@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -40,12 +41,14 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
     private TextView tv_questtion;
     private RadioGroup rdg_choice;
     private RadioButton rd_choice_1, rd_choice_2, rd_choice_3, rd_choice_4, rd_choice_5, rd_hidden;
+    private ImageButton sound_btn;
     public int[] score = new int[12];
-    public int index = 0, total_score = 0, ans = 0;
+    public int index = 0, total_score = 0, ans = 0, img_btn_state = 0;
 
-    String places[], file_name = "oste_quest.json";
+    String places[], file_name = "oste_quest.json", audio = "";
     JSONArray placesObj;
     JSONObject jsonObject;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,23 +75,32 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
         next_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_question);
         back_btn.setOnClickListener(this);
+        sound_btn = findViewById(R.id.sound_btn);
+        sound_btn.setOnClickListener(this);
 
         listItems = new ArrayList<>();
-        try {
-            playMp3();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         readLocalJson(file_name, index);
         radioHandle();
     }
 
-    private void playMp3() throws IOException {
-        AssetFileDescriptor afd = getAssets().openFd("1. ß¦¦ñ-¦í+-ºG+ñ.mp3");
-        MediaPlayer player = new MediaPlayer();
-        player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
-        player.prepare();
-        player.start();
+    private void playMp3(String audio_name) {
+        int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+        mp = MediaPlayer.create(this,raw_audio);
+        mp.start();
+    }
+
+    private void setPlayMp3() {
+        if (img_btn_state == 1) {
+            mp.pause();
+        }
+        img_btn_state = 0;
+        sound_btn.setImageResource(R.drawable.play);
+    }
+
+    private void setPauseMp3() {
+        playMp3(audio);
+        img_btn_state = 1;
+        sound_btn.setImageResource(R.drawable.pause);
     }
 
     private void radioHandle() {
@@ -142,6 +154,7 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
             String choice_3 = (String) nameObj.get("choice3");
             String choice_4 = (String) nameObj.get("choice4");
             String choice_5 = (String) nameObj.get("choice5");
+            audio = (String) nameObj.get("audio");
 
             tv_questtion.setText(question);
             rd_choice_1.setText(choice_1);
@@ -158,6 +171,7 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
+            setPlayMp3();
             if (index < 11) {
                 Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
                 index = index + 1;
@@ -177,6 +191,7 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
         }
 
         else if ( v == back_btn ) {
+            setPlayMp3();
             if (index > 0) {
                 index = index - 1;
                 readLocalJson(file_name, index);
@@ -184,6 +199,14 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
             } else {
                 Intent intent = new Intent(this,SubLoginActivity.class);
                 startActivity(intent);
+            }
+        }
+
+        else if ( v == sound_btn ) {
+            if (img_btn_state == 0) {
+                setPauseMp3();
+            } else {
+                setPlayMp3();
             }
         }
     }
