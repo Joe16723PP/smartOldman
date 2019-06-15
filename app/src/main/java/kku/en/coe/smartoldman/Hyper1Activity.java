@@ -2,6 +2,7 @@ package kku.en.coe.smartoldman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,9 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
     private ImageButton sound_btn , img_sub;
     private TextView text_title,text_desc,txt_link;
     private int index = 0, send_index, max_length;
+    private MediaPlayer mp;
+    String audio_name = "title";
+    private boolean audio_state = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,15 +115,7 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
         if (!link.equals("")) {
             txt_link.setText(link);
         }
-//        else {
-//            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) txt_link.getLayoutParams();
-//            lp.setMargins(0,0,0,0);
-//            txt_link.setLayoutParams(lp);
-//            txt_link.setPadding(0,0,0,0);
-//        }
-//            txt_head.setText(head);
-//            txt_text.setText(text);
-//            txt_link.setText(link);
+
         text_desc.setText(text);
         text_title.setText(head);
         Log.e("HACK",head + " " + text);
@@ -134,6 +130,11 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
 //            head = page.getString("head");
             sub_img = page.getString("sub_img");
             main_img = page.getString("main_img");
+            audio_name = page.getString("audio");
+            //                set audio file
+            int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+            mp = MediaPlayer.create(this,raw_audio);
+
             text = page.getString("text");
             head = page.getString("title");
             link = page.getString("link");
@@ -148,9 +149,6 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-    public float convertPxToDp(Context context, float px) {
-        return px / context.getResources().getDisplayMetrics().density;
     }
 
     public String loadJSONFromAsset(Context context,String file_name) {
@@ -187,9 +185,28 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
             intent.putExtra("return_point",rt_point);
             startActivity(intent);
         } else if ( v == sound_btn ) {
-//            Intent intent = new Intent(this,Emergency2Activity.class);
-//            startActivity(intent);
-            Toast.makeText(this,"play sound" ,Toast.LENGTH_LONG).show();
+            if (!audio_state)
+                audio_state = true;
+            else
+                audio_state = false;
+            try {
+                if (audio_state) {
+                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.start();
+                }
+                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.pause();
+                }
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }

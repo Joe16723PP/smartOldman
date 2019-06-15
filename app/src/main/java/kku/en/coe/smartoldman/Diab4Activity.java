@@ -55,8 +55,8 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
         img_small2 = findViewById(R.id.img_small2);
         img_small3 = findViewById(R.id.img_small3);
         img_small4 = findViewById(R.id.img_small4);
-        setIntentData();
         readJson();
+        setIntentData();
         setData();
         Toast.makeText(this,rt_point,Toast.LENGTH_LONG).show();
     }
@@ -83,7 +83,12 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
 
     private void setIntentData() {
         Bundle extras = getIntent().getExtras();
-        index = Integer.parseInt(extras.getString("index"));
+        try {
+            index = Integer.parseInt(extras.getString("index"));
+        }catch (Exception e){
+            index = max_length-1;
+            e.printStackTrace();
+        }
         rt_point = extras.getString("return_point");
         Log.e("rtp",rt_point);
 //        index_int = Integer.parseInt(index);

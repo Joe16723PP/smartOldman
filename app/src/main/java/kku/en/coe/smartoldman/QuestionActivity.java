@@ -1,6 +1,7 @@
 package kku.en.coe.smartoldman;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -31,11 +33,15 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private Button next_btn , back_btn;
     private RadioGroup rgb;
     private RadioButton noRb , yesRb ,tmpRb;
+    private ImageButton play_sound_btn;
+    private MediaPlayer mp;
     JSONArray placesObj;
     int index = 0;
+    private boolean audio_state = false;
     public String[] answer_first = new String[10];
 
     String pointer = "";
+    String audio_name = "title";
 
     String file_name, post_test, title , ans = "0";
     TextView question_num , question_text , titleText;
@@ -50,6 +56,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         next_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_question);
         back_btn.setOnClickListener(this);
+        play_sound_btn = findViewById(R.id.sound_btn);
+        play_sound_btn.setOnClickListener(this);
         titleText = findViewById(R.id.txt_head);
         tmpRb = findViewById(R.id.tmp_rb);
         tmpRb.setVisibility(View.INVISIBLE);
@@ -147,6 +155,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 JSONObject nameObj = (JSONObject) placesObj.get(index-1);
                 String id = (String) nameObj.get("id");
                 String question = (String) nameObj.get("question");
+                audio_name = (String) nameObj.get("audio");
+                //                set audio file
+                int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+                mp = MediaPlayer.create(this,raw_audio);
+                //                set text
                 question_num.setText("");
                 titleText.setText("คำถามข้อที่ : " + id);
                 question_text.setText(question);
@@ -158,6 +171,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 JSONObject guideObj = (JSONObject) placesObj.get(index);
                 String header = (String) guideObj.get("header");
                 String text = (String) guideObj.get("text");
+                audio_name = (String) guideObj.get("audio");
+//                set audio file
+                int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+                mp = MediaPlayer.create(this,raw_audio);
+//                set text
                 question_num.setText("");
                 titleText.setText(header);
                 question_text.setText(text);
@@ -172,6 +190,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
+            mp.stop();
+            audio_state = false;
             Log.e("index",""+index);
             GlobalAnswerQuestion global = GlobalAnswerQuestion.getInstance();
 
@@ -204,8 +224,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }
 
         else if ( v == back_btn ) {
+            mp.stop();
             Intent intent = null;
-//            if ( post_test.equals("")){
+            audio_state = false;
+            if ( post_test.equals("")){
                 if (index == 0) {
                     intent = new Intent(this,DiseaseActivity.class);
                     intent.putExtra("file_name" , file_name);
@@ -220,41 +242,65 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     readLocalJson(file_name);
 //                intent = new Intent(this,QuestionActivity.class);
                 }
-//            }else {
-//                if (index == 0) {
-////                    intent = new Intent(this,pointer.class);
-//                    switch (pointer) {
-//                        case "Hyper1Activity" :
-//                            intent = new Intent(this,Hyper1Activity.class);
-//                            break;
-//                        case "Oste1Activity" :
-//                            intent = new Intent(this,Oste1Activity.class);
-//                            break;
-//                        case "Lipid1Activity" :
-//                            intent = new Intent(this,Lipid1Activity.class);
-//                            break;
-//                        case "Diab1Activity" :
-//                            intent = new Intent(this,Diab1Activity.class);
-//                            break;
-//                        case "Dep1Activity" :
-//                            intent = new Intent(this,Dep1Activity.class);
-//                            break;
-//                    }
-//                    intent.putExtra("file_name" , file_name);
-//                    intent.putExtra("next_pointer", pointer);
-//                    intent.putExtra("post_test",post_test);
-//                    intent.putExtra("title", title);
+            }else {
+                if (index == 0) {
+//                    intent = new Intent(this,pointer.class);
+                    switch (pointer) {
+                        case "Hyper1Activity" :
+                            intent = new Intent(this,Hyper4Activity.class);
+                            break;
+                        case "Oste1Activity" :
+                            intent = new Intent(this,Oste4Activity.class);
+                            break;
+                        case "Lipid1Activity" :
+                            intent = new Intent(this,Lipid4Activity.class);
+                            break;
+                        case "Diab1Activity" :
+                            intent = new Intent(this,Diab4Activity.class);
+                            break;
+                        case "Dep1Activity" :
+                            intent = new Intent(this,Dep4Activity.class);
+                            break;
+                    }
+                    intent.putExtra("file_name" , file_name);
+                    intent.putExtra("next_pointer", pointer);
+                    intent.putExtra("return_point","disease");
+                    intent.putExtra("post_test",post_test);
+                    intent.putExtra("title", title);
 //                    intent.putExtra("index", index);
-//                    startActivity(intent);
-//                }else {
-//                    index = index-1;
-//                    tmpRb.setChecked(true);
-//                    readLocalJson(file_name);
-////                intent = new Intent(this,QuestionActivity.class);
-//                }
-//
-//            }
+                    startActivity(intent);
+                }else {
+                    index = index-1;
+                    tmpRb.setChecked(true);
+                    readLocalJson(file_name);
+//                intent = new Intent(this,QuestionActivity.class);
+                }
 
+            }
+        }
+        else if (v == play_sound_btn){
+            if (!audio_state)
+                audio_state = true;
+            else
+                audio_state = false;
+            try {
+                if (audio_state) {
+                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    play_sound_btn.setImageResource(resID);
+                    mp.start();
+                }
+                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    play_sound_btn.setImageResource(resID);
+                    mp.pause();
+                }
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
 
         }
     }
