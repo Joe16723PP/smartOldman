@@ -171,7 +171,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 JSONObject guideObj = (JSONObject) placesObj.get(index);
                 String header = (String) guideObj.get("header");
                 String text = (String) guideObj.get("text");
-                audio_name = (String) guideObj.get("audio");
+                if (post_test.equals("")){
+                    audio_name = (String) guideObj.get("audio");
+                } else {
+                    audio_name = "guide_post_audio";
+                }
 //                set audio file
                 int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
                 mp = MediaPlayer.create(this,raw_audio);
@@ -192,6 +196,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         if ( v == next_btn ) {
             mp.stop();
             audio_state = false;
+            int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
+            Log.e("img", String.valueOf(resID));
+            play_sound_btn.setImageResource(resID);
             Log.e("index",""+index);
             GlobalAnswerQuestion global = GlobalAnswerQuestion.getInstance();
 
@@ -227,6 +234,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             mp.stop();
             Intent intent = null;
             audio_state = false;
+            int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
+            Log.e("img", String.valueOf(resID));
+            play_sound_btn.setImageResource(resID);
             if ( post_test.equals("")){
                 if (index == 0) {
                     intent = new Intent(this,DiseaseActivity.class);

@@ -2,6 +2,7 @@ package kku.en.coe.smartoldman;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,9 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
     private Button btn_back, btn_next;
     private ImageButton sound_btn,img_sub;
     private int index , send_index, max_length;
+    private MediaPlayer mp;
+    String audio_name = "title";
+    private boolean audio_state = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +92,10 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
             img_2 = page.getString("img_2");
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
+            audio_name = page.getString("audio");
+            //                set audio file
+            int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
+            mp = MediaPlayer.create(this,raw_audio);
 
 //            if (img != "") {
 //                String mDrawableName = img;
@@ -177,6 +185,7 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if ( v == btn_back) {
+            mp.stop();
             index -= 1;
             if ( index <= 0 ) {
                 Intent intent = new Intent(this,Dep1Activity.class);
@@ -191,6 +200,7 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
             }
 
         } else if ( v == btn_next ) {
+            mp.stop();
             index += 1;
             if (rt_point.equals("disease")) {
                 Intent intent = new Intent(this,QuestionActivity.class);
@@ -207,9 +217,28 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         } else if ( v == sound_btn ) {
-//            Intent intent = new Intent(this,Emergency2Activity.class);
-//            startActivity(intent);
-            Toast.makeText(this,"play sound" ,Toast.LENGTH_LONG).show();
+            if (!audio_state)
+                audio_state = true;
+            else
+                audio_state = false;
+            try {
+                if (audio_state) {
+                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.start();
+                }
+                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                    int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
+                    Log.e("img", String.valueOf(resID));
+                    sound_btn.setImageResource(resID);
+                    mp.pause();
+                }
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }

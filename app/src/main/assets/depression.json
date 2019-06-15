@@ -10,7 +10,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_1"
 		},
 		{
 			"title": "อาการสำคัญ",
@@ -22,7 +22,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_2"
 		},
 		{
 			"title": "กลุ่มอาการ",
@@ -34,7 +34,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_3"
 		},
 		{
 			"title": "กลุ่มอาการ (ต่อ)",
@@ -46,7 +46,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_4"
 		},
 		{
 			"title": "กลุ่มอาการ (ต่อ)",
@@ -58,7 +58,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_5"
 		},
 		{
 			"title": "กลุ่มอาการ (ต่อ)",
@@ -70,7 +70,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_6"
 		},
 		{
 			"title": "สาเหตุ",
@@ -82,7 +82,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_7"
         },
         {
 			"title": "สาเหตุ (ต่อ)",
@@ -94,7 +94,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_8"
         },
         {
 			"title": "สาเหตุ (ต่อ)",
@@ -106,7 +106,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_9"
         },
         {
 			"title": "การรักษา",
@@ -118,7 +118,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_10"
         },
         {
 			"title": "การรักษา (ต่อ)",
@@ -130,7 +130,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_11"
         },
         {
 			"title": "การรักษา (ต่อ)",
@@ -142,7 +142,7 @@
             "img_2" : "dep_small_2",
             "img_3" : "dep_small_3",
             "img_4" : "dep_small_4",
-            "sound" : ""
+            "audio" : "dep_text_12"
 		},
 		{
 			"title": "คุณเป็นโรคซึมเศร้าหรือเปล่า",
@@ -154,7 +154,7 @@
             "img_2" : "click",
             "img_3" : "click",
             "img_4" : "",
-            "sound" : ""
+            "audio" : "dep_text_13"
 		}
     ]
 }

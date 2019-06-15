@@ -186,6 +186,7 @@ public class Hyper4Activity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if ( v == btn_back) {
+            mp.stop();
             index -= 1;
             if ( index <= 0 ) {
                 Intent intent = new Intent(this,Hyper1Activity.class);
@@ -200,6 +201,7 @@ public class Hyper4Activity extends AppCompatActivity implements View.OnClickLis
             }
 
         } else if ( v == btn_next ) {
+            mp.stop();
             index += 1;
             if (rt_point.equals("disease")) {
                 Intent intent = new Intent(this,QuestionActivity.class);
