@@ -69,13 +69,14 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         current_user = mAuth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("users");
+        doReadFirebase();
 
         next_btn = findViewById(R.id.next_question);
         next_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_question);
         back_btn.setOnClickListener(this);
         play_sound_btn = findViewById(R.id.sound_btn);
-//        play_sound_btn.setOnClickListener(this);
+        play_sound_btn.setOnClickListener(this);
         titleText = findViewById(R.id.txt_head);
         tmpRb = findViewById(R.id.tmp_rb);
         tmpRb.setVisibility(View.INVISIBLE);
@@ -95,14 +96,21 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         });
 
 
-        try {
-            getIntentData();
-        } catch (Exception e) {
-            Log.e("filename" , file_name + "::" + pointer + "::" + index + "::" + title + ": " );
-        }
+        getIntentData();
         file_name += ".json";
-        doReadFirebase();
+        Log.e("filename" , ":: " + file_name);
         readLocalJson(file_name);
+        myRef.removeEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void doReadFirebase() {
@@ -146,6 +154,40 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                                 startActivity(intent);
                             }
                             if (!pre_oste.equals("") && pointer.equals("Oste1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Oste1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                        }
+
+                        String post_dep = user.getPost_Dep();
+                        String post_diab = user.getPost_Diab();
+                        String post_hyper = user.getPost_Hyper();
+                        String post_lipid = user.getPost_Lipid();
+                        String post_oste = user.getPost_Oste();
+                        if ((post_test != null) && (index == 0)) {
+//                            Toast.makeText(QuestionActivity.this,"check pretest",Toast.LENGTH_LONG).show();
+                            if (!post_dep.equals("") && pointer.equals("Dep1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Dep1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                            if (!post_diab.equals("") && pointer.equals("Diab1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Diab1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                            if (!post_hyper.equals("") && pointer.equals("Hyper1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Hyper1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                            if (!post_lipid.equals("") && pointer.equals("Lipid1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Lipid1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                            if (!post_oste.equals("") && pointer.equals("Oste1Activity")) {
                                 Intent intent = new Intent(QuestionActivity.this,Oste1Activity.class);
                                 intent.putExtra("return_point","disease");
                                 startActivity(intent);
@@ -228,15 +270,15 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 rgb.setVisibility(View.VISIBLE);
             }
 //            if guide
-            else {
+            else if (index == 0){
                 placesObj = (JSONArray) object.get("guide");
                 JSONObject guideObj = (JSONObject) placesObj.get(index);
                 String header = (String) guideObj.get("header");
                 String text = (String) guideObj.get("text");
                 if (post_test == null){
-                    audio_name = (String) guideObj.get("audio");
+                    audio_name = "guide_pre";
                 } else {
-                    audio_name = "guide_post_audio";
+                    audio_name = "guide_post";
                 }
 //                set audio file
                 int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());

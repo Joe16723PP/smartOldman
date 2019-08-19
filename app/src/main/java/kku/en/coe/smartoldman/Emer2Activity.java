@@ -20,7 +20,7 @@ public class Emer2Activity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emer2);
         back_btn = findViewById(R.id.btn_back);
-        next_btn = findViewById(R.id.btn_next);
+//        next_btn = findViewById(R.id.btn_next);
         emer_1669 = findViewById(R.id.emer_1669);
         emer_191 = findViewById(R.id.emer_191);
         emer_199 = findViewById(R.id.emer_199);
@@ -29,7 +29,7 @@ public class Emer2Activity extends AppCompatActivity implements View.OnClickList
         emer_191.setOnClickListener(this);
         emer_1669.setOnClickListener(this);
         back_btn.setOnClickListener(this);
-        next_btn.setOnClickListener(this);
+//        next_btn.setOnClickListener(this);
 
         try {
             Bundle extras = getIntent().getExtras();

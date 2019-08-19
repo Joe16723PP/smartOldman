@@ -44,16 +44,18 @@ public class Emergency2Activity extends AppCompatActivity implements View.OnClic
         setTitle(R.string.emerStr);
         file_name = "emergency.json";
         btn_back = findViewById(R.id.btn_back);
-        btn_next = findViewById(R.id.btn_next);
+//        btn_next = findViewById(R.id.btn_next);
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
-        btn_next.setOnClickListener(this);
+//        btn_next.setOnClickListener(this);
         btn_back.setOnClickListener(this);
         sound_btn.setOnClickListener(this);
         sound_btn.setImageResource(R.drawable.play);
         img_main = findViewById(R.id.main_img);
         img_sub = findViewById(R.id.sub_img_top);
+//        btn_back.setVisibility(View.INVISIBLE);
+//        btn_next.setVisibility(View.INVISIBLE);
         img_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,17 +215,20 @@ public class Emergency2Activity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         if ( v == btn_back) {
             mp.stop();
-            index -= 1;
-            if ( index <= 0 ) {
-                Intent intent = new Intent(this,Emergency1Activity.class);
-                intent.putExtra("return_point",rt_point);
-                startActivity(intent);
-            } else {
-                Intent intent = new Intent(this,Emergency3Activity.class);
-                intent.putExtra("index",String.valueOf(index));
-                intent.putExtra("return_point",rt_point);
-                startActivity(intent);
-            }
+            String rtp = rt_point == null ? "" : rt_point;
+            Intent intent = new Intent(this,Emer2Activity.class);
+            intent.putExtra("return_point",rtp);
+            startActivity(intent);
+//            if ( index <= 0 ) {
+//                Intent intent = new Intent(this,Emergency1Activity.class);
+//                intent.putExtra("return_point",rt_point);
+//                startActivity(intent);
+//            } else {
+//                Intent intent = new Intent(this,Emergency3Activity.class);
+//                intent.putExtra("index",String.valueOf(index));
+//                intent.putExtra("return_point",rt_point);
+//                startActivity(intent);
+//            }
 
         } else if ( v == btn_next ) {
             mp.stop();

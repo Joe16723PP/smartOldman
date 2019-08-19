@@ -141,7 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 pgd.dismiss();
                                 doIntent();
                             }
-                        }, 5000);
+                        }, 3500);
             } catch (Exception e) {
                 Log.d(TAG, "err : wtf" + e);
                 Toast.makeText(this,"การเชื่อมต่อกับฐานข้อมูลล้มเหลว \nกรุณาตรวจสอบอินเทอร์เน็ตของท่านแล้วลองใหม่อีกครั้ง",Toast.LENGTH_LONG).show();
@@ -160,21 +160,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
-//    private void addUser(String uid, String name, String gender , String weight , String age , String height, String bmi) {
-//        User user = new User(name, age, gender, weight, height, bmi,"","","","","","","","","","");
-//        Map<String, Object> UserValues = user.toMap();
-//
-//        Map<String, Object> childUpdates= new HashMap<>();
-//        childUpdates.put(uid, UserValues);
-//        myRef.updateChildren(childUpdates);
-//        Log.d(TAG,uid);
-//        Toast.makeText(LoginActivity.this,
-//                "Write new user : " + name,
-//                Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(LoginActivity.this,BmiActivity.class);
-//        intent.putExtra("bmi",String.valueOf(bmi));
-//        startActivity(intent);
-//    }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {

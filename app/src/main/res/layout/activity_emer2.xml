@@ -194,25 +194,25 @@
                     <Button
                         android:layout_gravity="center"
                         android:id="@+id/btn_back"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/back_string"
-                        android:textSize="18dp"
+                        android:text="@string/backmain"
+                        android:textSize="18sp"
                         android:layout_margin="5dp"
                         android:textColor="@color/white"
-                        android:background="@drawable/btn_sick1"/>
-                    <Button
-                        android:layout_margin="5dp"
-                        android:layout_gravity="center"
-                        android:id="@+id/btn_next"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/next_string"
-                        android:textSize="18dp"
-                        android:textColor="@color/white"
-                        android:background="@drawable/btn_sick2"/>
+                        android:background="@drawable/selector_btn"/>
+                    <!--<Button-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:id="@+id/btn_next"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/next_string"-->
+                        <!--android:textSize="18sp"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:background="@drawable/btn_sick2"/>-->
                 </LinearLayout>
 
             </LinearLayout>

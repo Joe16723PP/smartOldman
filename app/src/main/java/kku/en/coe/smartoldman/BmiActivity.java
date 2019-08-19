@@ -2,6 +2,9 @@ package kku.en.coe.smartoldman;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +42,9 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
     private List<ListItem> listItems;
     ProgressDialog pgd;
 
-    private TextView bmi_tv , risk_tv , detail_risk_tv , guide_line;
+    private TextView bmi_tv , risk_tv , detail_risk_tv , guide_line1, guide_line2, guide_line3, guide_line4, guide_line5;
     private Button see_all_btn;
+    private ImageView guide_line1_img, guide_line2_img, guide_line3_img, guide_line4_img, guide_line5_img , risk_img;
 
     private FirebaseAuth mAuth;
     private FirebaseUser current_user;
@@ -52,7 +57,17 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_bmi);
         getSupportActionBar().hide();
 
-        guide_line = findViewById(R.id.guide_line);
+        guide_line1 = findViewById(R.id.guide_line1);
+        guide_line2 = findViewById(R.id.guide_line2);
+        guide_line3 = findViewById(R.id.guide_line3);
+        guide_line4 = findViewById(R.id.guide_line4);
+
+        guide_line1_img = findViewById(R.id.guide_line1_img);
+        guide_line2_img = findViewById(R.id.guide_line2_img);
+        guide_line3_img = findViewById(R.id.guide_line3_img);
+        guide_line4_img = findViewById(R.id.guide_line4_img);
+
+        risk_img = findViewById(R.id.risk_img);
         risk_tv = findViewById(R.id.risk);
         detail_risk_tv = findViewById(R.id.detail_risk);
 
@@ -68,8 +83,17 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        pgd = ProgressDialog.show(this, "กำลังโหลดข้อมูล กรุณารอสักครู่", "Loading...", true, false);
-        doReadFirebase();
+
+        if (isOnline()) {
+            pgd = ProgressDialog.show(this, "กำลังโหลดข้อมูล กรุณารอสักครู่", "Loading...", true, false);
+            doReadFirebase();
+            int raw_audio = getResources().getIdentifier("bmi" , "raw", getPackageName());
+            MediaPlayer mp = MediaPlayer.create(this,raw_audio);
+            mp.start();
+        }
+        else {
+            pgd = ProgressDialog.show(this, "ไม่มีการเชื่อมต่อกับอินเตอร์เน็ต กรุณาตรวจสอบ", "Loading...", true, false);
+        }
         
 
     }
@@ -100,10 +124,19 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                     res_bmi = "สมส่วน";
                 } else if (bmi >= 23 && bmi <= 24.9) {
                     res_bmi = "ค่อนข้างอ้วน";
+                    guide_line4.setText("\n โรคเบาหวาน" + "\n- ออกกำลังกายสม่ำเสมอ"
+                            + "\n- ควบคุมน้ำหนังตัวให้อยู่ในเกณฑ์ที่เหมาะสม");
+                    guide_line4_img.setImageResource(R.drawable.bowan);
                 } else if (bmi >= 25 && bmi <= 29.9) {
+                    guide_line4.setText("\n โรคเบาหวาน" + "\n- ออกกำลังกายสม่ำเสมอ"
+                            + "\n- ควบคุมน้ำหนังตัวให้อยู่ในเกณฑ์ที่เหมาะสม");
+                    guide_line4_img.setImageResource(R.drawable.bowan);
                     res_bmi = "อ้วน";
                 } else {
                     res_bmi = "อ้วนมาก";
+                    guide_line4.setText("\n โรคเบาหวาน" + "\n- ออกกำลังกายสม่ำเสมอ"
+                            + "\n- ควบคุมน้ำหนังตัวให้อยู่ในเกณฑ์ที่เหมาะสม");
+                    guide_line4_img.setImageResource(R.drawable.bowan);
                 }
                 detail_risk_tv.setText("ดัชนีมวลกายของคุณคือ\n" + (float)bmi + "\nคุณมีรูปร่าง" + res_bmi);
             }
@@ -148,10 +181,14 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 );
                 listItems.add(listItem);
                 status = 1;
-                guide_line.append("\n" + name
+                guide_line1_img.setImageResource(R.drawable.knee_risk);
+                guide_line1.setText("\n" + name
                         + "\n- ควรปรึกษาศัลยแพทย์ผู้เชี่ยวชาญกระดูกและข้อเพื่อรับการตรวจรักษา"
-                        + "\n- เอกซเรย์ข้อเข่าและประเมินอาการของโรค"
-                );
+                        + "\n- เอกซเรย์ข้อเข่าและประเมินอาการของโรค");
+//                guide_line.append("\n" + name
+//                        + "\n- ควรปรึกษาศัลยแพทย์ผู้เชี่ยวชาญกระดูกและข้อเพื่อรับการตรวจรักษา"
+//                        + "\n- เอกซเรย์ข้อเข่าและประเมินอาการของโรค"
+//                );
             }
             if (dep_score > 3 ) {
                 JSONObject nameObj = (JSONObject) placesObj.get(4);
@@ -165,9 +202,12 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 );
                 listItems.add(listItem);
                 status = 1;
-                guide_line.append("\n" + name
-                        + "\n- มีภาวะซึมเศร้า ควรได้รับบริการปรึกษาหรือพบแพทย์เพื่อการบำบัดรักษา"
-                );
+                guide_line2_img.setImageResource(R.drawable.sad_risk);
+                guide_line2.setText("\n" + name
+                        + "\n- มีภาวะซึมเศร้า ควรได้รับบริการปรึกษาหรือพบแพทย์เพื่อการบำบัดรักษา");
+//                guide_line.append("\n" + name
+//                        + "\n- มีภาวะซึมเศร้า ควรได้รับบริการปรึกษาหรือพบแพทย์เพื่อการบำบัดรักษา"
+//                );
 
             }
             if (hyper_score > 4) {
@@ -181,7 +221,8 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                         name, desc, desc , color , pointer
                 );
                 listItems.add(listItem);
-//                status = 1;
+                status = 1;
+//                gui
 //                guide_line.append("คำแนะนำการปฎิบัติตัวโรค " + name);
 
             }
@@ -197,18 +238,24 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 );
                 listItems.add(listItem);
                 status = 1;
-                guide_line.append(
-                        "\n" + name
-                        + "\n- ออกกกำลังกายสม่ำเสมอ"
+                guide_line3_img.setImageResource(R.drawable.hyper_risk);
+                guide_line3.setText("\n" + name
+                        + "\n- ออกกำลังกายสม่ำเสมอ"
                         + "\n- ควบคุมน้ำหนังตัวให้อยู่ในเกณฑ์ที่เหมาะสม"
-                        + "\n- ตรวจวัดความดันโลหิต"
-                );
+                        + "\n- ตรวจวัดความดันโลหิต");
+//                guide_line.append(
+//                        "\n" + name
+//                        + "\n- ออกกำลังกายสม่ำเสมอ"
+//                        + "\n- ควบคุมน้ำหนังตัวให้อยู่ในเกณฑ์ที่เหมาะสม"
+//                        + "\n- ตรวจวัดความดันโลหิต"
+//                );
 
             }
             if (status == 1){
                 risk_tv.setText("คำแนะนำการปฎิบัติตัว");
             } else {
                 risk_tv.setText("ไมมีความเสี่ยงเลย ! \nสุขภาพของคุณดีมาก");
+                risk_img.setImageResource(R.drawable.no_risk);
             }
 //            adapter = new MyAdapter(listItems,this);
 //            recyclerView.setAdapter(adapter);
@@ -228,6 +275,16 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
         if ( v == see_all_btn ) {
             Intent intent = new Intent(this,DiseaseActivity.class);
             startActivity(intent);
+        }
+    }
+
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(this.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

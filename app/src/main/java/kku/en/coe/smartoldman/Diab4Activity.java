@@ -66,7 +66,7 @@ public class Diab4Activity extends AppCompatActivity implements View.OnClickList
         sound_btn = findViewById(R.id.sound_btn);
 //        text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
-        btn_next.setText("ทำแบบทดสอบ");
+        //btn_next.setText("ทำแบบทดสอบ");
         btn_next.setOnClickListener(this);
         btn_back.setOnClickListener(this);
         sound_btn.setOnClickListener(this);

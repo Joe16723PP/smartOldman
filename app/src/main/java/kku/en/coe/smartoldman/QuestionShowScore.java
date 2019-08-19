@@ -1,7 +1,11 @@
 package kku.en.coe.smartoldman;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class QuestionShowScore extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,7 +35,7 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
     private FirebaseUser current_user;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-
+    MediaPlayer mediaPlayer;
     private TextView score_tv , header_score_tv;
     private ImageView score_img;
 
@@ -38,16 +44,28 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
     private String[] Lipid = {"1","1","0","1","1","1","0","1","0","1"};
     private String[] Diab  = {"0","1","0","1","1","1","0","0","0","1"};
     private String[] Dep   = {"0","1","1","1","1","1","0","1","1","1"};
+    ProgressDialog pgd;
 
+    boolean isOnline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_show_score);
+        isOnline = isOnline();
         try {
             getSupportActionBar().hide();
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
+        if (isOnline) {
+            doInitData();
+        } else {
+            pgd = ProgressDialog.show(this, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต กรุณาตรวจสอบแล้วลองใหม่อีกครั้ง", "Loading...", true, false);
+        }
 
+    }
+
+    private void doInitData() {
+        pgd = ProgressDialog.show(this, "กำลังบันทึกคะแนน กรุณารอสักครู่", "Loading...", true, false);
         show_answer_btn = findViewById(R.id.show_answer_btn);
         show_answer_btn.setOnClickListener(this);
         read_btn = findViewById(R.id.read_btn);
@@ -62,15 +80,26 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         current_user = mAuth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("users");
-        Toast.makeText(this,"show score",Toast.LENGTH_LONG).show();
 
 
+        doGetIntentData();
+        doCheckAnswer(pointer);
+        if (post_test == null) {
+            post_test = "null";
+        }
         try {
-            doGetIntentData();
-            doCheckAnswer(pointer);
-            doCheckPerPost(post_test);
+            //            Toast.makeText(this,"pointer is : " + pointer,Toast.LENGTH_LONG).show();
+            Log.e("posttest" , "pointer is : " + post_test);
+            new Timer().schedule(
+                    new TimerTask(){
+                        @Override
+                        public void run(){
+                            doCheckPerPost(post_test);
+                        }
+                    }, 3500);
         } catch (Exception e) {
-            e.printStackTrace();
+            pgd.dismiss();
+            Toast.makeText(this,"การเชื่อมต่อขัดข้อง ไม่สามารถบันทึกคะแนนได้",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -116,12 +145,12 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         if (post_test == null) {
             header_score_tv.setText("คะแนนก่อนเรียน\n" + title);
             int raw_audio = getResources().getIdentifier("clap" , "raw", getPackageName());
-            MediaPlayer mediaPlayer = MediaPlayer.create(this,raw_audio);
+            mediaPlayer = MediaPlayer.create(this,raw_audio);
             mediaPlayer.start();
         } else  {
             header_score_tv.setText("คะแนนหลังเรียน\n" + title);
             int raw_audio = getResources().getIdentifier("clap" , "raw", getPackageName());
-            MediaPlayer mediaPlayer = MediaPlayer.create(this,raw_audio);
+            mediaPlayer = MediaPlayer.create(this,raw_audio);
             mediaPlayer.start();
         }
     }
@@ -137,48 +166,51 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
 
     private void doCheckPerPost(String post_test) {
         String sub_score = String.valueOf(score);
+        boolean isPreTest = post_test.length() <= 4;
         switch (pointer) {
             case "Hyper1Activity" :
-                if (post_test == null){
+                if (isPreTest){
                     myRef.child(current_user.getUid()).child("pre_Hyper").setValue(sub_score);
                 }else {
                     myRef.child(current_user.getUid()).child("post_Hyper").setValue(sub_score);
                 }
                 break;
             case "Oste1Activity" :
-                if (post_test == null){
+                if (isPreTest){
                     myRef.child(current_user.getUid()).child("pre_Oste").setValue(sub_score);
                 }else {
                     myRef.child(current_user.getUid()).child("post_Oste").setValue(sub_score);
                 }
                 break;
             case "Lipid1Activity" :
-                if (post_test == null){
+                if (isPreTest){
                     myRef.child(current_user.getUid()).child("pre_Lipid").setValue(sub_score);
                 }else {
                     myRef.child(current_user.getUid()).child("post_Lipid").setValue(sub_score);
                 }
                 break;
             case "Diab1Activity" :
-                if (post_test == null){
+                if (isPreTest){
                     myRef.child(current_user.getUid()).child("pre_Diab").setValue(sub_score);
                 }else {
                     myRef.child(current_user.getUid()).child("post_Diab").setValue(sub_score);
                 }
                 break;
             case "Dep1Activity" :
-                if (post_test == null){
+                if (isPreTest){
                     myRef.child(current_user.getUid()).child("pre_Dep").setValue(sub_score);
                 }else {
                     myRef.child(current_user.getUid()).child("post_Dep").setValue(sub_score);
                 }
                 break;
         }
+        pgd.dismiss();
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = null;
+        mediaPlayer.stop();
         if ( v == read_btn ) {
             switch (pointer) {
                 case "Hyper1Activity" :
@@ -209,5 +241,14 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
             startActivity(intent);
         }
 
+    }
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(this.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
