@@ -41,7 +41,7 @@ public class DepQAdapter extends RecyclerView.Adapter<DepQAdapter.ViewHolder> {
         viewHolder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                Toast.makeText(context,checkedId + " : " + listItem.getDepId(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(context,checkedId + " : " + listItem.getDepId(),Toast.LENGTH_LONG).show();
                 int ans;
                 int index = Integer.parseInt(listItem.getDepId()) - 1;
                 if (checkedId == R.id.yes_rb) {

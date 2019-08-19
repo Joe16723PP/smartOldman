@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,16 +10,17 @@
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/question_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:elevation="40dp"
+                android:elevation="20dp"
                 app:cardCornerRadius="20dp">
 
                <LinearLayout
@@ -33,7 +34,7 @@
                        android:layout_height="wrap_content"
                        android:padding="16dp"
                        android:text="tv_questtion"
-                       android:textSize="19dp"
+                       android:textSize="20sp"
                        android:textColor="@color/black"
                        android:textStyle="bold"/>
 
@@ -42,10 +43,12 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:layout_below="@id/question_header"
+                android:id="@+id/card_rdg_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:elevation="40dp"
+                android:elevation="20dp"
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout
@@ -67,41 +70,41 @@
                             android:id="@+id/rd_choice_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:padding="5dp"
                             android:text="rd_choice_1"
-                            android:textSize="16dp"/>
+                            android:textSize="19sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_choice_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:padding="5dp"
                             android:text="rd_choice_2"
-                            android:textSize="16dp"/>
+                            android:textSize="18sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_choice_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:padding="5dp"
                             android:text="rd_choice_3"
-                            android:textSize="16dp"/>
+                            android:textSize="18sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_choice_4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:padding="5dp"
                             android:text="rd_choice_4"
-                            android:textSize="16dp"/>
+                            android:textSize="18sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_choice_5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:padding="5dp"
                             android:text="rd_choice_5"
-                            android:textSize="16dp"/>
+                            android:textSize="18sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_hidden"
@@ -112,47 +115,61 @@
                     </RadioGroup>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-
-            <LinearLayout
-                android:layout_gravity="bottom"
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:layout_gravity="center"
-                    android:id="@+id/back_question"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/back_string"
-                    android:textSize="18dp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/btn_sick1"/>
-                <ImageButton
-                    android:id="@+id/sound_btn"
-                    android:src="@drawable/play"
-                    android:padding="5dp"
-                    android:background="@color/colorTransparent"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp" />
-                <Button
-                    android:layout_gravity="center"
-                    android:id="@+id/next_question"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/next_string"
-                    android:textSize="18dp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/btn_sick2"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
+        </RelativeLayout>
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/back_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/back_string"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_sick1"/>
+            <ImageButton
+                android:id="@+id/sound_btn"
+                android:src="@drawable/play"
+                android:padding="5dp"
+                android:background="@color/colorTransparent"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/next_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/next_string"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_sick2"/>
+        </LinearLayout>
+
+        <Button
+            android:text="กลับสู่หน้าหลัก"
+            android:onClick="doBackMain"
+            android:textSize="25sp"
+            android:background="@drawable/selector_btn"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</RelativeLayout>

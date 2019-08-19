@@ -172,21 +172,25 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         if ( v == next_btn ) {
             setPlayMp3();
-            if (index < 11) {
-                Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
-                index = index + 1;
-                readLocalJson(file_name, index);
-                resetRadioButton();
-            } else {
-                total_score = 0;
-                Intent intent = new Intent(this,DepNewQActivity.class);
-                for (int i = 0 ; i < 12 ; i++) {
-                    total_score = total_score + score[i];
+            if (rd_hidden.isChecked()){
+                Toast.makeText(this, "กรุณาเลือกคำตอบก่อน" , Toast.LENGTH_LONG).show();
+            }else {
+                if (index < 11) {
+//                Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
+                    index = index + 1;
+                    readLocalJson(file_name, index);
+                    resetRadioButton();
+                } else {
+                    total_score = 0;
+                    Intent intent = new Intent(this,DepNewQActivity.class);
+                    for (int i = 0 ; i < 12 ; i++) {
+                        total_score = total_score + score[i];
+                    }
+//                Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
+                    myRef.child(current_user.getUid()).child("oste_score").setValue(total_score);
+                    intent.putExtra("oste_score" , total_score);
+                    startActivity(intent);
                 }
-                Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
-                myRef.child(current_user.getUid()).child("oste_score").setValue(total_score);
-                intent.putExtra("oste_score" , total_score);
-                startActivity(intent);
             }
         }
 
@@ -209,5 +213,10 @@ public class OsteNewQActivity extends AppCompatActivity implements View.OnClickL
                 setPlayMp3();
             }
         }
+    }
+
+    public void doBackMain(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }

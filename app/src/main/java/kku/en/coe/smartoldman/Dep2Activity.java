@@ -25,14 +25,15 @@ public class Dep2Activity extends AppCompatActivity implements View.OnClickListe
     private JSONArray sick;
     private JSONObject page, obj;
     private String json, head, text, img, link, file_name,sub_img,main_img , rt_point, img_1, img_2, img_3, img_4;
-    private TextView text_title, text_desc, txt_link;
+    private TextView text_title, text_desc, txt_link, img_sub;
     private ImageView img_main, img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next;
-    private ImageButton sound_btn,img_sub;
+    private ImageButton sound_btn;
     private int index , send_index, max_length;
     private MediaPlayer mp;
     String audio_name = "title";
     private boolean audio_state = false;
+    private TextView ref_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class Dep2Activity extends AppCompatActivity implements View.OnClickListe
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
+        ref_img = findViewById(R.id.ref_img);
         btn_next.setOnClickListener(this);
         btn_back.setOnClickListener(this);
         sound_btn.setOnClickListener(this);
@@ -61,6 +63,11 @@ public class Dep2Activity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    public void backHome(View view) {
+        Intent intent = new Intent(this,DiseaseActivity.class);
+        startActivity(intent);
+    }
+
     private void setIntentData() {
         Bundle extras = getIntent().getExtras();
         index = Integer.parseInt(extras.getString("index"));
@@ -75,6 +82,7 @@ public class Dep2Activity extends AppCompatActivity implements View.OnClickListe
             obj = new JSONObject(loadJSONFromAsset(this,file_name));
             sick = (JSONArray) obj.get("depression");
             max_length = sick.length();
+            img_sub.setText( (index+1) + " / " + max_length);
             page = sick.getJSONObject(index);
             sub_img = page.getString("sub_img");
             main_img = page.getString("main_img");
@@ -86,6 +94,7 @@ public class Dep2Activity extends AppCompatActivity implements View.OnClickListe
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
             audio_name = page.getString("audio");
+            ref_img.setText("ที่มา : " + page.getString("ref_img"));
             //                set audio file
             int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
             mp = MediaPlayer.create(this,raw_audio);
@@ -104,12 +113,12 @@ public class Dep2Activity extends AppCompatActivity implements View.OnClickListe
         }
     }
     private void setData() {
-        if (!sub_img.equals("")) {
-            String mDrawableName = sub_img;
-            Log.e("img", mDrawableName);
-            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
-            img_sub.setImageResource(resID);
-        }
+//        if (!sub_img.equals("")) {
+//            String mDrawableName = sub_img;
+//            Log.e("img", mDrawableName);
+//            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+//            img_sub.setImageResource(resID);
+//        }
         if (!main_img.equals("")) {
             String mDrawableName = main_img;
             int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
@@ -213,13 +222,14 @@ public class Dep2Activity extends AppCompatActivity implements View.OnClickListe
                 audio_state = false;
             try {
                 if (audio_state) {
-                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);
                     mp.start();
                 }
-                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                else {
+//                    Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);

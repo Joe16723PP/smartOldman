@@ -123,7 +123,7 @@ public class DepQ3Activity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
-            Toast.makeText(this,"do next 2" , Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,"do next 2" , Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this,HyperQActivity.class);
             ArrayAnswer global = ArrayAnswer.getInstance();
             try {

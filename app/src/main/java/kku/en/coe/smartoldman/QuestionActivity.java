@@ -2,6 +2,7 @@ package kku.en.coe.smartoldman;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,8 +49,15 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     String pointer = "";
     String audio_name = "title";
 
-    String file_name, post_test, title , ans = "0";
+    String file_name, post_test = "", title , ans = "0";
     TextView question_num , question_text , titleText;
+
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser current_user;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+
 
 
     @Override
@@ -52,12 +65,17 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
+
         next_btn = findViewById(R.id.next_question);
         next_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_question);
         back_btn.setOnClickListener(this);
         play_sound_btn = findViewById(R.id.sound_btn);
-        play_sound_btn.setOnClickListener(this);
+//        play_sound_btn.setOnClickListener(this);
         titleText = findViewById(R.id.txt_head);
         tmpRb = findViewById(R.id.tmp_rb);
         tmpRb.setVisibility(View.INVISIBLE);
@@ -76,34 +94,81 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        getIntentData();
-        Log.e("filename",file_name);
-        readLocalJson(file_name);
 
+        try {
+            getIntentData();
+        } catch (Exception e) {
+            Log.e("filename" , file_name + "::" + pointer + "::" + index + "::" + title + ": " );
+        }
+        file_name += ".json";
+        doReadFirebase();
+        readLocalJson(file_name);
+    }
+
+    private void doReadFirebase() {
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot keyNode : dataSnapshot.getChildren()){
+                    String str_user = String.valueOf(keyNode.getKey());
+                    String uid = current_user.getUid();
+                    Log.e("firebase_score" , " :: " + pointer );
+                    if (str_user.equals(uid)){
+                        User user = keyNode.getValue(User.class);
+                        String pre_dep = user.getPre_Dep();
+                        String pre_diab = user.getPre_Diab();
+                        String pre_hyper = user.getPre_Hyper();
+                        String pre_lipid = user.getPre_Lipid();
+                        String pre_oste = user.getPre_Oste();
+
+                        Log.e("firebase_score" , "::::" + post_test);
+
+                        if ((post_test == null) && (index == 0)) {
+//                            Toast.makeText(QuestionActivity.this,"check pretest",Toast.LENGTH_LONG).show();
+                            if (!pre_dep.equals("") && pointer.equals("Dep1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Dep1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                            if (!pre_diab.equals("") && pointer.equals("Diab1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Diab1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                            if (!pre_hyper.equals("") && pointer.equals("Hyper1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Hyper1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                            if (!pre_lipid.equals("") && pointer.equals("Lipid1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Lipid1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                            if (!pre_oste.equals("") && pointer.equals("Oste1Activity")) {
+                                Intent intent = new Intent(QuestionActivity.this,Oste1Activity.class);
+                                intent.putExtra("return_point","disease");
+                                startActivity(intent);
+                            }
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void getIntentData() {
         Bundle extras = getIntent().getExtras();
-        try {
-            title = extras.getString("title");
-            post_test = extras.getString("post_test");
-            String index_str = extras.getString("index");
-            index = Integer.parseInt(index_str);
-            file_name = extras.getString("file_name");
-            try {
-                setTitle("แบบทดสอบ" + title);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            if (post_test == null){
-                post_test = "";
-            }
-            Log.e("joe", e.getMessage());
-            e.printStackTrace();
+        post_test = extras.getString("post_test");
+        if (post_test == null) {
+            setTitle("แบบทดสอบ" + "ก่อนใช้งาน");
+        } else {
+            setTitle("แบบทดสอบ" + "หลังใช้งาน");
         }
-
-
         pointer = extras.getString("next_pointer");
 
         switch (pointer) {
@@ -128,12 +193,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 title = getResources().getString(R.string.depression_string);
                 break;
         }
-        if (post_test.equals("")){
-            setTitle("แบบทดสอบก่อนใช้ : " + title);
-        }else {
-            setTitle("แบบทดสอบหลังใช้ : " + title);
-        }
-        file_name += ".json";
     }
 
     private void readLocalJson(String urlVal) {
@@ -152,7 +211,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         try {
             JSONObject object = new JSONObject(json);
 //            if question
-            if (index != 0) {
+            Log.e("index", "err index" + index);
+            if (index > 0) {
                 placesObj = (JSONArray) object.get("pre_sick");
                 JSONObject nameObj = (JSONObject) placesObj.get(index-1);
                 String id = (String) nameObj.get("id");
@@ -173,7 +233,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 JSONObject guideObj = (JSONObject) placesObj.get(index);
                 String header = (String) guideObj.get("header");
                 String text = (String) guideObj.get("text");
-                if (post_test.equals("")){
+                if (post_test == null){
                     audio_name = (String) guideObj.get("audio");
                 } else {
                     audio_name = "guide_post_audio";
@@ -196,50 +256,52 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
-            mp.stop();
+            try {
+                mp.stop();
+            }catch (Exception e) {
+            }
             audio_state = false;
             int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
             Log.e("img", String.valueOf(resID));
             play_sound_btn.setImageResource(resID);
             Log.e("index",""+index);
             GlobalAnswerQuestion global = GlobalAnswerQuestion.getInstance();
-
-            if ( index >= 10 ) {
-                try {
-                    answer_first[index -1] = ans;
-                    Intent intent = new Intent(this,QuestionShowScore.class);
-                    intent.putExtra("return_point",pointer);
-                    intent.putExtra("post_test",post_test);
-                    intent.putExtra("title",title);
-                    startActivity(intent);
-                }catch (Exception e){
-                    e.printStackTrace();
+            if (tmpRb.isChecked()) {
+                Toast.makeText(this, "กรุณาเลือกคำตอบก่อน" , Toast.LENGTH_LONG).show();
+            } else {
+                if ( index >= 10 ) {
+//                    Toast.makeText(this,"index : " +index , Toast.LENGTH_LONG).show();
+                        answer_first[index -1] = ans;
+                        Intent intent = new Intent(this,QuestionShowScore.class);
+                        intent.putExtra("return_point",pointer);
+                        intent.putExtra("post_test",post_test);
+                        intent.putExtra("title",title);
+                        startActivity(intent);
                 }
-                if ( index > 11 ) {
-                    index = index -1;
+                else {
+                    if (index != 0) {
+                        answer_first[index -1] = ans;
+                    }
                 }
+                index = index+1;
+                tmpRb.setChecked(true);
+                readLocalJson(file_name);
+                global.setArray_answer(answer_first);
             }
-            else if (index == 0) {
-                Toast.makeText(this,"" + index , Toast.LENGTH_LONG).show();
-                getIntentData();
-            }
-            else {
-                answer_first[index -1] = ans;
-            }
-            index = index+1;
-            tmpRb.setChecked(true);
-            readLocalJson(file_name);
-            global.setArray_answer(answer_first);
         }
 
         else if ( v == back_btn ) {
-            mp.stop();
+            try {
+                mp.stop();
+            }catch (Exception e) {
+                
+            }
             Intent intent = null;
             audio_state = false;
             int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
             Log.e("img", String.valueOf(resID));
             play_sound_btn.setImageResource(resID);
-            if ( post_test.equals("")){
+            if ( post_test == null){
                 if (index == 0) {
                     intent = new Intent(this,DiseaseActivity.class);
                     intent.putExtra("file_name" , file_name);
@@ -249,7 +311,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     intent.putExtra("index", index);
                     startActivity(intent);
                 }else {
-                    index = index-1;
                     tmpRb.setChecked(true);
                     readLocalJson(file_name);
 //                intent = new Intent(this,QuestionActivity.class);
@@ -282,13 +343,13 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 //                    intent.putExtra("index", index);
                     startActivity(intent);
                 }else {
-                    index = index-1;
                     tmpRb.setChecked(true);
                     readLocalJson(file_name);
 //                intent = new Intent(this,QuestionActivity.class);
                 }
 
             }
+            index = index-1;
         }
         else if (v == play_sound_btn){
             if (!audio_state)
@@ -297,13 +358,14 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 audio_state = false;
             try {
                 if (audio_state) {
-                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     play_sound_btn.setImageResource(resID);
                     mp.start();
                 }
-                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                else {
+//                    Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     play_sound_btn.setImageResource(resID);
@@ -315,5 +377,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             }
 
         }
+    }
+
+    public void doBackHome(View view) {
+        Intent intent = new Intent(this,DiseaseActivity.class);
+        startActivity(intent);
     }
 }

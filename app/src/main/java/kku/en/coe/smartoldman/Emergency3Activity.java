@@ -138,6 +138,14 @@ public class Emergency3Activity extends AppCompatActivity implements View.OnClic
         Log.e("HACK",head + " " + text);
     }
 
+    public void doBackMain(View view) {
+        if (rt_point.equals("disease")) {
+            Intent intent = new Intent(this,DiseaseActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);        }
+    }
     private void setIntentData() {
         Bundle extras = getIntent().getExtras();
         index = Integer.parseInt(extras.getString("index"));
@@ -226,13 +234,14 @@ public class Emergency3Activity extends AppCompatActivity implements View.OnClic
                 audio_state = false;
             try {
                 if (audio_state) {
-                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);
                     mp.start();
                 }
-                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                else {
+//                    Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);

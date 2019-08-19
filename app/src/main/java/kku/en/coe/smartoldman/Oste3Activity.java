@@ -25,10 +25,10 @@ public class Oste3Activity extends AppCompatActivity implements View.OnClickList
     private JSONArray sick;
     private JSONObject page, obj;
     private String json, head, text, img, link, file_name,sub_img,main_img,rt_point, img_1, img_2, img_3, img_4;
-    private TextView text_title, text_desc, txt_link;
+    private TextView text_title, text_desc, txt_link, img_sub , ref_img;
     private ImageView img_main, img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next;
-    private ImageButton sound_btn,img_sub;
+    private ImageButton sound_btn;
     private int index , send_index, max_length, img_btn_state = 0;
     String audio = "";
     MediaPlayer mp;
@@ -44,6 +44,7 @@ public class Oste3Activity extends AppCompatActivity implements View.OnClickList
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
+        ref_img = findViewById(R.id.ref_img);
         btn_next.setOnClickListener(this);
         btn_back.setOnClickListener(this);
         sound_btn.setOnClickListener(this);
@@ -58,6 +59,13 @@ public class Oste3Activity extends AppCompatActivity implements View.OnClickList
         readJson();
         setData();
     }
+
+    public void backHome(View view) {
+        Intent intent = new Intent(this,DiseaseActivity.class);
+        startActivity(intent);
+    }
+
+
 
     private void playMp3(String audio_name) {
         int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
@@ -80,12 +88,12 @@ public class Oste3Activity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setData() {
-        if (!sub_img.equals("")) {
-            String mDrawableName = sub_img;
-            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
-            Log.e("img", String.valueOf(resID));
-            img_sub.setImageResource(resID);
-        }
+//        if (!sub_img.equals("")) {
+//            String mDrawableName = sub_img;
+//            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+//            Log.e("img", String.valueOf(resID));
+//            img_sub.setImageResource(resID);
+//        }
         if (!main_img.equals("")) {
             String mDrawableName = main_img;
             int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
@@ -145,6 +153,7 @@ public class Oste3Activity extends AppCompatActivity implements View.OnClickList
             sick = (JSONArray) obj.get("oste");
             max_length = sick.length();
             page = sick.getJSONObject(index);
+            img_sub.setText( (index+1) + " / " + max_length);
             sub_img = page.getString("sub_img");
             main_img = page.getString("main_img");
             text = page.getString("text");
@@ -154,6 +163,7 @@ public class Oste3Activity extends AppCompatActivity implements View.OnClickList
             img_2 = page.getString("img_2");
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
+            ref_img.setText("ที่มา : " + page.getString("ref_img"));
             audio = page.getString("audio");
 
         } catch (JSONException e) {

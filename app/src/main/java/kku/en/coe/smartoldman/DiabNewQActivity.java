@@ -83,6 +83,10 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
         readLocalJson(file_name, index);
         radioHandle();
     }
+    public void doBackMain(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
 
     private void playMp3(String audio_name) {
         int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
@@ -210,21 +214,25 @@ public class DiabNewQActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         if ( v == next_btn ) {
             setPlayMp3();
-            if (index < 2) {
-                Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
-                index = index + 1;
-                readLocalJson(file_name, index);
-                resetRadioButton();
+            if (rd_hidden.isChecked()){
+                Toast.makeText(this, "กรุณาเลือกคำตอบก่อน" , Toast.LENGTH_LONG).show();
             } else {
-                total_score = 0;
-                Intent intent = new Intent(this,BmiActivity.class);
-                for (int i = 0 ; i < 2 ; i++) {
-                    total_score = total_score + score[i];
+                if (index < 2) {
+//                Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
+                    index = index + 1;
+                    readLocalJson(file_name, index);
+                    resetRadioButton();
+                } else {
+                    total_score = 0;
+                    Intent intent = new Intent(this,BmiActivity.class);
+                    for (int i = 0 ; i < 2 ; i++) {
+                        total_score = total_score + score[i];
+                    }
+//                Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
+                    myRef.child(current_user.getUid()).child("diab_score").setValue(total_score);
+                    intent.putExtra("daib2_score" , total_score);
+                    startActivity(intent);
                 }
-                Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
-                myRef.child(current_user.getUid()).child("diab_score").setValue(total_score);
-                intent.putExtra("daib2_score" , total_score);
-                startActivity(intent);
             }
         }
 

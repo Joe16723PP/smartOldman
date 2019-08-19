@@ -35,6 +35,7 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Toast.makeText(this,"Question 2" , Toast.LENGTH_LONG).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
@@ -53,6 +54,12 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
 
         readLocalJson(file_name);
     }
+
+    public void doBackHome(View view) {
+        Intent intent = new Intent(this,DiseaseActivity.class);
+        startActivity(intent);
+    }
+
 
     private void doGetAnswer() {
         ArrayList<String> tmp_list;
@@ -115,7 +122,7 @@ public class Question2Activity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         if ( v == next_btn ) {
             Intent intent = new Intent(this,QuestionShowScore.class);
-            Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
             ArrayAnswer global = ArrayAnswer.getInstance();
 
             try {

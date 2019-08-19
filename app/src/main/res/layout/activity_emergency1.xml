@@ -48,8 +48,8 @@
 
                 <ImageButton
                     android:id="@+id/sub_img_top"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
@@ -95,35 +95,40 @@
                 </LinearLayout>
             </FrameLayout>
 
-        <FrameLayout
-            android:layout_gravity="bottom"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            >
-            <LinearLayout
-                android:gravity="center"
-                android:orientation="vertical"
+            <FrameLayout
+                android:layout_gravity="bottom"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:padding="10dp"
-                    android:id="@+id/txt_emer"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:padding="10dp"
-                    android:id="@+id/txt_link"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:autoLink="all"
-                    android:focusable="true" />
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="10dp"
+                        android:textSize="18sp"
+                        android:id="@+id/txt_emer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="10dp"
+                        android:textSize="19sp"
+                        android:id="@+id/txt_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:autoLink="all"
+                        android:focusable="true" />
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -162,11 +167,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
-            </LinearLayout>
-        </FrameLayout>
-
+                </LinearLayout>
+                </ScrollView>
+            </FrameLayout>
         <LinearLayout
-                android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -202,6 +212,19 @@
                     android:textColor="@color/white"
                     android:background="@drawable/btn_sick2"/>
             </LinearLayout>
+
+            <Button
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:onClick="doBackMain"
+                android:text="@string/backmain"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_btn"/>
+
+        </LinearLayout>
     </LinearLayout>
 
     </android.support.v7.widget.CardView>

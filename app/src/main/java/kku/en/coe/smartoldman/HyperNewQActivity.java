@@ -74,6 +74,11 @@ public class HyperNewQActivity extends AppCompatActivity implements View.OnClick
         radioHandle();
     }
 
+    public void doBackHome(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
     private void radioHandle() {
         rgb_question.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -127,26 +132,29 @@ public class HyperNewQActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
-            if (index < 6) {
-                Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
-                index = index + 1;
-                readLocalJson(file_name, index);
-                resetRadioButton();
-            } else {
-                total_score = 0;
-                Intent intent = new Intent(this,DiabNewQActivity.class);
-                try {
-                    for (int i = 0 ; i < 6 ; i++) {
-                        total_score = total_score + score[i];
+            if (tmp_rb.isChecked()){
+                Toast.makeText(this, "กรุณาเลือกคำตอบก่อน" , Toast.LENGTH_LONG).show();
+            }else {
+                if (index < 6) {
+                    index = index + 1;
+                    readLocalJson(file_name, index);
+                    resetRadioButton();
+                } else {
+                    total_score = 0;
+                    Intent intent = new Intent(this,DiabNewQActivity.class);
+                    try {
+                        for (int i = 0 ; i < 6 ; i++) {
+                            total_score = total_score + score[i];
+                        }
+//                    Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
+                        myRef.child(current_user.getUid()).child("hyper_score").setValue(total_score);
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
-                    myRef.child(current_user.getUid()).child("hyper_score").setValue(total_score);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
 //                startActivity(intent);
+                }
             }
         }
 

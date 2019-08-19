@@ -87,7 +87,7 @@ public class DepQActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
-            Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this,DepQ2Activity.class);
             ArrayAnswer global = ArrayAnswer.getInstance();
             try {

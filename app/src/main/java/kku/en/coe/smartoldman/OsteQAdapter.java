@@ -49,7 +49,7 @@ public class OsteQAdapter extends RecyclerView.Adapter<OsteQAdapter.ViewHolder> 
         viewHolder.rdg_choice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                Toast.makeText(context,checkedId + " : " + listItem.getId(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(context,checkedId + " : " + listItem.getId(),Toast.LENGTH_LONG).show();
                 int ans;
                 int index = Integer.parseInt(listItem.getId());
                 if (checkedId == R.id.rd_choice_1) {

@@ -88,6 +88,11 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
         radioHandle();
     }
 
+    public void doBackMain(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
     private void playMp3(String audio_name) {
         int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
         mp = MediaPlayer.create(this,raw_audio);
@@ -166,7 +171,7 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
         if ( v == next_btn ) {
             if (index < 7) {
                 setPlayMp3();
-                Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
+//                Toast.makeText(this,index + " / " + score[index],Toast.LENGTH_LONG).show();
                 index = index + 1;
                 file_name = "dep_new_quest.json";
                 readLocalJson(file_name, index);
@@ -179,7 +184,7 @@ public class DepNewQActivity extends AppCompatActivity implements View.OnClickLi
                     for (int i = 0 ; i < 8 ; i++) {
                         total_score = total_score + score[i];
                     }
-                    Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this,"total_score = " + total_score,Toast.LENGTH_LONG).show();
                     myRef.child(current_user.getUid()).child("dep_score").setValue(total_score);
                     startActivity(intent);
                 } catch (Exception e) {

@@ -7,19 +7,29 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<ListItem> listItems;
     private Context context;
-    private Resources res;
+
 
     public MyAdapter(List<ListItem> listItems, Context context) {
         this.listItems = listItems;
@@ -46,6 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }catch (Exception e){
             e.printStackTrace();
         }
+
 
 
 //        String https_url = listItem.getImgUrl().replace("http","https");
@@ -89,8 +100,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             intent.putExtra("next_pointer",pointer);
             v.getContext().startActivity(intent);
         }else if (pointer.equals("Emergency1Activity")) {
-            Intent intent = new Intent(context,Emergency1Activity.class);
-//            intent.putExtra("next_pointer",pointer);
+            Intent intent = new Intent(context,Emer2Activity.class);
             intent.putExtra("return_point","disease");
             v.getContext().startActivity(intent);
         }

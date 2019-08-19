@@ -143,15 +143,6 @@ public class Emergency1Activity extends AppCompatActivity implements View.OnClic
         if (!link.equals("")) {
             txt_link.setText(link);
         }
-//        else {
-//            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) txt_link.getLayoutParams();
-//            lp.setMargins(0,0,0,0);
-//            txt_link.setLayoutParams(lp);
-//            txt_link.setPadding(0,0,0,0);
-//        }
-//            txt_head.setText(head);
-//            txt_text.setText(text);
-//            txt_link.setText(link);
         text_desc.setText(text);
         text_title.setText(head);
             Log.e("HACK",head + " " + text);
@@ -204,13 +195,9 @@ public class Emergency1Activity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         if ( v == btn_back) {
             mp.stop();
-            if ( rt_point.equals("disease") ) {
-                Intent intent = new Intent(this,DiseaseActivity.class);
+                Intent intent = new Intent(this,Emer2Activity.class);
+                intent.putExtra("return_point",rt_point);
                 startActivity(intent);
-            }else {
-                Intent intent = new Intent(this,MainActivity.class);
-                startActivity(intent);
-            }
         } else if ( v == btn_next ) {
             mp.stop();
             index += 1;
@@ -225,13 +212,14 @@ public class Emergency1Activity extends AppCompatActivity implements View.OnClic
                 audio_state = false;
             try {
                 if (audio_state) {
-                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);
                     mp.start();
                 }
-                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                else {
+//                    Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);
@@ -242,5 +230,14 @@ public class Emergency1Activity extends AppCompatActivity implements View.OnClic
                 e.printStackTrace();
             }
         }
+    }
+
+    public void doBackMain(View view) {
+        if (rt_point.equals("disease")) {
+            Intent intent = new Intent(this,DiseaseActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);        }
     }
 }

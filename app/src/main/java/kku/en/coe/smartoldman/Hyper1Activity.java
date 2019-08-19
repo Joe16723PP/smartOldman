@@ -27,8 +27,8 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
     private String json, head, text, main_img, sub_img, img, link, file_name,rt_point, img_1, img_2, img_3, img_4;
     private ImageView img_main, img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next;
-    private ImageButton sound_btn , img_sub;
-    private TextView text_title,text_desc,txt_link;
+    private ImageButton sound_btn;
+    private TextView text_title,text_desc,txt_link , img_sub , ref_img;
     private int index = 0, send_index, max_length;
     private MediaPlayer mp;
     String audio_name = "title";
@@ -46,6 +46,7 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
         sound_btn = findViewById(R.id.sound_btn);
         text_desc = findViewById(R.id.txt_emer);
         text_title = findViewById(R.id.title);
+        ref_img = findViewById(R.id.ref_img);
         btn_next.setOnClickListener(this);
         btn_back.setOnClickListener(this);
         sound_btn.setOnClickListener(this);
@@ -65,6 +66,12 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
         getIntentData();
     }
 
+    public void backHome(View view) {
+        Intent intent = new Intent(this,DiseaseActivity.class);
+        startActivity(intent);
+    }
+
+
     private void getIntentData() {
         try {
             Bundle extras = getIntent().getExtras();
@@ -75,12 +82,12 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void setData() {
-        if (!sub_img.equals("")) {
-            String mDrawableName = sub_img;
-            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
-            Log.e("img", String.valueOf(resID));
-            img_sub.setImageResource(resID);
-        }
+//        if (!sub_img.equals("")) {
+//            String mDrawableName = sub_img;
+//            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+//            Log.e("img", String.valueOf(resID));
+//            img_sub.setImageResource(resID);
+//        }
         if (!main_img.equals("")) {
             String mDrawableName = main_img;
             int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
@@ -127,10 +134,12 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
             sick = (JSONArray) obj.get("hypertension");
             max_length = sick.length();
             page = sick.getJSONObject(0);
+            img_sub.setText( (index+1) + " / " + max_length);
 //            head = page.getString("head");
             sub_img = page.getString("sub_img");
             main_img = page.getString("main_img");
             audio_name = page.getString("audio");
+            ref_img.setText("ที่มา : " + page.getString("ref_img"));
             //                set audio file
             int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
             mp = MediaPlayer.create(this,raw_audio);
@@ -193,13 +202,14 @@ public class Hyper1Activity extends AppCompatActivity implements View.OnClickLis
                 audio_state = false;
             try {
                 if (audio_state) {
-                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);
                     mp.start();
                 }
-                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                else {
+//                    Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);

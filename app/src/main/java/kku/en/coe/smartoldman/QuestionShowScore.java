@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 
 public class QuestionShowScore extends AppCompatActivity implements View.OnClickListener {
 
-    private Button read_btn , back_btn;
+    private Button read_btn , back_btn , show_answer_btn;
     private String pointer , post_test , title;
     public String[] answer_all;
     private int score = 0;
@@ -31,20 +33,23 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
     private TextView score_tv , header_score_tv;
     private ImageView score_img;
 
-    private String[] Hyper = {"1","1","1","1","1","1","0","0","1","0"};
-    private String[] Oste  = {"0","1","0","1","1","0","1","0","1","0"};
-    private String[] Lipid = {"1","1","0","1","1","1","1","1","0","1"};
-    private String[] Diab  = {"1","0","1","1","0","1","0","0","0","1"};
-    private String[] Dep   = {"1","1","1","1","1","0","1","0","1","1"};
+    private String[] Hyper = {"0","1","1","1","0","1","1","1","0","0"};
+    private String[] Oste  = {"0","1","1","1","1","0","1","1","0","1"};
+    private String[] Lipid = {"1","1","0","1","1","1","0","1","0","1"};
+    private String[] Diab  = {"0","1","0","1","1","1","0","0","0","1"};
+    private String[] Dep   = {"0","1","1","1","1","1","0","1","1","1"};
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_show_score);
+        try {
+            getSupportActionBar().hide();
+        } catch (Exception e) {}
 
-        getSupportActionBar().hide();
-
+        show_answer_btn = findViewById(R.id.show_answer_btn);
+        show_answer_btn.setOnClickListener(this);
         read_btn = findViewById(R.id.read_btn);
         read_btn.setOnClickListener(this);
         back_btn = findViewById(R.id.back_btn);
@@ -57,12 +62,16 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         current_user = mAuth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("users");
+        Toast.makeText(this,"show score",Toast.LENGTH_LONG).show();
 
 
-        doGetIntentData();
-        doCheckAnswer(pointer);
-
-        doCheckPerPost(post_test);
+        try {
+            doGetIntentData();
+            doCheckAnswer(pointer);
+            doCheckPerPost(post_test);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void doCheckAnswer(String pointer) {
@@ -104,14 +113,14 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         score_img.setImageResource(resID);
         score_tv.setText(score + " / 10");
 
-        if (post_test.equals("")) {
+        if (post_test == null) {
             header_score_tv.setText("คะแนนก่อนเรียน\n" + title);
-            int raw_audio = getResources().getIdentifier("pre_audio" , "raw", getPackageName());
+            int raw_audio = getResources().getIdentifier("clap" , "raw", getPackageName());
             MediaPlayer mediaPlayer = MediaPlayer.create(this,raw_audio);
             mediaPlayer.start();
         } else  {
             header_score_tv.setText("คะแนนหลังเรียน\n" + title);
-            int raw_audio = getResources().getIdentifier("post_audio" , "raw", getPackageName());
+            int raw_audio = getResources().getIdentifier("clap" , "raw", getPackageName());
             MediaPlayer mediaPlayer = MediaPlayer.create(this,raw_audio);
             mediaPlayer.start();
         }
@@ -122,12 +131,8 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
         GlobalAnswerQuestion globalAnswerQuestion = GlobalAnswerQuestion.getInstance();
         answer_all = globalAnswerQuestion.getArray_answer();
         pointer = extras.getString("return_point");
-        try {
-            post_test = extras.getString("post_test");
-            title = extras.getString("title");
-        } catch (Exception e) {
-            post_test = "";
-        }
+        post_test = extras.getString("post_test");
+        title = extras.getString("title");
     }
 
     private void doCheckPerPost(String post_test) {
@@ -192,11 +197,17 @@ public class QuestionShowScore extends AppCompatActivity implements View.OnClick
                     intent = new Intent(this,Dep1Activity.class);
                     break;
             }
+            intent.putExtra("return_point","disease");
+            startActivity(intent);
         } else if ( v == back_btn ){
             intent = new Intent(this,DiseaseActivity.class);
+            intent.putExtra("return_point","disease");
+            startActivity(intent);
+        } else if ( v == show_answer_btn ) {
+            intent = new Intent(this,AnswerActivity.class);
+            intent.putExtra("pointer",pointer);
+            startActivity(intent);
         }
 
-        intent.putExtra("return_point","disease");
-        startActivity(intent);
     }
 }

@@ -13,11 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HyperNewQActivity"/>
+        <activity android:name=".Emer2Activity"></activity>
+        <activity android:name=".AnswerActivity" />
+        <activity android:name=".HyperNewQActivity" />
         <activity android:name=".DepNewQActivity" />
         <activity android:name=".DiabNewQActivity" />
         <activity android:name=".OsteNewQActivity" />
-        <activity android:name=".HyperQActivity"/>
+        <activity android:name=".HyperQActivity" />
         <activity android:name=".QuestionShowScore" />
         <activity android:name=".DepQ3Activity" />
         <activity android:name=".DepQ2Activity" />
@@ -50,7 +52,7 @@
         <activity android:name=".Hyper3Activity" />
         <activity android:name=".Hyper2Activity" />
         <activity android:name=".Hyper1Activity" />
-        <activity android:name=".DiseaseActivity"/>
+        <activity android:name=".DiseaseActivity" />
         <activity android:name=".BmiActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">

@@ -3,6 +3,7 @@ package kku.en.coe.smartoldman;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,20 +34,33 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
     private JSONArray sick;
     private JSONObject page, obj;
     private String json, head, text, img, link,rt_point, file_name,sub_img,main_img, img_1, img_2, img_3, img_4;
-    private TextView text_title, text_desc, txt_link;
+    private TextView text_title, text_desc, txt_link,img_sub, ref_img;
     private ImageView img_main, img_small1, img_small2, img_small3, img_small4;
     private Button btn_back, btn_next;
-    private ImageButton sound_btn,img_sub;
+    private ImageButton sound_btn;
     private int index , send_index, max_length;
     private MediaPlayer mp;
     String audio_name = "title";
     private boolean audio_state = false;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser current_user;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sick);
         setTitle(R.string.depression_string);
+
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
+
+
+        ref_img = findViewById(R.id.ref_img);
         file_name = "depression.json";
         btn_back = findViewById(R.id.btn_back);
         btn_next = findViewById(R.id.btn_next);
@@ -59,7 +81,42 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
         readJson();
         setIntentData();
         setData();
-        Toast.makeText(this,rt_point,Toast.LENGTH_LONG).show();
+    }
+
+    private void doReadFirebase() {
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot keyNode : dataSnapshot.getChildren()){
+                    String str_user = String.valueOf(keyNode.getKey());
+                    String uid = current_user.getUid();
+//                    Log.e("firebase_score" , " :: " + pointer );
+                    if (str_user.equals(uid)){
+                        User user = keyNode.getValue(User.class);
+                        String post_dep = user.getPost_Dep();
+
+//                        Log.e("firebase_score" , "::::" + pre_dep + pre_diab + pre_hyper + pre_lipid + pre_oste);
+
+//                        if (!post_dep.equals("")) {
+//                            Intent intent = new Intent(Dep4Activity.this,DiseaseActivity.class);
+//                            intent.putExtra("return_point","disease");
+//                            startActivity(intent);
+//                        }
+                    }
+                }
+//                Log.e("firebase" , dep_score + ":" + oste_score + ":" + hyper_score + ":" + bmi) ;
+                Log.e("firebase_score" , "test test");
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void backHome(View view) {
+        Intent intent = new Intent(this,DiseaseActivity.class);
+        startActivity(intent);
     }
 
 
@@ -83,6 +140,7 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
             sick = (JSONArray) obj.get("depression");
             max_length = sick.length();
             page = sick.getJSONObject(max_length-1);
+            img_sub.setText(max_length + " / " + max_length);
             sub_img = page.getString("sub_img");
             main_img = page.getString("main_img");
             text = page.getString("text");
@@ -93,6 +151,7 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
             img_3 = page.getString("img_3");
             img_4 = page.getString("img_4");
             audio_name = page.getString("audio");
+            ref_img.setText("ที่มา : " + page.getString("ref_img"));
             //                set audio file
             int raw_audio = getResources().getIdentifier(audio_name , "raw", getPackageName());
             mp = MediaPlayer.create(this,raw_audio);
@@ -111,12 +170,12 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
         }
     }
     private void setData() {
-        if (!sub_img.equals("")) {
-            String mDrawableName = sub_img;
-            Log.e("img", mDrawableName);
-            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
-            img_sub.setImageResource(resID);
-        }
+//        if (!sub_img.equals("")) {
+//            String mDrawableName = sub_img;
+//            Log.e("img", mDrawableName);
+//            int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+//            img_sub.setImageResource(resID);
+//        }
         if (!main_img.equals("")) {
             String mDrawableName = main_img;
             int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
@@ -201,12 +260,12 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
 
         } else if ( v == btn_next ) {
             mp.stop();
+            doReadFirebase();
             index += 1;
             if (rt_point.equals("disease")) {
-                Intent intent = new Intent(this,QuestionActivity.class);
+                Intent intent = new Intent(Dep4Activity.this,QuestionActivity.class);
                 intent.putExtra("next_pointer","Dep1Activity");
                 intent.putExtra("post_test", "post_test");
-                intent.putExtra("index", 0);
                 intent.putExtra("return_point",rt_point);
                 startActivity(intent);
                 Log.e("HACK", String.valueOf(index));
@@ -223,13 +282,14 @@ public class Dep4Activity extends AppCompatActivity implements View.OnClickListe
                 audio_state = false;
             try {
                 if (audio_state) {
-                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this,"playing sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("pause" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);
                     mp.start();
                 }
-                else {Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
+                else {
+//                    Toast.makeText(this,"pause sound",Toast.LENGTH_LONG).show();
                     int resID = getResources().getIdentifier("play" , "drawable", getPackageName());
                     Log.e("img", String.valueOf(resID));
                     sound_btn.setImageResource(resID);

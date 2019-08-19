@@ -25,7 +25,7 @@
     <string name="editInfomation">แก้ไขข้อมูลส่วนตัว</string>
     <string name="backmain">กลับเมนูหลัก</string>
     <string name="yes">ใช่</string>
-    <string name="no">ไม่</string>
+    <string name="no">ไม่ใช่</string>
     <string name="close">ตกลก</string>
     <string name="title">Title</string>
 </resources>

@@ -43,7 +43,7 @@ public class DiseaseActivity extends AppCompatActivity implements View.OnClickLi
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        Toast.makeText(this,currentUser.getUid(),Toast.LENGTH_LONG).show();
+//        Toast.makeText(this,currentUser.getUid(),Toast.LENGTH_LONG).show();
 
         edit_btn = findViewById(R.id.edit_btn);
         edit_btn.setOnClickListener(this);

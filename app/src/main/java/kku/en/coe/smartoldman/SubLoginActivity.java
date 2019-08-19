@@ -49,7 +49,7 @@ public class SubLoginActivity extends AppCompatActivity {
             }
 
             getValueIntent();
-            Toast.makeText(this,Cur_Uid,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,Cur_Uid,Toast.LENGTH_SHORT).show();
             addUser(Cur_Uid,name,gender, weight, age, height, String.valueOf(bmi));
 
         }else{
@@ -75,9 +75,9 @@ public class SubLoginActivity extends AppCompatActivity {
         childUpdates.put(uid, UserValues);
         myRef.updateChildren(childUpdates);
         Log.d(TAG,uid);
-        Toast.makeText(this,
-                "Write new user : " + Cur_Uid,
-                Toast.LENGTH_LONG).show();
+//        Toast.makeText(this,
+//                "Write new user : " + Cur_Uid,
+//                Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this,OsteNewQActivity.class);
         int diap_score = 0;
 //check diap age

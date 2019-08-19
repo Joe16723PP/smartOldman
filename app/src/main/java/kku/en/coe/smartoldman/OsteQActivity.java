@@ -108,7 +108,7 @@ public class OsteQActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if ( v == next_btn ) {
-            Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,"do next" , Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this,DepQActivity.class);
             OsteAAnswer global = OsteAAnswer.getOsteInst();
             try {

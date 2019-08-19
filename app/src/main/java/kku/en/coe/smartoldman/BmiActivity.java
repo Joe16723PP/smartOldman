@@ -38,7 +38,7 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
     private List<ListItem> listItems;
     ProgressDialog pgd;
 
-    private TextView bmi_tv , risk_tv , detail_risk_tv;
+    private TextView bmi_tv , risk_tv , detail_risk_tv , guide_line;
     private Button see_all_btn;
 
     private FirebaseAuth mAuth;
@@ -52,6 +52,7 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_bmi);
         getSupportActionBar().hide();
 
+        guide_line = findViewById(R.id.guide_line);
         risk_tv = findViewById(R.id.risk);
         detail_risk_tv = findViewById(R.id.detail_risk);
 
@@ -92,15 +93,19 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 }
                 Log.e("firebase" , dep_score + ":" + oste_score + ":" + hyper_score + ":" + bmi) ;
                 pgd.dismiss();
-                String res_bmi = "";
-                if (bmi < 23){
+                String res_bmi;
+                if (bmi < 18.5){
                     res_bmi = "ผอม";
-                } else if (bmi > 27.5) {
+                } else if (bmi >= 18.5 && bmi <= 22.9) {
+                    res_bmi = "สมส่วน";
+                } else if (bmi >= 23 && bmi <= 24.9) {
+                    res_bmi = "ค่อนข้างอ้วน";
+                } else if (bmi >= 25 && bmi <= 29.9) {
                     res_bmi = "อ้วน";
                 } else {
-                    res_bmi = "สมส่วน";
+                    res_bmi = "อ้วนมาก";
                 }
-                detail_risk_tv.setText("ดัชนีมวลกายของคุณคือ : " + (float)bmi + "\nคุณมีรูปร่าง" + res_bmi);
+                detail_risk_tv.setText("ดัชนีมวลกายของคุณคือ\n" + (float)bmi + "\nคุณมีรูปร่าง" + res_bmi);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -143,6 +148,10 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 );
                 listItems.add(listItem);
                 status = 1;
+                guide_line.append("\n" + name
+                        + "\n- ควรปรึกษาศัลยแพทย์ผู้เชี่ยวชาญกระดูกและข้อเพื่อรับการตรวจรักษา"
+                        + "\n- เอกซเรย์ข้อเข่าและประเมินอาการของโรค"
+                );
             }
             if (dep_score > 3 ) {
                 JSONObject nameObj = (JSONObject) placesObj.get(4);
@@ -156,6 +165,9 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 );
                 listItems.add(listItem);
                 status = 1;
+                guide_line.append("\n" + name
+                        + "\n- มีภาวะซึมเศร้า ควรได้รับบริการปรึกษาหรือพบแพทย์เพื่อการบำบัดรักษา"
+                );
 
             }
             if (hyper_score > 4) {
@@ -169,7 +181,8 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                         name, desc, desc , color , pointer
                 );
                 listItems.add(listItem);
-                status = 1;
+//                status = 1;
+//                guide_line.append("คำแนะนำการปฎิบัติตัวโรค " + name);
 
             }
             if (bmi >= 25 ) {
@@ -184,15 +197,21 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 );
                 listItems.add(listItem);
                 status = 1;
+                guide_line.append(
+                        "\n" + name
+                        + "\n- ออกกกำลังกายสม่ำเสมอ"
+                        + "\n- ควบคุมน้ำหนังตัวให้อยู่ในเกณฑ์ที่เหมาะสม"
+                        + "\n- ตรวจวัดความดันโลหิต"
+                );
 
             }
             if (status == 1){
-                risk_tv.setText("คุณมีความเสี่ยงโรคดังต่อไปนี้");
+                risk_tv.setText("คำแนะนำการปฎิบัติตัว");
             } else {
                 risk_tv.setText("ไมมีความเสี่ยงเลย ! \nสุขภาพของคุณดีมาก");
             }
-            adapter = new MyAdapter(listItems,this);
-            recyclerView.setAdapter(adapter);
+//            adapter = new MyAdapter(listItems,this);
+//            recyclerView.setAdapter(adapter);
 
         } catch (Exception e) {
             e.printStackTrace();
